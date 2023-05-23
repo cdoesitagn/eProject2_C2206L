@@ -2,7 +2,7 @@ CREATE TABLE `Student` (
   `student_id` int PRIMARY KEY,
   `fullname` varchar(30),
   `birthday` date,
-  `gender` enum,
+  `gender` int,
   `address` varchar(30),
   `phoneNumber` varchar(20),
   `email` varchar(30)
@@ -17,7 +17,7 @@ CREATE TABLE `Course` (
 CREATE TABLE `Teacher` (
   `teacher_id` integer PRIMARY KEY,
   `fullname` varchar(30),
-  `gender` enum,
+  `gender` int,
   `email` varchar(30),
   `phoneNumber` varchar(20)
 );
@@ -37,7 +37,7 @@ CREATE TABLE `UserAccount` (
   `user_id` int PRIMARY KEY,
   `username` varchar(30),
   `password` varchar(30),
-  `role` enum
+  `role` int
 );
 
 CREATE TABLE `Semester` (
@@ -89,32 +89,16 @@ CREATE TABLE `Attendance` (
   `date` date
 );
 
-ALTER TABLE `Student` ADD FOREIGN KEY (`student_id`) REFERENCES `ExamResults` (`student_id`);
-
-ALTER TABLE `ExamResults` ADD FOREIGN KEY (`course_id`) REFERENCES `Course` (`course_id`);
-
-ALTER TABLE `Student` ADD FOREIGN KEY (`student_id`) REFERENCES `TotalResult` (`student_id`);
-
-ALTER TABLE `TotalResult` ADD FOREIGN KEY (`semester_id`) REFERENCES `Semester` (`semester_id`);
-
-ALTER TABLE `ExamResults` ADD FOREIGN KEY (`examResult_id`) REFERENCES `TotalResult` (`examResult_id`);
-
-ALTER TABLE `Student` ADD FOREIGN KEY (`student_id`) REFERENCES `Student_Class` (`student_id`);
-
-ALTER TABLE `Class` ADD FOREIGN KEY (`class_id`) REFERENCES `Student_Class` (`class_id`);
-
-ALTER TABLE `Teacher_Course` ADD FOREIGN KEY (`course_id`) REFERENCES `Course` (`course_id`);
-
-ALTER TABLE `Student` ADD FOREIGN KEY (`student_id`) REFERENCES `Attendance` (`student_id`);
-
-ALTER TABLE `Teacher` ADD FOREIGN KEY (`teacher_id`) REFERENCES `Schedule` (`teacher_id`);
-
-ALTER TABLE `Class` ADD FOREIGN KEY (`class_id`) REFERENCES `Schedule` (`class_id`);
-
-ALTER TABLE `Teacher_Course` ADD FOREIGN KEY (`course_id`) REFERENCES `Schedule` (`course_id`);
-
-ALTER TABLE `Teacher_Course` ADD FOREIGN KEY (`teacher_id`) REFERENCES `Schedule` (`teacher_id`);
-
-ALTER TABLE `Course` ADD FOREIGN KEY (`teacher_id`) REFERENCES `Teacher` (`teacher_id`);
-
-ALTER TABLE `Schedule` ADD FOREIGN KEY (`schedule_id`) REFERENCES `Attendance` (`schedule_id`);
+ALTER TABLE ExamResults ADD FOREIGN KEY (student_id) REFERENCES Student(student_id);
+ALTER TABLE TotalResult ADD FOREIGN KEY (student_id) REFERENCES Student(student_id);
+ALTER TABLE TotalResult ADD FOREIGN KEY (examResult_id) REFERENCES ExamResults(examResult_id);
+ALTER TABLE Student_Class ADD FOREIGN KEY (student_id) REFERENCES Student(student_id);
+ALTER TABLE Student_Class ADD FOREIGN KEY (class_id) REFERENCES Class(class_id);
+ALTER TABLE Teacher_Course ADD FOREIGN KEY (course_id) REFERENCES Course(course_id);
+ALTER TABLE Attendance ADD FOREIGN KEY (student_id) REFERENCES Student(student_id);
+ALTER TABLE Schedule ADD FOREIGN KEY (teacher_id) REFERENCES Teacher(teacher_id);
+ALTER TABLE Schedule ADD FOREIGN KEY (class_id) REFERENCES Class(class_id);
+ALTER TABLE Schedule ADD FOREIGN KEY (course_id) REFERENCES Course(course_id);
+ALTER TABLE Course ADD FOREIGN KEY (teacher_id) REFERENCES Teacher(teacher_id);
+ALTER TABLE Attendance ADD FOREIGN KEY (schedule_id) REFERENCES Schedule(schedule_id);
+ALTER TABLE TotalResult ADD FOREIGN KEY (semester_id) REFERENCES Semester(semester_id);
