@@ -17,7 +17,7 @@ CREATE TABLE `Course` (
 CREATE TABLE `Teacher` (
   `teacher_id` integer PRIMARY KEY auto_increment,
   `fullname` varchar(30),
-  `gender` VARCHAR(5),
+  `gender` int,
   `email` varchar(30),
   `phoneNumber` varchar(20)
 );

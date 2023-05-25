@@ -4,40 +4,58 @@
  */
 package models;
 
+import java.util.Scanner;
+
 /**
  *
  * @author GreenRain
  */
-public class Student {
+public class Students {
 
     int student_id;
     String fullname;
     String email;
     String phoneNumber;
     String address;
-    String date;
+    String birthday;
     String gender;
 
-    public Student() {
+    public Students() {
     }
 
-    public Student(int student_id, String fullname, String email, String phoneNumber, String address, String date, String gender) {
+    public Students(int student_id, String fullname, String email, String phoneNumber, String address, String birthday, String gender) {
         this.student_id = student_id;
         this.fullname = fullname;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.address = address;
-        this.date = date;
+        this.birthday = birthday;
         this.gender = gender;
     }
 
-    public Student(String fullname, String email, String phoneNumber, String address, String date, String gender) {
+    public Students(String fullname, String email, String phoneNumber, String address, String birthday, String gender) {
         this.fullname = fullname;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.address = address;
-        this.date = date;
+        this.birthday = birthday;
         this.gender = gender;
+    }
+
+    public void input() {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Nhap ten: ");
+        fullname = scan.nextLine();
+        System.out.println("Nhap email: ");
+        email = scan.nextLine();
+        System.out.println("Nhap so dien thoai: ");
+        phoneNumber = scan.nextLine();
+        System.out.println("Nhap dia chi: ");
+        address = scan.nextLine();
+        System.out.println("Nhap gioi tinh: ");
+        gender = scan.nextLine();
+        System.out.println("Nhap sinh nhat: ");
+        birthday = scan.nextLine();
     }
 
     public int getStudent_id() {
@@ -80,12 +98,12 @@ public class Student {
         this.address = address;
     }
 
-    public String getDate() {
-        return date;
+    public String getBirthday() {
+        return birthday;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
     }
 
     public String getGender() {
@@ -98,7 +116,7 @@ public class Student {
 
     @Override
     public String toString() {
-        return "student_id=" + student_id + ", fullname=" + fullname + ", email=" + email + ", phoneNumber=" + phoneNumber + ", address=" + address + ", date=" + date + ", gender=" + gender;
+        return "student_id=" + student_id + ", fullname=" + fullname + ", email=" + email + ", phoneNumber=" + phoneNumber + ", address=" + address + ", birthday=" + birthday + ", gender=" + gender;
     }
 
 }
