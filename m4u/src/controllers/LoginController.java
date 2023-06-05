@@ -4,10 +4,44 @@
  */
 package controllers;
 
+import views.LoginView;
+import models.ConnectSQL;
+import models.User;
 /**
  *
  * @author GreenRain
  */
 public class LoginController {
-    
+     private final LoginView view;
+
+    public LoginController(LoginView view) {
+        this.view = view;
+    }
+     
+     public void login(){
+         String username = view.getUsername();
+         String password = view.getPassword();
+         
+         User user = ConnectSQL.getUserByUserName(username);
+         
+         if(user != null && user.getPassword().equals(password)){
+             switch (user.getRole()) {
+             // Perform student-specific actions
+                 case "student":
+                      view.showErrorMessage("Login Successfull!");
+                     break;
+             // Perform teacher-specific actions
+                 case "teacher":
+                     view.showErrorMessage("Login Successfull!");
+                     break;
+                 default:
+                     // Invalid role
+                     view.showErrorMessage("Invalid role!");
+                     break;
+             }
+        } else {
+            // Invalid username or password
+            view.showErrorMessage("Invalid username or password!");
+        }
+     }
 }
