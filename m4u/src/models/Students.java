@@ -12,13 +12,13 @@ import java.util.Scanner;
  */
 public class Students {
 
-    int student_id;
-    String fullname;
-    String email;
-    String phoneNumber;
-    String address;
-    String birthday;
-    String gender;
+    private int student_id;
+    private String fullname;
+    private String email;
+    private String phoneNumber;
+    private String address;
+    private String birthday;
+    private String gender;
 
     public Students() {
     }
