@@ -4,9 +4,11 @@
  */
 package controllers;
 
+import java.util.prefs.Preferences;
 import views.LoginView;
 import models.ConnectSQL;
 import models.User;
+
 
 /**
  *
@@ -14,7 +16,7 @@ import models.User;
  */
 public class LoginController {
 
-    public LoginView view;
+    private LoginView view;
 
     public LoginController() {
 
@@ -25,13 +27,10 @@ public class LoginController {
     }
 
     public void login() {
-        if (view == null) {
-        System.out.println("Error: View is null");
-        return;
-    }
-        
+
         String username = view.getUsername();
         String password = view.getPassword();
+        
 
         User user = ConnectSQL.getUserByUserName(username);
 
@@ -39,20 +38,34 @@ public class LoginController {
             switch (user.getRole()) {
                 // Perform student-specific actions
                 case 1:
-                    view.showMessage("Login Successfull!");
+                    view.showMessage("Login Successfull By Teacher Account!");
                     break;
                 // Perform teacher-specific actions
                 case 2:
-                    view.showMessage("Login Successfull!");
+                    view.showMessage("Login Successfull By Student Account!");
                     break;
                 default:
                     // Invalid role
                     view.showErrorMessage("Invalid role!");
                     break;
             }
+
+            boolean rememberMe = view.isRememberMe();
+            if (rememberMe) {
+            // Save the user information for automatic login next time
+            saveUserForAutomaticLogin(user);
+        }
         } else {
             // Invalid username or password
             view.showErrorMessage("Invalid username or password!");
         }
     }
+
+   private void saveUserForAutomaticLogin(User user) {
+    // Example implementation using Preferences API
+    Preferences preferences = Preferences.userRoot().node("com.example.app");
+    preferences.put("username", user.getUsername());
+    preferences.put("password", user.getPassword());
+}
+
 }

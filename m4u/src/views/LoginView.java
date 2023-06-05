@@ -34,7 +34,7 @@ public class LoginView extends javax.swing.JFrame {
     }
 
     public String getPassword() {
-        return txtPassword.getText();
+        return new String(txtPassword.getPassword());
     }
 
     public void showMessage(String message) {
@@ -43,6 +43,10 @@ public class LoginView extends javax.swing.JFrame {
 
     public void showErrorMessage(String message) {
         JOptionPane.showMessageDialog(this, message, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+  public boolean isRememberMe() {
+        return chkRememberMe.isSelected();
     }
 
     /**
@@ -92,6 +96,11 @@ public class LoginView extends javax.swing.JFrame {
         jLabel3.setText("Password:");
 
         chkRememberMe.setText("Remember me?");
+        chkRememberMe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkRememberMeActionPerformed(evt);
+            }
+        });
 
         btnReset.setText("Reset");
         btnReset.addActionListener(new java.awt.event.ActionListener() {
@@ -163,12 +172,17 @@ public class LoginView extends javax.swing.JFrame {
         // TODO add your handling code here:
         txtUsername.setText("");
         txtPassword.setText("");
+        chkRememberMe.setSelected(false);
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtPasswordActionPerformed
 
+    private void chkRememberMeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkRememberMeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_chkRememberMeActionPerformed
+    
     /**
      * @param args the command line arguments
      */
