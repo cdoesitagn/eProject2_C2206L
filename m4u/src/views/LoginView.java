@@ -14,21 +14,19 @@ import javax.swing.*;
  */
 public class LoginView extends javax.swing.JFrame {
 
-    private LoginController controller;
-
-    public LoginView() {
-        initComponents();
-    }
+    LoginController controller;
 
     /**
      * Creates new form LoginForm
      *
-     * @param controller
      */
-    public LoginView(LoginController controller) {
+    public LoginView() {
+        initComponents();
+        controller = new LoginController();
+    }
+
+    public void setController(LoginController controller) {
         this.controller = controller;
-        btnLogin.addActionListener(this::btnLoginActionPerformed);
-        btnReset.addActionListener(this::btnResetActionPerformed);
     }
 
     public String getUsername() {
@@ -36,7 +34,11 @@ public class LoginView extends javax.swing.JFrame {
     }
 
     public String getPassword() {
-        return new String(txtPassword.getPassword());
+        return txtPassword.getText();
+    }
+
+    public void showMessage(String message) {
+        JOptionPane.showMessageDialog(this, message);
     }
 
     public void showErrorMessage(String message) {
@@ -170,12 +172,11 @@ public class LoginView extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-
-     public static void main(String args[]) {
+    public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+     * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -196,13 +197,15 @@ public class LoginView extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-         java.awt.EventQueue.invokeLater(() -> {
+        java.awt.EventQueue.invokeLater(() -> {
             LoginView loginView = new LoginView();
             LoginController loginController = new LoginController(loginView);
+            loginView.setController(loginController);
             loginView.setVisible(true);
         });
     }
-    
+
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnReset;
