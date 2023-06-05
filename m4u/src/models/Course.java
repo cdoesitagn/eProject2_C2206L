@@ -13,9 +13,6 @@ public class Course {
     private String course_name;
     private int teacher_id;
 
-    public Course() {
-    }
-
     public Course(int course_id, String course_name, int teacher_id) {
         this.course_id = course_id;
         this.course_name = course_name;
