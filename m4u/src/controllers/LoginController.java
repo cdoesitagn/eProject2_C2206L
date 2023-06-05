@@ -27,11 +27,11 @@ public class LoginController {
          if(user != null && user.getPassword().equals(password)){
              switch (user.getRole()) {
              // Perform student-specific actions
-                 case "student":
+                 case 1:
                       view.showErrorMessage("Login Successfull!");
                      break;
              // Perform teacher-specific actions
-                 case "teacher":
+                 case 2:
                      view.showErrorMessage("Login Successfull!");
                      break;
                  default:

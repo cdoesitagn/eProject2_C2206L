@@ -14,7 +14,7 @@ import javax.swing.*;
  */
 public class LoginView extends javax.swing.JFrame {
 
-    private LoginController controller = null;
+    private LoginController controller;
 
     public LoginView() {
         initComponents();
@@ -26,7 +26,6 @@ public class LoginView extends javax.swing.JFrame {
      * @param controller
      */
     public LoginView(LoginController controller) {
-  
         this.controller = controller;
         btnLogin.addActionListener(this::btnLoginActionPerformed);
         btnReset.addActionListener(this::btnResetActionPerformed);

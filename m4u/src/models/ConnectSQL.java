@@ -69,7 +69,7 @@ public class ConnectSQL {
                 // Lấy thông tin từ ResultSet và tạo đối tượng User tương ứng
                 int userId = resultSet.getInt("user_id");
                 String password = resultSet.getString("password");
-                String role = resultSet.getString("role");
+                int role = resultSet.getInt("role");
 
                 user = new User(userId, username, password, role);
             }
