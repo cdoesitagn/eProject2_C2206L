@@ -11,11 +11,12 @@ import java.util.Scanner;
  * @author GreenRain
  */
 public class Teacher {
-    int teacher_id;
-    String fullname;
-    String gender;
-    String email;
-    String phoneNumber;
+
+    private int teacher_id;
+    private String fullname;
+    private String gender;
+    private String email;
+    private String phoneNumber;
 
     public Teacher() {
     }
@@ -28,7 +29,7 @@ public class Teacher {
         this.phoneNumber = phoneNumber;
     }
 
-     public void input() {
+    public void input() {
         Scanner scan = new Scanner(System.in);
         System.out.println("Nhap ten: ");
         fullname = scan.nextLine();
@@ -82,8 +83,7 @@ public class Teacher {
 
     @Override
     public String toString() {
-        return  "teacher_id=" + teacher_id + ", fullname=" + fullname + ", gender=" + gender + ", email=" + email + ", phoneNumber=" + phoneNumber;
+        return "teacher_id=" + teacher_id + ", fullname=" + fullname + ", gender=" + gender + ", email=" + email + ", phoneNumber=" + phoneNumber;
     }
-    
-    
+
 }
