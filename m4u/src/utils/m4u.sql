@@ -5,7 +5,8 @@ CREATE TABLE `Student` (
   `gender` varhcar(5),
   `address` varchar(30),
   `phoneNumber` varchar(20),
-  `email` varchar(30)
+  `email` varchar(30),
+  `image_path` varchar(200)
 );
 
 CREATE TABLE `Course` (

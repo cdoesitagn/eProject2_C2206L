@@ -1743,7 +1743,7 @@ public class TeacherView extends javax.swing.JFrame {
         jTable1.clearSelection();
         imagePath = null;
     }
-
+    
     public boolean isEmptyStudent() {
         if (jTextField2.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Student name is missing");
