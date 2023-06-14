@@ -4,17 +4,36 @@
  */
 package views;
 
+import controllers.TeacherController;
+import static java.awt.Color.black;
+import static java.awt.Color.white;
+import java.awt.Image;
+import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.ImageIcon;
+import javax.swing.JFileChooser;
+import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author GreenRain
  */
 public class TeacherView extends javax.swing.JFrame {
 
-    /**
-     * Creates new form TeacherView
-     */
+    int xx, xy;
+    private String imagePath;
+    private DefaultTableModel model;
+    TeacherController tController = new TeacherController();
+
     public TeacherView() {
+        this.setUndecorated(true);
         initComponents();
+        init();
     }
 
     /**
@@ -37,6 +56,7 @@ public class TeacherView extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
+        jLabelImage = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -173,10 +193,25 @@ public class TeacherView extends javax.swing.JFrame {
         jButton36 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(153, 255, 255));
 
         jPanel2.setBackground(new java.awt.Color(102, 153, 255));
+        jPanel2.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseDragged(java.awt.event.MouseEvent evt) {
+                jPanel2MouseDragged(evt);
+            }
+        });
+        jPanel2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                jPanel2MousePressed(evt);
+            }
+        });
 
         jLabel1.setFont(new java.awt.Font("Dialog", 1, 36)); // NOI18N
         jLabel1.setText("STUDENT MANAGEMENT SYSTEM");
@@ -214,17 +249,29 @@ public class TeacherView extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel9.setText("Image");
 
-        jPanel8.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel8.setBackground(new java.awt.Color(153, 153, 153));
+
+        jLabelImage.setBackground(new java.awt.Color(153, 153, 153));
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 351, Short.MAX_VALUE)
+            .addGap(0, 349, Short.MAX_VALUE)
+            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel8Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLabelImage, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 250, Short.MAX_VALUE)
+            .addGap(0, 228, Short.MAX_VALUE)
+            .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel8Layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(jLabelImage, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
 
         javax.swing.GroupLayout jPanel11Layout = new javax.swing.GroupLayout(jPanel11);
@@ -236,23 +283,22 @@ public class TeacherView extends javax.swing.JFrame {
                 .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 120, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(26, 26, 26)
                 .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel11Layout.setVerticalGroup(
             jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel11Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel11Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap())
-                    .addGroup(jPanel11Layout.createSequentialGroup()
-                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(99, 99, 99))))
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(99, 99, 99))
+            .addGroup(jPanel11Layout.createSequentialGroup()
+                .addGap(19, 19, 19)
+                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -276,6 +322,8 @@ public class TeacherView extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel8.setText("Address");
 
+        jTextField1.setEditable(false);
+        jTextField1.setBackground(new java.awt.Color(153, 153, 153));
         jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
 
         jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -283,6 +331,11 @@ public class TeacherView extends javax.swing.JFrame {
         jTextField5.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
 
         jTextField6.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField6KeyTyped(evt);
+            }
+        });
 
         jTextField7.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
 
@@ -434,7 +487,15 @@ public class TeacherView extends javax.swing.JFrame {
             new String [] {
                 "Student's ID", "Student's Name", "Date Of Birth", "Gender", "Email", "Phone Number", "Address", "Image"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                true, true, true, true, true, true, true, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         javax.swing.GroupLayout jPanel13Layout = new javax.swing.GroupLayout(jPanel13);
@@ -481,6 +542,11 @@ public class TeacherView extends javax.swing.JFrame {
 
         jButton9.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jButton9.setText("Log Out");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel14Layout = new javax.swing.GroupLayout(jPanel14);
         jPanel14.setLayout(jPanel14Layout);
@@ -840,6 +906,11 @@ public class TeacherView extends javax.swing.JFrame {
 
         jButton18.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jButton18.setText("Log Out");
+        jButton18.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton18ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel21Layout = new javax.swing.GroupLayout(jPanel21);
         jPanel21.setLayout(jPanel21Layout);
@@ -1233,6 +1304,11 @@ public class TeacherView extends javax.swing.JFrame {
 
         jButton41.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jButton41.setText("Log Out");
+        jButton41.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton41ActionPerformed(evt);
+            }
+        });
 
         jButton19.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jButton19.setText("Update");
@@ -1515,6 +1591,11 @@ public class TeacherView extends javax.swing.JFrame {
 
         jButton36.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jButton36.setText("Log Out");
+        jButton36.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton36ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel37Layout = new javax.swing.GroupLayout(jPanel37);
         jPanel37.setLayout(jPanel37Layout);
@@ -1637,10 +1718,97 @@ public class TeacherView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void init() {
+        tableViewStudent();
+        jTextField1.setText(String.valueOf(tController.getMax()));
+    }
+
+    private void tableViewStudent() {
+        model = (DefaultTableModel) jTable1.getModel();
+        jTable1.setRowHeight(30);
+        jTable1.setShowGrid(true);
+        jTable1.setGridColor(black);
+        jTable1.setBackground(white);
+    }
+
+    private void clearStudent() {
+        jTextField1.setText(null);
+        jTextField2.setText(null);
+        jTextField5.setText(null);
+        jTextField6.setText(null);
+        jTextField7.setText(null);
+        jDateChooser1.setDate(null);
+        jComboBox2.setSelectedIndex(0);
+        jLabelImage.setIcon(null);
+        jTable1.clearSelection();
+        imagePath = null;
+    }
+
+    public boolean isEmptyStudent() {
+        if (jTextField2.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Student name is missing");
+            return false;
+        }
+        if (jDateChooser1.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Student date of birth is missing");
+            return false;
+        }
+        if (jDateChooser1.getDate().compareTo(new Date()) > 0) {
+            JOptionPane.showMessageDialog(this, "No student from the future are allowed");
+            return false;
+        }
+        if (jTextField5.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Student email address is missing");
+            return false;
+        }
+        if (!jTextField5.getText().matches("^[A-Za-z0-9_.]+[@][A-Za-z.]+$")) {
+            JOptionPane.showMessageDialog(this, "Invalid email address");
+            return false;
+        }
+        if (jTextField6.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Phone number is missing");
+            return false;
+        }
+        if (jTextField6.getText().length() >= 12 || jTextField6.getText().length() <= 9) {
+            JOptionPane.showMessageDialog(this, "The phone number does not have enough length.");
+            return false;
+        }
+        if (jTextField7.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Student address is missing");
+            return false;
+        }
+        return true;
+    }
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
+        JFileChooser file = new JFileChooser();
+        file.setCurrentDirectory(new File(System.getProperty("user.home")));
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("*.image", "jpg", "gif", "png");
+        file.addChoosableFileFilter(filter);
+        int output = file.showSaveDialog(file);
+        if (output == JFileChooser.APPROVE_OPTION) {
+            File selectFile = file.getSelectedFile();
+            String path = selectFile.getAbsolutePath();
+            jLabelImage.setIcon(imageAdjust(path, null));
+            imagePath = path;
+        } else {
+            JOptionPane.showMessageDialog(this, "No Image selected");
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private ImageIcon imageAdjust(String path, byte[] pic){
+        ImageIcon myImage = null;
+        if(path != null){
+            myImage = new ImageIcon(path);
+        }else{
+            myImage = new ImageIcon(pic);
+        }
+        Image img = myImage.getImage();
+        Image newImage = img.getScaledInstance(jLabelImage.getWidth(), jLabelImage.getHeight(), Image.SCALE_SMOOTH);
+        ImageIcon icon = new ImageIcon(newImage);
+        return icon;
+    }
+    
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
@@ -1650,11 +1818,20 @@ public class TeacherView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        // TODO add your handling code here:
+        clearStudent();
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
+        if (isEmptyStudent()) {
+            int id = tController.getMax();
+            String name = jTextField2.getText();
+            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String date = dateFormat.format(jDateChooser1.getDate());
+            String gender = jComboBox2.getSelectedItem().toString();
+            String email = jTextField5.getText();
+            String phoneNumber = jTextField6.getText();
+            String address = jTextField7.getText();
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTextField12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField12ActionPerformed
@@ -1717,10 +1894,98 @@ public class TeacherView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField13ActionPerformed
 
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        // TODO add your handling code here:
+        int a = JOptionPane.showConfirmDialog(this, "Do you want to log out now?", "Select", JOptionPane.YES_NO_OPTION);
+        if (a == 0) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
+        int a = JOptionPane.showConfirmDialog(this, "Do you want to log out now?", "Select", JOptionPane.YES_NO_OPTION);
+        if (a == 0) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_jButton18ActionPerformed
+
+    private void jButton41ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton41ActionPerformed
+        int a = JOptionPane.showConfirmDialog(this, "Do you want to log out now?", "Select", JOptionPane.YES_NO_OPTION);
+        if (a == 0) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_jButton41ActionPerformed
+
+    private void jButton36ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton36ActionPerformed
+        int a = JOptionPane.showConfirmDialog(this, "Do you want to log out now?", "Select", JOptionPane.YES_NO_OPTION);
+        if (a == 0) {
+            this.dispose();
+        }
+    }//GEN-LAST:event_jButton36ActionPerformed
+
+    private void jPanel2MouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MouseDragged
+        int x = evt.getXOnScreen();
+        int y = evt.getYOnScreen();
+        this.setLocation(x - xx, y - xy);
+    }//GEN-LAST:event_jPanel2MouseDragged
+
+    private void jPanel2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel2MousePressed
+        xx = evt.getX();
+        xy = evt.getY();
+    }//GEN-LAST:event_jPanel2MousePressed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        // Tắt trang trí cửa sổ trước khi thay đổi độ mờ
+
+        for (double i = 0.1; i <= 1.0; i += 0.1) {
+            String s = i + "";
+            float f = Float.valueOf(s);
+            this.setOpacity(f);
+            try {
+                Thread.sleep(40);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(TeacherView.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+
+        // Bật lại trang trí cửa sổ sau khi hoàn thành thay đổi
+
+    }//GEN-LAST:event_formWindowOpened
+
+    private void jTextField6KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyTyped
+        if (!Character.isDigit(evt.getKeyChar())) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField6KeyTyped
+
     /**
      * @param args the command line arguments
      */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(TeacherView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
 
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(() -> {
+            new TeacherView().setVisible(true);
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -1795,6 +2060,7 @@ public class TeacherView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLabelImage;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;

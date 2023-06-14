@@ -4,7 +4,6 @@
  */
 package controllers;
 
-import java.util.prefs.Preferences;
 import views.LoginView;
 import models.ConnectSQL;
 import models.User;
@@ -49,23 +48,9 @@ public class LoginController {
                     view.showErrorMessage("Invalid role!");
                     break;
             }
-
-            boolean rememberMe = view.isRememberMe();
-            if (rememberMe) {
-            // Save the user information for automatic login next time
-            saveUserForAutomaticLogin(user);
-        }
         } else {
             // Invalid username or password
             view.showErrorMessage("Invalid username or password!");
         }
     }
-
-   private void saveUserForAutomaticLogin(User user) {
-    // Example implementation using Preferences API
-    Preferences preferences = Preferences.userRoot().node("com.example.app");
-    preferences.put("username", user.getUsername());
-    preferences.put("password", user.getPassword());
-}
-
 }

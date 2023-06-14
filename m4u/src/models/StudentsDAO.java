@@ -7,7 +7,6 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-
 public class StudentsDAO extends ConnectSQL {
 
     public static List<Students> searchByName(String name) {
@@ -235,6 +234,23 @@ public class StudentsDAO extends ConnectSQL {
         close();
 
         return std;
+    }
+
+    public int getMax() {
+        int id = 0;
+        open();
+        String sql = "select max(student_id) from student";
+        try {
+            statement = conn.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                id = rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentsDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return id + 1;
     }
 
     public static void updateByEmail(Students std) {
