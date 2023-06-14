@@ -1939,7 +1939,7 @@ public class TeacherView extends javax.swing.JFrame {
 
         for (double i = 0.1; i <= 1.0; i += 0.1) {
             String s = i + "";
-            float f = Float.valueOf(s);
+            float f = Float.parseFloat(s);
             this.setOpacity(f);
             try {
                 Thread.sleep(40);
