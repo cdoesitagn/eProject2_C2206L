@@ -8,9 +8,13 @@ import controllers.TeacherController;
 import static java.awt.Color.black;
 import static java.awt.Color.white;
 import java.awt.Image;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 import java.io.File;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -18,6 +22,7 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
+import models.Students;
 
 /**
  *
@@ -28,12 +33,65 @@ public class TeacherView extends javax.swing.JFrame {
     int xx, xy;
     private String imagePath;
     private DefaultTableModel model;
-    TeacherController tController = new TeacherController();
+    DefaultTableModel tableModel;
+    List<Students> dataList = new ArrayList<>();
+    int currentIndex = -1;
+    private TeacherController tController;
 
     public TeacherView() {
         this.setUndecorated(true);
         initComponents();
         init();
+        tController = new TeacherController(this);
+        showUpdateStudent();
+    }
+    
+    private void showUpdateStudent(){
+        tableModel = (DefaultTableModel) jTable1.getModel();
+
+        showNewData();
+
+        jTable1.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                currentIndex = jTable1.getSelectedRow();
+
+                jTextField2.setText(dataList.get(currentIndex).getFullname());
+                jTextField5.setText(dataList.get(currentIndex).getEmail());
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+            }
+        });
+    }
+    
+    public DefaultTableModel getTable() {
+        return (DefaultTableModel) jTable1.getModel();
+    }
+
+    private void showNewData() {
+        tController.showNewData();
+    }
+
+    private void showTable() {
+        tController.showTable();
     }
 
     /**
@@ -494,6 +552,11 @@ public class TeacherView extends javax.swing.JFrame {
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
+            }
+        });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
             }
         });
         jScrollPane1.setViewportView(jTable1);
@@ -1718,7 +1781,7 @@ public class TeacherView extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void init() {
+    private void init() {
         tableViewStudent();
         jTextField1.setText(String.valueOf(tController.getMax()));
     }
@@ -1743,7 +1806,7 @@ public class TeacherView extends javax.swing.JFrame {
         jTable1.clearSelection();
         imagePath = null;
     }
-    
+
     public boolean isEmptyStudent() {
         if (jTextField2.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Student name is missing");
@@ -1796,11 +1859,11 @@ public class TeacherView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private ImageIcon imageAdjust(String path, byte[] pic){
+    private ImageIcon imageAdjust(String path, byte[] pic) {
         ImageIcon myImage = null;
-        if(path != null){
+        if (path != null) {
             myImage = new ImageIcon(path);
-        }else{
+        } else {
             myImage = new ImageIcon(pic);
         }
         Image img = myImage.getImage();
@@ -1808,7 +1871,7 @@ public class TeacherView extends javax.swing.JFrame {
         ImageIcon icon = new ImageIcon(newImage);
         return icon;
     }
-    
+
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
@@ -1957,6 +2020,10 @@ public class TeacherView extends javax.swing.JFrame {
             evt.consume();
         }
     }//GEN-LAST:event_jTextField6KeyTyped
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments

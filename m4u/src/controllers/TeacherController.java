@@ -4,6 +4,10 @@
  */
 package controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import models.Students;
 import models.StudentsDAO;
 import views.TeacherView;
 
@@ -13,6 +17,7 @@ import views.TeacherView;
  */
 public class TeacherController {
     private TeacherView view;
+    private List<Students> dataList = new ArrayList<>();
 
     public TeacherController() {
     }
@@ -24,5 +29,27 @@ public class TeacherController {
     public int getMax(){
         StudentsDAO std = new StudentsDAO();
         return std.getMax();
+    }
+    
+    public void showNewData() {
+        dataList = StudentsDAO.select();
+        showTable();
+    }
+
+    public void showTable() {
+        DefaultTableModel tableModel = view.getTable();
+        tableModel.setRowCount(0);
+
+        for (Students students : dataList) {
+            tableModel.addRow(new Object[]{
+                tableModel.getRowCount() + 1,
+                students.getFullname(),
+                students.getGender(),
+                students.getBirthday(),
+                students.getPhoneNumber(),
+                students.getEmail(),
+                students.getAddress()
+            });
+        }
     }
 }

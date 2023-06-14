@@ -108,7 +108,7 @@ public class StudentsDAO extends ConnectSQL {
     public static void insert(Students std) {
         open();
         try {
-            //B2. Query du lieu ra
+            
             String sql = "insert into student (fullname, birthday, gender, address, email, phoneNumber) values (?, ?, ?, ?, ?, ?)";
             statement = conn.prepareStatement(sql);
             statement.setString(1, std.getFullname());
@@ -128,7 +128,7 @@ public class StudentsDAO extends ConnectSQL {
     public static void update(Students std) {
         open();
         try {
-            //B2. Query du lieu ra
+      
             String sql = "update student set fullname = ?, email = ?, birthday = ?, address = ?, gender = ?, phoneNumber = ? where student_id = ?";
             statement = conn.prepareStatement(sql);
             statement.setString(1, std.getFullname());
@@ -149,7 +149,7 @@ public class StudentsDAO extends ConnectSQL {
     public static void delete(int id) {
         open();
         try {
-            //B2. Query du lieu ra
+            
             String sql = "delete from student where student_id = ?";
             statement = conn.prepareStatement(sql);
             statement.setInt(1, id);
@@ -165,7 +165,7 @@ public class StudentsDAO extends ConnectSQL {
         Students std = null;
         open();
         try {
-            //B2. Query du lieu ra
+     
             String sql = "select * from student where email = ?";
             statement = conn.prepareStatement(sql);
             statement.setString(1, email);
@@ -208,7 +208,7 @@ public class StudentsDAO extends ConnectSQL {
         Students std = null;
         open();
         try {
-            //B2. Query du lieu ra
+   
             String sql = "select * from student where student_id = ?";
             statement = conn.prepareStatement(sql);
             statement.setInt(1, id);

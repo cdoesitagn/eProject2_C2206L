@@ -42,22 +42,6 @@ public class Students {
         this.gender = gender;
     }
 
-    public void input() {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Nhap ten: ");
-        fullname = scan.nextLine();
-        System.out.println("Nhap email: ");
-        email = scan.nextLine();
-        System.out.println("Nhap so dien thoai: ");
-        phoneNumber = scan.nextLine();
-        System.out.println("Nhap dia chi: ");
-        address = scan.nextLine();
-        System.out.println("Nhap gioi tinh: ");
-        gender = scan.nextLine();
-        System.out.println("Nhap sinh nhat: ");
-        birthday = scan.nextLine();
-    }
-
     public int getStudent_id() {
         return student_id;
     }
