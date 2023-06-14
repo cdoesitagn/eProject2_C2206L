@@ -19,11 +19,12 @@ public class Students {
     private String address;
     private String birthday;
     private String gender;
+    private String image_path;
 
     public Students() {
     }
 
-    public Students(int student_id, String fullname, String email, String phoneNumber, String address, String birthday, String gender) {
+    public Students(int student_id, String fullname, String birthday, String gender, String email, String phoneNumber, String address, String image_path) {
         this.student_id = student_id;
         this.fullname = fullname;
         this.email = email;
@@ -31,15 +32,25 @@ public class Students {
         this.address = address;
         this.birthday = birthday;
         this.gender = gender;
+        this.image_path = image_path;
     }
 
-    public Students(String fullname, String email, String phoneNumber, String address, String birthday, String gender) {
+    public Students(String fullname, String email, String phoneNumber, String address, String birthday, String gender, String image_path) {
         this.fullname = fullname;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.address = address;
         this.birthday = birthday;
         this.gender = gender;
+        this.image_path = image_path;
+    }
+
+    public String getImage_path() {
+        return image_path;
+    }
+
+    public void setImage_path(String image_path) {
+        this.image_path = image_path;
     }
 
     public int getStudent_id() {
@@ -100,7 +111,9 @@ public class Students {
 
     @Override
     public String toString() {
-        return "student_id=" + student_id + ", fullname=" + fullname + ", email=" + email + ", phoneNumber=" + phoneNumber + ", address=" + address + ", birthday=" + birthday + ", gender=" + gender;
+        return "student_id=" + student_id + ", fullname=" + fullname + ", email=" + email + ", phoneNumber=" + phoneNumber + ", address=" + address + ", birthday=" + birthday + ", gender=" + gender + ", image_path=" + image_path;
     }
+
+    
 
 }

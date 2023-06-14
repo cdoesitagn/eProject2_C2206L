@@ -8,10 +8,9 @@ import controllers.TeacherController;
 import static java.awt.Color.black;
 import static java.awt.Color.white;
 import java.awt.Image;
+import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
 import java.io.File;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -20,6 +19,7 @@ import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import models.Students;
@@ -35,55 +35,41 @@ public class TeacherView extends javax.swing.JFrame {
     private DefaultTableModel model;
     DefaultTableModel tableModel;
     List<Students> dataList = new ArrayList<>();
-    int currentIndex = -1;
-    private TeacherController tController;
+    public int currentIndex = -1;
+    private final TeacherController tController;
 
     public TeacherView() {
         this.setUndecorated(true);
         initComponents();
-        init();
         tController = new TeacherController(this);
+        init();
         showUpdateStudent();
     }
-    
-    private void showUpdateStudent(){
+
+    private void showUpdateStudent() {
         tableModel = (DefaultTableModel) jTable1.getModel();
 
         showNewData();
 
-        jTable1.addMouseListener(new MouseListener() {
+        jTable1.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                currentIndex = jTable1.getSelectedRow();
-
-                jTextField2.setText(dataList.get(currentIndex).getFullname());
-                jTextField5.setText(dataList.get(currentIndex).getEmail());
-            }
-
-            @Override
-            public void mousePressed(MouseEvent e) {
-                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-            }
-
-            @Override
-            public void mouseReleased(MouseEvent e) {
-                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-            }
-
-            @Override
-            public void mouseEntered(MouseEvent e) {
-                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-            }
-
-            @Override
-            public void mouseExited(MouseEvent e) {
-                throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+                if (!dataList.isEmpty()) {
+                    currentIndex = jTable1.getSelectedRow();
+                    jTextField2.setText(dataList.get(currentIndex).getFullname());
+                    jTextField5.setText(dataList.get(currentIndex).getEmail());
+                }
             }
         });
+
     }
-    
+
     public DefaultTableModel getTable() {
         return (DefaultTableModel) jTable1.getModel();
+    }
+
+    public JTable getJTable1() {
+        return jTable1;
     }
 
     private void showNewData() {
@@ -92,6 +78,18 @@ public class TeacherView extends javax.swing.JFrame {
 
     private void showTable() {
         tController.showTable();
+    }
+
+    public void showMessage(String message) {
+        JOptionPane.showMessageDialog(this, message);
+    }
+
+    public void showErrorMessage(String message) {
+        JOptionPane.showMessageDialog(this, message, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    public int showConfirmDialog(String message) {
+        return JOptionPane.showConfirmDialog(rootPane, message);
     }
 
     /**
@@ -1840,6 +1838,10 @@ public class TeacherView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Student address is missing");
             return false;
         }
+        if (imagePath == null) {
+            JOptionPane.showMessageDialog(this, "Please add your picture");
+            return false;
+        }
         return true;
     }
 
@@ -1872,6 +1874,57 @@ public class TeacherView extends javax.swing.JFrame {
         return icon;
     }
 
+    public String getFullName() {
+        return jTextField2.getText();
+    }
+
+    public Date getBirthDate() {
+        return jDateChooser1.getDate();
+    }
+
+    public String getGender() {
+        return jComboBox2.getSelectedItem().toString();
+    }
+
+    public String getEmail() {
+        return jTextField5.getText();
+    }
+
+    public String getPhoneNumber() {
+        return jTextField6.getText();
+    }
+
+    public String getAddress() {
+        return jTextField7.getText();
+    }
+
+    public String getJLabelImagePath() {
+        return imagePath;
+    }
+
+    public List<Students> getDataList() {
+        return dataList;
+    }
+
+    public int getCurrentIndex() {
+        return currentIndex;
+    }
+
+    public void setCurrentIndex(int index) {
+        currentIndex = index;
+    }
+
+    public void clearFields() {
+        jTextField2.setText("");
+        jTextField5.setText("");
+        jTextField6.setText("");
+        jTextField7.setText("");
+        jComboBox2.setSelectedIndex(0);
+        jDateChooser1.setDate(null);
+        jLabelImage.setIcon(null);
+    }
+
+
     private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField3ActionPerformed
@@ -1885,16 +1938,7 @@ public class TeacherView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if (isEmptyStudent()) {
-            int id = tController.getMax();
-            String name = jTextField2.getText();
-            SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-            String date = dateFormat.format(jDateChooser1.getDate());
-            String gender = jComboBox2.getSelectedItem().toString();
-            String email = jTextField5.getText();
-            String phoneNumber = jTextField6.getText();
-            String address = jTextField7.getText();
-        }
+        tController.saveOrUpdateStudent();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTextField12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField12ActionPerformed

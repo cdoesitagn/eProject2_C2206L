@@ -29,7 +29,8 @@ public class StudentsDAO extends ConnectSQL {
                         resultSet.getString("gender"),
                         resultSet.getString("phoneNumber"),
                         resultSet.getString("address"),
-                        resultSet.getString("birthday")
+                        resultSet.getString("birthday"),
+                        resultSet.getString("image_path")
                 );
                 dataList.add(std);
             }
@@ -60,7 +61,8 @@ public class StudentsDAO extends ConnectSQL {
                         resultSet.getString("gender"),
                         resultSet.getString("phone_number"),
                         resultSet.getString("address"),
-                        resultSet.getString("birthday")
+                        resultSet.getString("birthday"),
+                        resultSet.getString("image_path")
                 );
                 dataList.add(std);
             }
@@ -88,11 +90,12 @@ public class StudentsDAO extends ConnectSQL {
                 Students std = new Students(
                         resultSet.getInt("student_id"),
                         resultSet.getString("fullname"),
+                         resultSet.getString("birthday"),  
+                        resultSet.getString("gender"),
                         resultSet.getString("email"),
                         resultSet.getString("phoneNumber"),
-                        resultSet.getString("address"),
-                        resultSet.getString("birthday"),
-                        resultSet.getString("gender")
+                        resultSet.getString("address"),                        
+                        resultSet.getString("image_path")
                 );
                 dataList.add(std);
             }
@@ -109,7 +112,7 @@ public class StudentsDAO extends ConnectSQL {
         open();
         try {
             
-            String sql = "insert into student (fullname, birthday, gender, address, email, phoneNumber) values (?, ?, ?, ?, ?, ?)";
+            String sql = "insert into student (fullname, birthday, gender, address, email, phoneNumber, image_path) values (?, ?, ?, ?, ?, ?, ?)";
             statement = conn.prepareStatement(sql);
             statement.setString(1, std.getFullname());
             statement.setString(2, std.getBirthday());
@@ -117,6 +120,7 @@ public class StudentsDAO extends ConnectSQL {
             statement.setString(4, std.getAddress());
             statement.setString(5, std.getEmail());
             statement.setString(6, std.getPhoneNumber());
+            statement.setString(7, std.getImage_path());
 
             statement.execute();
         } catch (SQLException ex) {
@@ -129,7 +133,7 @@ public class StudentsDAO extends ConnectSQL {
         open();
         try {
       
-            String sql = "update student set fullname = ?, email = ?, birthday = ?, address = ?, gender = ?, phoneNumber = ? where student_id = ?";
+            String sql = "update student set fullname = ?, email = ?, birthday = ?, address = ?, gender = ?, phoneNumber = ?, image_path = ? where student_id = ?";
             statement = conn.prepareStatement(sql);
             statement.setString(1, std.getFullname());
             statement.setString(2, std.getEmail());
@@ -137,7 +141,8 @@ public class StudentsDAO extends ConnectSQL {
             statement.setString(4, std.getAddress());
             statement.setString(5, std.getGender());
             statement.setString(6, std.getPhoneNumber());
-            statement.setInt(7, std.getStudent_id());
+            statement.setString(7, std.getImage_path());
+            statement.setInt(8, std.getStudent_id());
 
             statement.execute();
         } catch (SQLException ex) {
@@ -180,7 +185,8 @@ public class StudentsDAO extends ConnectSQL {
                         resultSet.getString("phoneNumber"),
                         resultSet.getString("address"),
                         resultSet.getString("birthday"),
-                        resultSet.getString("gender")
+                        resultSet.getString("gender"),             
+                        resultSet.getString("image_path")
                 );
                 break;
             }
@@ -223,7 +229,8 @@ public class StudentsDAO extends ConnectSQL {
                         resultSet.getString("phoneNumber"),
                         resultSet.getString("address"),
                         resultSet.getString("birthday"),
-                        resultSet.getString("gender")
+                        resultSet.getString("gender"),
+                        resultSet.getString("image_path")
                 );
                 break;
             }

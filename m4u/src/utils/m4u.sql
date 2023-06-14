@@ -2,7 +2,7 @@ CREATE TABLE `Student` (
   `student_id` int PRIMARY KEY auto_increment,
   `fullname` varchar(30),
   `birthday` date,
-  `gender` varhcar(5),
+  `gender` varhcar(10),
   `address` varchar(30),
   `phoneNumber` varchar(20),
   `email` varchar(30),
