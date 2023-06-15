@@ -7,6 +7,7 @@ package controllers;
 import views.LoginView;
 import models.ConnectSQL;
 import models.User;
+import views.TeacherView;
 
 
 /**
@@ -38,8 +39,10 @@ public class LoginController {
                 // Perform student-specific actions
                 case 1:
                     view.showMessage("Login Successfull By Teacher Account!");
+                    TeacherView teacherView = new TeacherView();
+                    teacherView.setVisible(true);
+                    view.dispose();
                     break;
-                // Perform teacher-specific actions
                 case 2:
                     view.showMessage("Login Successfull By Student Account!");
                     break;
