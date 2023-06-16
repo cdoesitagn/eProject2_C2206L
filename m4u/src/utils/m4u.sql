@@ -24,7 +24,7 @@ CREATE TABLE `Teacher` (
 );
 
 CREATE TABLE `ExamResults` (
-  `examResult_id` integer PRIMARY KEY,
+  `examResult_id` integer PRIMARY KEY auto_increment,
   `student_id` int,
   `course_id` int,
   `lt_point1` float,
@@ -35,19 +35,19 @@ CREATE TABLE `ExamResults` (
 );
 
 CREATE TABLE `UserAccount` (
-  `user_id` int PRIMARY KEY,
+  `user_id` int PRIMARY KEY auto_increment,
   `username` varchar(30),
   `password` varchar(30),
   `role` int
 );
 
 CREATE TABLE `Semester` (
-  `semester_id` int PRIMARY KEY,
+  `semester_id` int PRIMARY KEY auto_increment,
   `semester_name` varchar(20)
 );
 
 CREATE TABLE `TotalResult` (
-  `totalResult_id` int PRIMARY KEY,
+  `totalResult_id` int PRIMARY KEY auto_increment,
   `semester_id` int,
   `student_id` int,
   `examResult_id` int,
@@ -56,24 +56,24 @@ CREATE TABLE `TotalResult` (
 );
 
 CREATE TABLE `Class` (
-  `class_id` int PRIMARY KEY,
+  `class_id` int PRIMARY KEY auto_increment,
   `class_name` varchar(30)
 );
 
 CREATE TABLE `Student_Class` (
-  `sc_id` int PRIMARY KEY,
+  `sc_id` int PRIMARY KEY auto_increment,
   `student_id` int,
   `class_id` int
 );
 
 CREATE TABLE `Teacher_Course` (
-  `tc_id` int PRIMARY KEY,
+  `tc_id` int PRIMARY KEY auto_increment,
   `teacher_id` int,
   `course_id` int
 );
 
 CREATE TABLE `Schedule` (
-  `schedule_id` int PRIMARY KEY,
+  `schedule_id` int PRIMARY KEY auto_increment,
   `teacher_id` int,
   `class_id` int,
   `course_id` int,
@@ -83,7 +83,7 @@ CREATE TABLE `Schedule` (
 );
 
 CREATE TABLE `Attendance` (
-  `attend_id` int PRIMARY KEY,
+  `attend_id` int PRIMARY KEY auto_increment,
   `schedule_id` int,
   `student_id` int,
   `status` varchar(5),
