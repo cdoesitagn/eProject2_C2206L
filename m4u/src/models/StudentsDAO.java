@@ -90,11 +90,11 @@ public class StudentsDAO extends ConnectSQL {
                 Students std = new Students(
                         resultSet.getInt("student_id"),
                         resultSet.getString("fullname"),
-                         resultSet.getString("birthday"),  
+                        resultSet.getString("birthday"),
                         resultSet.getString("gender"),
                         resultSet.getString("email"),
                         resultSet.getString("phoneNumber"),
-                        resultSet.getString("address"),                        
+                        resultSet.getString("address"),
                         resultSet.getString("image_path")
                 );
                 dataList.add(std);
@@ -111,7 +111,7 @@ public class StudentsDAO extends ConnectSQL {
     public static void insert(Students std) {
         open();
         try {
-            
+
             String sql = "insert into student (fullname, birthday, gender, address, email, phoneNumber, image_path) values (?, ?, ?, ?, ?, ?, ?)";
             statement = conn.prepareStatement(sql);
             statement.setString(1, std.getFullname());
@@ -132,7 +132,7 @@ public class StudentsDAO extends ConnectSQL {
     public static void update(Students std) {
         open();
         try {
-      
+
             String sql = "update student set fullname = ?, email = ?, birthday = ?, address = ?, gender = ?, phoneNumber = ?, image_path = ? where student_id = ?";
             statement = conn.prepareStatement(sql);
             statement.setString(1, std.getFullname());
@@ -154,7 +154,7 @@ public class StudentsDAO extends ConnectSQL {
     public static void delete(int id) {
         open();
         try {
-            
+
             String sql = "delete from student where student_id = ?";
             statement = conn.prepareStatement(sql);
             statement.setInt(1, id);
@@ -170,7 +170,7 @@ public class StudentsDAO extends ConnectSQL {
         Students std = null;
         open();
         try {
-     
+
             String sql = "select * from student where email = ?";
             statement = conn.prepareStatement(sql);
             statement.setString(1, email);
@@ -185,7 +185,7 @@ public class StudentsDAO extends ConnectSQL {
                         resultSet.getString("phoneNumber"),
                         resultSet.getString("address"),
                         resultSet.getString("birthday"),
-                        resultSet.getString("gender"),             
+                        resultSet.getString("gender"),
                         resultSet.getString("image_path")
                 );
                 break;
@@ -214,7 +214,7 @@ public class StudentsDAO extends ConnectSQL {
         Students std = null;
         open();
         try {
-   
+
             String sql = "select * from student where student_id = ?";
             statement = conn.prepareStatement(sql);
             statement.setInt(1, id);
@@ -279,5 +279,42 @@ public class StudentsDAO extends ConnectSQL {
             Logger.getLogger(StudentsDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         close();
+    }
+
+    public boolean isEmailExits(String email) {
+        open();
+        try {
+            String sql = "select * from student where email = ?";
+            statement = conn.prepareStatement(sql);
+            statement.setString(1, email);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentsDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        close();
+        return false;
+    }
+     public boolean isPhoneExits(String phone) {
+        open();
+        try {
+            String sql = "select * from student where phone = ?";
+            statement = conn.prepareStatement(sql);
+            statement.setString(1, phone);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentsDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         close();
+        return false;
     }
 }
