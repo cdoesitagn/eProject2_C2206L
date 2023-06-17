@@ -6,19 +6,18 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import views.TeacherView;
 
 public class StudentsDAO extends ConnectSQL {
 
-    public static List<Students> findByName(String name) {
+    public static List<Students> search(String searchValue) {
         List<Students> dataList = new ArrayList<>();
 
         open();
 
         try {
-            String sql = "SELECT * FROM student WHERE fullname LIKE ?";
+            String sql = "SELECT * FROM student WHERE concat(student_id, fullname, email, phoneNumber) LIKE ?";
             statement = conn.prepareStatement(sql);
-            statement.setString(1, "%" + name + "%");
+            statement.setString(1, "%" + searchValue + "%");
 
             ResultSet resultSet = statement.executeQuery();
 
@@ -265,7 +264,7 @@ public class StudentsDAO extends ConnectSQL {
         System.out.println("---update import ---");
         open();
         try {
-            
+
             String sql = "update student set fullname = ?, address = ?, birthday = ?, gender = ?, phoneNumber = ? where email = ?";
             statement = conn.prepareStatement(sql);
             statement.setString(1, std.getFullname());

@@ -58,7 +58,6 @@ public class TeacherController {
     }
 
     public void saveStudent() {
-        int student_id = getMax();
         String fullname = view.getFullName();
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
         String date = dateFormat.format(view.getBirthDate());
@@ -129,12 +128,8 @@ public class TeacherController {
     }
 
     public void searchStudent() {
-        int student_id = Integer.parseInt(view.getID());
-        String fullname = view.getFullName();
-        String email = view.getEmail();
-        StudentsDAO.findById(student_id);
-        StudentsDAO.findByName(fullname);
-        StudentsDAO.findByEmail(email);
-        showNewData();
+        String searchTxt = view.getSearchField();
+        dataList = StudentsDAO.search(searchTxt);
+        showTable();
     }
 }

@@ -10,7 +10,9 @@ import static java.awt.Color.white;
 import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.awt.print.PrinterException;
 import java.io.File;
+import java.text.MessageFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -18,6 +20,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.mail.Message;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -599,6 +602,11 @@ public class TeacherView extends javax.swing.JFrame {
 
         jButton7.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jButton7.setText("Print");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
 
         jButton8.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jButton8.setText("Clear");
@@ -1914,27 +1922,16 @@ public class TeacherView extends javax.swing.JFrame {
         return imagePath;
     }
 
-    public List<Students> getDataList() {
-        return dataList;
-    }
-
-    public int getCurrentIndex() {
-        return currentIndex;
-    }
-
-    public void setCurrentIndex(int index) {
-        currentIndex = index;
+    public String getSearchField() {
+        return searchField.getText();
     }
 
     private void searchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFieldActionPerformed
-        if(searchField.getText().isEmpty()){
-            showMessage("Please enter student id or name or email!");
-        }else{
-            tController.searchStudent();
-        }
+
     }//GEN-LAST:event_searchFieldActionPerformed
 
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+       searchField.setText(null);
        showNewData();
     }//GEN-LAST:event_btnRefreshActionPerformed
 
@@ -2137,7 +2134,11 @@ public class TeacherView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        // TODO add your handling code here:
+       if(searchField.getText().isEmpty()){
+            showMessage("Please enter student id or name or email!");
+        }else{
+            tController.searchStudent();
+        }
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -2145,6 +2146,16 @@ public class TeacherView extends javax.swing.JFrame {
             tController.updateStudent();
         }
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        try {
+            MessageFormat header = new MessageFormat("Student Information");
+            MessageFormat footer = new MessageFormat("Page{0,number,integer}");
+            jTable1.print(JTable.PrintMode.FIT_WIDTH, header,footer);
+        } catch (PrinterException ex) {
+            Logger.getLogger(TeacherView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton7ActionPerformed
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
