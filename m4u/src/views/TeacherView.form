@@ -501,7 +501,7 @@
                     <Component class="javax.swing.JComboBox" name="jComboBox2">
                       <Properties>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                          <Font name="Arial" size="14" style="0"/>
+                          <Font name="Segoe UI" size="16" style="1"/>
                         </Property>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="2">
@@ -720,6 +720,9 @@
                                       <Renderer/>
                                     </Column>
                                   </TableColumnModel>
+                                </Property>
+                                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                                  <Color id="Hand Cursor"/>
                                 </Property>
                                 <Property name="tableHeader" type="javax.swing.table.JTableHeader" editor="org.netbeans.modules.form.editors2.JTableHeaderEditor">
                                   <TableHeader reorderingAllowed="true" resizingAllowed="true"/>
@@ -1271,6 +1274,9 @@
                             <Component class="javax.swing.JButton" name="jButton10">
                               <Properties>
                                 <Property name="text" type="java.lang.String" value="Search"/>
+                                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                                  <Color id="Hand Cursor"/>
+                                </Property>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton10ActionPerformed"/>
@@ -1373,6 +1379,9 @@
                                   <Font name="Segoe UI" size="18" style="1"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Search"/>
+                                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                                  <Color id="Hand Cursor"/>
+                                </Property>
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JButton" name="jButton12">
@@ -1381,6 +1390,9 @@
                                   <Font name="Segoe UI" size="18" style="1"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Refresh"/>
+                                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                                  <Color id="Hand Cursor"/>
+                                </Property>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton12ActionPerformed"/>
@@ -1525,6 +1537,9 @@
                                   <Font name="Segoe UI" size="16" style="1"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Save"/>
+                                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                                  <Color id="Hand Cursor"/>
+                                </Property>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton13ActionPerformed"/>
@@ -1536,6 +1551,9 @@
                                   <Font name="Segoe UI" size="16" style="1"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Print"/>
+                                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                                  <Color id="Hand Cursor"/>
+                                </Property>
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JButton" name="jButton15">
@@ -1544,6 +1562,9 @@
                                   <Font name="Segoe UI" size="16" style="1"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Clear"/>
+                                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                                  <Color id="Hand Cursor"/>
+                                </Property>
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JButton" name="jButton18">
@@ -1552,6 +1573,9 @@
                                   <Font name="Segoe UI" size="16" style="1"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Log Out"/>
+                                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                                  <Color id="Hand Cursor"/>
+                                </Property>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton18ActionPerformed"/>
@@ -1901,6 +1925,9 @@
                                   <Font name="Segoe UI" size="18" style="1"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Search"/>
+                                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                                  <Color id="Hand Cursor"/>
+                                </Property>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton16ActionPerformed"/>
@@ -2039,6 +2066,9 @@
                                   <Font name="Segoe UI" size="18" style="1"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Search"/>
+                                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                                  <Color id="Hand Cursor"/>
+                                </Property>
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JButton" name="jButton37">
@@ -2047,6 +2077,9 @@
                                   <Font name="Segoe UI" size="18" style="1"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Refresh"/>
+                                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                                  <Color id="Hand Cursor"/>
+                                </Property>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton37ActionPerformed"/>
@@ -2194,6 +2227,9 @@
                                   <Font name="Segoe UI" size="16" style="1"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Save"/>
+                                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                                  <Color id="Hand Cursor"/>
+                                </Property>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton38ActionPerformed"/>
@@ -2205,6 +2241,9 @@
                                   <Font name="Segoe UI" size="16" style="1"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Print"/>
+                                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                                  <Color id="Hand Cursor"/>
+                                </Property>
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JButton" name="jButton40">
@@ -2213,6 +2252,9 @@
                                   <Font name="Segoe UI" size="16" style="1"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Clear"/>
+                                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                                  <Color id="Hand Cursor"/>
+                                </Property>
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JButton" name="jButton41">
@@ -2221,6 +2263,9 @@
                                   <Font name="Segoe UI" size="16" style="1"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Log Out"/>
+                                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                                  <Color id="Hand Cursor"/>
+                                </Property>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton41ActionPerformed"/>
@@ -2232,6 +2277,9 @@
                                   <Font name="Segoe UI" size="16" style="1"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Update"/>
+                                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                                  <Color id="Hand Cursor"/>
+                                </Property>
                               </Properties>
                             </Component>
                           </SubComponents>
@@ -2396,6 +2444,9 @@
                                 </Property>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
                                 <Property name="text" type="java.lang.String" value="Search"/>
+                                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                                  <Color id="Hand Cursor"/>
+                                </Property>
                               </Properties>
                             </Component>
                           </SubComponents>
@@ -2529,6 +2580,9 @@
                                   <Font name="Segoe UI" size="18" style="1"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Search"/>
+                                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                                  <Color id="Hand Cursor"/>
+                                </Property>
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JButton" name="jButton30">
@@ -2537,6 +2591,9 @@
                                   <Font name="Segoe UI" size="18" style="1"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Refresh"/>
+                                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                                  <Color id="Hand Cursor"/>
+                                </Property>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton30ActionPerformed"/>
@@ -2678,6 +2735,9 @@
                                   <Font name="Segoe UI" size="16" style="1"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Print"/>
+                                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                                  <Color id="Hand Cursor"/>
+                                </Property>
                               </Properties>
                             </Component>
                             <Component class="javax.swing.JButton" name="jButton35">
@@ -2686,6 +2746,9 @@
                                   <Font name="Segoe UI" size="16" style="1"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Clear"/>
+                                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                                  <Color id="Hand Cursor"/>
+                                </Property>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton35ActionPerformed"/>
@@ -2697,6 +2760,9 @@
                                   <Font name="Segoe UI" size="16" style="1"/>
                                 </Property>
                                 <Property name="text" type="java.lang.String" value="Log Out"/>
+                                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+                                  <Color id="Hand Cursor"/>
+                                </Property>
                               </Properties>
                               <Events>
                                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton36ActionPerformed"/>

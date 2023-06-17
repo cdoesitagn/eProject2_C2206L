@@ -413,7 +413,7 @@ public class TeacherView extends javax.swing.JFrame {
         jTextField7.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jTextField7.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
-        jComboBox2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jComboBox2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -577,6 +577,7 @@ public class TeacherView extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -787,6 +788,7 @@ public class TeacherView extends javax.swing.JFrame {
         });
 
         jButton10.setText("Search");
+        jButton10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton10ActionPerformed(evt);
@@ -922,9 +924,11 @@ public class TeacherView extends javax.swing.JFrame {
 
         jButton11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton11.setText("Search");
+        jButton11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jButton12.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton12.setText("Refresh");
+        jButton12.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton12ActionPerformed(evt);
@@ -999,6 +1003,7 @@ public class TeacherView extends javax.swing.JFrame {
 
         jButton13.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jButton13.setText("Save");
+        jButton13.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton13ActionPerformed(evt);
@@ -1007,12 +1012,15 @@ public class TeacherView extends javax.swing.JFrame {
 
         jButton14.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jButton14.setText("Print");
+        jButton14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jButton15.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jButton15.setText("Clear");
+        jButton15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jButton18.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jButton18.setText("Log Out");
+        jButton18.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton18.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton18ActionPerformed(evt);
@@ -1155,6 +1163,7 @@ public class TeacherView extends javax.swing.JFrame {
 
         jButton16.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton16.setText("Search");
+        jButton16.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton16.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton16ActionPerformed(evt);
@@ -1322,9 +1331,11 @@ public class TeacherView extends javax.swing.JFrame {
 
         jButton17.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton17.setText("Search");
+        jButton17.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jButton37.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton37.setText("Refresh");
+        jButton37.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton37.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton37ActionPerformed(evt);
@@ -1397,6 +1408,7 @@ public class TeacherView extends javax.swing.JFrame {
 
         jButton38.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jButton38.setText("Save");
+        jButton38.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton38.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton38ActionPerformed(evt);
@@ -1405,12 +1417,15 @@ public class TeacherView extends javax.swing.JFrame {
 
         jButton39.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jButton39.setText("Print");
+        jButton39.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jButton40.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jButton40.setText("Clear");
+        jButton40.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jButton41.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jButton41.setText("Log Out");
+        jButton41.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton41.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton41ActionPerformed(evt);
@@ -1419,6 +1434,7 @@ public class TeacherView extends javax.swing.JFrame {
 
         jButton19.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jButton19.setText("Update");
+        jButton19.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel42Layout = new javax.swing.GroupLayout(jPanel42);
         jPanel42.setLayout(jPanel42Layout);
@@ -1528,6 +1544,7 @@ public class TeacherView extends javax.swing.JFrame {
         jTextField33.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jTextField33.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         jTextField33.setText("Search");
+        jTextField33.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         javax.swing.GroupLayout jPanel23Layout = new javax.swing.GroupLayout(jPanel23);
         jPanel23.setLayout(jPanel23Layout);
@@ -1610,9 +1627,11 @@ public class TeacherView extends javax.swing.JFrame {
 
         jButton29.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton29.setText("Search");
+        jButton29.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jButton30.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton30.setText("Refresh");
+        jButton30.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton30.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton30ActionPerformed(evt);
@@ -1687,9 +1706,11 @@ public class TeacherView extends javax.swing.JFrame {
 
         jButton34.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jButton34.setText("Print");
+        jButton34.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
 
         jButton35.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jButton35.setText("Clear");
+        jButton35.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton35.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton35ActionPerformed(evt);
@@ -1698,6 +1719,7 @@ public class TeacherView extends javax.swing.JFrame {
 
         jButton36.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jButton36.setText("Log Out");
+        jButton36.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton36.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton36ActionPerformed(evt);
