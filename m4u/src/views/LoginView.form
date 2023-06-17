@@ -159,7 +159,7 @@
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\hieuv\OneDrive\Desktop\Aptech\e-Project2\eProject2_C2206L\m4u\src\viewsicons\window-minimize-icon.png"/>
+              <Image iconType="2" name="D:\Aptech\e-Project2\eProject2_C2206L\m4u\src\viewsicons\window-minimize-icon.png"/>
             </Property>
           </Properties>
           <Events>
@@ -169,7 +169,7 @@
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="C:\Users\hieuv\OneDrive\Desktop\Aptech\e-Project2\eProject2_C2206L\m4u\src\viewsicons\Programming-Delete-Sign-icon.png"/>
+              <Image iconType="2" name="D:\Aptech\e-Project2\eProject2_C2206L\m4u\src\viewsicons\Programming-Delete-Sign-icon.png"/>
             </Property>
           </Properties>
           <Events>

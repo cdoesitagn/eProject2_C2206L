@@ -7,6 +7,7 @@ package controllers;
 import views.LoginView;
 import models.ConnectSQL;
 import models.User;
+import views.StudentView;
 import views.TeacherView;
 
 
@@ -45,6 +46,9 @@ public class LoginController {
                     break;
                 case 2:
                     view.showMessage("Login Successfull By Student Account!");
+                    StudentView studentView = new StudentView();
+                    studentView.setVisible(true);
+                    view.dispose();
                     break;
                 default:
                     // Invalid role
