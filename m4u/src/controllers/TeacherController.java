@@ -57,72 +57,84 @@ public class TeacherController {
         }
     }
 
-    public void saveOrUpdateStudent() {
-        if (view.isEmptyStudent()) {
-            if (!std.isEmailExits(view.getEmail())) {
-                if (!std.isPhoneExits(view.getPhoneNumber())) {
-                    int student_id = getMax();
-                    String fullname = view.getFullName();
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-                    String date = dateFormat.format(view.getBirthDate());
-                    String gender = view.getGender();
-                    String email = view.getEmail();
-                    String phoneNumber = view.getPhoneNumber();
-                    String address = view.getAddress();
-                    String image_path = view.getJLabelImagePath();
+    public void saveStudent() {
+        int student_id = getMax();
+        String fullname = view.getFullName();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String date = dateFormat.format(view.getBirthDate());
+        String gender = view.getGender();
+        String email = view.getEmail();
+        String phoneNumber = view.getPhoneNumber();
+        String address = view.getAddress();
+        String image_path = view.getJLabelImagePath();
 
-                    if (view.getCurrentIndex() >= 0) {
-                        Students student = view.getDataList().get(view.getCurrentIndex());
-                        student.setFullname(fullname);
-                        student.setEmail(email);
-                        student.setBirthday(date);
-                        student.setGender(gender);
-                        student.setPhoneNumber(phoneNumber);
-                        student.setAddress(address);
-                        student.setImage_path(image_path);
+        Students student = new Students();
+        student.setFullname(fullname);
+        student.setEmail(email);
+        student.setBirthday(date);
+        student.setPhoneNumber(phoneNumber);
+        student.setGender(gender);
+        student.setAddress(address);
+        student.setImage_path(image_path);
 
-                        StudentsDAO.update(student);
-                        view.setCurrentIndex(-1);
-                        showTable();
-                    } else {
-                        Students student = new Students();
-                        student.setFullname(fullname);
-                        student.setEmail(email);
-                        student.setBirthday(date);
-                        student.setPhoneNumber(phoneNumber);
-                        student.setGender(gender);
-                        student.setAddress(address);
-                        student.setImage_path(image_path);
+        StudentsDAO.insert(student);
+        view.clearStudent();
+        showNewData();
+    }
 
-                        StudentsDAO.insert(student);
-                        showNewData();
-                    }                   
-                } else {
-                    view.showMessage("This is phone already exits");
-                }
-            } else {
-                view.showMessage("This is email already exits");
+    public void updateStudent() {
+        int student_id = Integer.parseInt(view.getID());
+        if (std.isIDExits(student_id)) {
+            if (!view.checkPhoneEmailUpdate()) {
+                String fullname = view.getFullName();
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+                String date = dateFormat.format(view.getBirthDate());
+                String gender = view.getGender();
+                String email = view.getEmail();
+                String phoneNumber = view.getPhoneNumber();
+                String address = view.getAddress();
+                String image_path = view.getJLabelImagePath();
+
+                Students student = new Students();
+                student.setStudent_id(student_id);
+                student.setFullname(fullname);
+                student.setEmail(email);
+                student.setBirthday(date);
+                student.setPhoneNumber(phoneNumber);
+                student.setGender(gender);
+                student.setAddress(address);
+                student.setImage_path(image_path);
+
+                StudentsDAO.update(student);
+                view.clearStudent();
+                showNewData();
             }
+        } else {
+            view.showMessage("Student id doesn't exists");
         }
     }
 
     public void deleteStudent() {
-        int index = view.getJTable1().getSelectedRow();
-        if (index < 0) {
-            view.showMessage("Chua co ban ghi nao dc chon");
-            return;
+        int student_id = Integer.parseInt(view.getID());
+        if (std.isIDExits(student_id)) {
+            int yesOrNo = view.showConfirmDeleteDialog("Course and score records will also be deleted", "Student Delete");
+            if (yesOrNo == view.OK_Option()) {
+                StudentsDAO.delete(student_id);
+            }
+            showNewData();
+            view.clearStudent();
+        } else {
+            view.showMessage("Student id doesn't exists");
         }
-
-        int option = view.showConfirmDialog("BAN CHAC CHAN MUON XOA BAN GHI NAY KHONG");
-        if (option != 0) {
-            return;
-        }
-
-        Students std1 = dataList.get(index);
-        StudentsDAO.delete(std1.getStudent_id());
-
-        showNewData();
-        view.currentIndex = -1;
     }
 
+    public void searchStudent() {
+        int student_id = Integer.parseInt(view.getID());
+        String fullname = view.getFullName();
+        String email = view.getEmail();
+        StudentsDAO.findById(student_id);
+        StudentsDAO.findByName(fullname);
+        StudentsDAO.findByEmail(email);
+        showNewData();
+    }
 }

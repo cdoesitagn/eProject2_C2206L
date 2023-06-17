@@ -11,6 +11,8 @@ import java.awt.Image;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.io.File;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -23,6 +25,7 @@ import javax.swing.JTable;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import models.Students;
+import models.StudentsDAO;
 
 /**
  *
@@ -35,33 +38,15 @@ public class TeacherView extends javax.swing.JFrame {
     private DefaultTableModel model;
     DefaultTableModel tableModel;
     List<Students> dataList = new ArrayList<>();
-    public int currentIndex = -1;
+    public int currentIndex;
     private final TeacherController tController;
+    StudentsDAO std = new StudentsDAO();
 
     public TeacherView() {
         this.setUndecorated(true);
         initComponents();
         tController = new TeacherController(this);
         init();
-        showUpdateStudent();
-    }
-
-    private void showUpdateStudent() {
-        tableModel = (DefaultTableModel) jTable1.getModel();
-
-        showNewData();
-
-        jTable1.addMouseListener(new MouseAdapter() {
-            @Override
-            public void mouseClicked(MouseEvent e) {
-                if (!dataList.isEmpty()) {
-                    currentIndex = jTable1.getSelectedRow();
-                    jTextField2.setText(dataList.get(currentIndex).getFullname());
-                    jTextField5.setText(dataList.get(currentIndex).getEmail());
-                }
-            }
-        });
-
     }
 
     public DefaultTableModel getTable() {
@@ -90,6 +75,14 @@ public class TeacherView extends javax.swing.JFrame {
 
     public int showConfirmDialog(String message) {
         return JOptionPane.showConfirmDialog(rootPane, message);
+    }
+    
+    public int showConfirmDeleteDialog(String message1, String message2) {
+        return JOptionPane.showConfirmDialog(null, message1, message2, JOptionPane.CANCEL_OPTION,0);
+    }
+    
+    public int OK_Option(){
+        return JOptionPane.OK_OPTION;
     }
 
     /**
@@ -124,14 +117,14 @@ public class TeacherView extends javax.swing.JFrame {
         jTextField5 = new javax.swing.JTextField();
         jTextField6 = new javax.swing.JTextField();
         jTextField7 = new javax.swing.JTextField();
-        jComboBox2 = new javax.swing.JComboBox<>();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jComboBox2 = new javax.swing.JComboBox<>();
         jPanel9 = new javax.swing.JPanel();
         jPanel12 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
-        jTextField3 = new javax.swing.JTextField();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        searchField = new javax.swing.JTextField();
+        btnSearch = new javax.swing.JButton();
+        btnRefresh = new javax.swing.JButton();
         jPanel13 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -394,8 +387,8 @@ public class TeacherView extends javax.swing.JFrame {
 
         jTextField7.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
 
-        jComboBox2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Famale" }));
+        jComboBox2.setFont(new java.awt.Font("Arial", 0, 14)); // NOI18N
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -433,8 +426,8 @@ public class TeacherView extends javax.swing.JFrame {
                                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(27, 27, 27)
                                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jComboBox2, 0, 180, Short.MAX_VALUE)
-                                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                    .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, 180, Short.MAX_VALUE)
+                                    .addComponent(jComboBox2, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -454,9 +447,9 @@ public class TeacherView extends javax.swing.JFrame {
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                     .addComponent(jDateChooser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(jComboBox2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -479,20 +472,25 @@ public class TeacherView extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel10.setText("Search Student");
 
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        searchField.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                searchFieldActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton2.setText("Search");
-
-        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton3.setText("Refresh");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        btnSearch.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                btnSearchActionPerformed(evt);
+            }
+        });
+
+        btnRefresh.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        btnRefresh.setText("Refresh");
+        btnRefresh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRefreshActionPerformed(evt);
             }
         });
 
@@ -504,25 +502,25 @@ public class TeacherView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(searchField, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(18, Short.MAX_VALUE))
         );
         jPanel12Layout.setVerticalGroup(
             jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel12Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnRefresh, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(jPanel12Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel12Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jTextField3)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
+                    .addComponent(searchField)
+                    .addComponent(btnSearch, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -585,6 +583,11 @@ public class TeacherView extends javax.swing.JFrame {
 
         jButton5.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jButton5.setText("Update");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jButton6.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jButton6.setText("Delete");
@@ -1786,6 +1789,7 @@ public class TeacherView extends javax.swing.JFrame {
     private void init() {
         tableViewStudent();
         jTextField1.setText(String.valueOf(tController.getMax()));
+        showNewData();
     }
 
     private void tableViewStudent() {
@@ -1878,6 +1882,10 @@ public class TeacherView extends javax.swing.JFrame {
         return icon;
     }
 
+    public String getID() {
+        return jTextField1.getText();
+    }
+
     public String getFullName() {
         return jTextField2.getText();
     }
@@ -1918,21 +1926,34 @@ public class TeacherView extends javax.swing.JFrame {
         currentIndex = index;
     }
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    private void searchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFieldActionPerformed
+        if(searchField.getText().isEmpty()){
+            showMessage("Please enter student id or name or email!");
+        }else{
+            tController.searchStudent();
+        }
+    }//GEN-LAST:event_searchFieldActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
+       showNewData();
+    }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         clearStudent();
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        tController.saveOrUpdateStudent();
-        clearStudent();
+        if (isEmptyStudent()) {
+            if (!std.isEmailExits(getEmail())) {
+                if (!std.isPhoneExits(getPhoneNumber())) {
+                    tController.saveStudent();
+                } else {
+                    showMessage("This is phone already exists");
+                }
+            } else {
+                showMessage("This is email already exists");
+            }
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTextField12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField12ActionPerformed
@@ -2059,16 +2080,100 @@ public class TeacherView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jTextField6KeyTyped
 
+    public boolean checkPhoneEmailUpdate() {
+        String newEmail = jTextField5.getText();
+        String newPhone = jTextField6.getText();
+        String oldEmail = model.getValueAt(currentIndex, 4).toString();
+        String oldPhone = model.getValueAt(currentIndex, 5).toString();
+        if (newEmail.equals(oldEmail) && newPhone.equals(oldPhone)) {
+            return false;
+        } else {
+            if (!newEmail.equals(oldEmail)) {
+                boolean x = std.isEmailExits(newEmail);
+                if (x) {
+                    showMessage("This email already exists");
+                }
+                return x;
+            }
+            if (!newPhone.equals(oldPhone)) {
+                boolean x = std.isPhoneExits(newPhone);
+                if (x) {
+                    showMessage("This phone already exists");
+                }
+                return x;
+            }
+
+        }
+        return false;
+    }
+
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        showUpdateStudent();
+        model = (DefaultTableModel) jTable1.getModel();
+        currentIndex = jTable1.getSelectedRow();
+        jTextField1.setText(model.getValueAt(currentIndex, 0).toString());
+        jTextField2.setText(model.getValueAt(currentIndex, 1).toString());
+        try {
+            Date date = new SimpleDateFormat("yyyy-MM-dd").parse(model.getValueAt(currentIndex, 2).toString());
+            jDateChooser1.setDate(date);
+        } catch (ParseException ex) {
+            Logger.getLogger(TeacherView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String gender = model.getValueAt(currentIndex, 3).toString();
+        if (gender.equals("Male")) {
+            jComboBox1.setSelectedIndex(0);
+        } else {
+            jComboBox1.setSelectedIndex(1);
+        }
+        jTextField5.setText(model.getValueAt(currentIndex, 4).toString());
+        jTextField6.setText(model.getValueAt(currentIndex, 5).toString());
+        jTextField7.setText(model.getValueAt(currentIndex, 6).toString());
+        String path = model.getValueAt(currentIndex, 7).toString();
+        imagePath = path;
+        jLabelImage.setIcon(imageAdjust(path, null));
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         tController.deleteStudent();
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSearchActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        if (isEmptyStudent()) {
+            tController.updateStudent();
+        }
+    }//GEN-LAST:event_jButton5ActionPerformed
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(TeacherView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
+        //</editor-fold>
+
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(() -> {
+            new TeacherView().setVisible(true);
+        });
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnRefresh;
+    private javax.swing.JButton btnSearch;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -2080,9 +2185,7 @@ public class TeacherView extends javax.swing.JFrame {
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton29;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton30;
     private javax.swing.JButton jButton34;
     private javax.swing.JButton jButton35;
@@ -2203,7 +2306,6 @@ public class TeacherView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField27;
     private javax.swing.JTextField jTextField28;
     private javax.swing.JTextField jTextField29;
-    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField30;
     private javax.swing.JTextField jTextField31;
     private javax.swing.JTextField jTextField32;
@@ -2214,5 +2316,6 @@ public class TeacherView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField searchField;
     // End of variables declaration//GEN-END:variables
 }

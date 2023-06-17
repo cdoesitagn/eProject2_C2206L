@@ -6,10 +6,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import views.TeacherView;
 
 public class StudentsDAO extends ConnectSQL {
 
-    public static List<Students> searchByName(String name) {
+    public static List<Students> findByName(String name) {
         List<Students> dataList = new ArrayList<>();
 
         open();
@@ -132,8 +133,8 @@ public class StudentsDAO extends ConnectSQL {
     public static void update(Students std) {
         open();
         try {
-
-            String sql = "update student set fullname = ?, email = ?, birthday = ?, address = ?, gender = ?, phoneNumber = ?, image_path = ? where student_id = ?";
+            String sql = "update student set fullname = ?, email = ?, birthday = ?, address = ?, gender = ?, phoneNumber = ?, "
+                    + "image_path = ? where student_id = ?";
             statement = conn.prepareStatement(sql);
             statement.setString(1, std.getFullname());
             statement.setString(2, std.getEmail());
@@ -264,7 +265,7 @@ public class StudentsDAO extends ConnectSQL {
         System.out.println("---update import ---");
         open();
         try {
-            //B2. Query du lieu ra
+            
             String sql = "update student set fullname = ?, address = ?, birthday = ?, gender = ?, phoneNumber = ? where email = ?";
             statement = conn.prepareStatement(sql);
             statement.setString(1, std.getFullname());
@@ -299,10 +300,11 @@ public class StudentsDAO extends ConnectSQL {
         close();
         return false;
     }
-     public boolean isPhoneExits(String phone) {
+
+    public boolean isPhoneExits(String phone) {
         open();
         try {
-            String sql = "select * from student where phone = ?";
+            String sql = "select * from student where phoneNumber = ?";
             statement = conn.prepareStatement(sql);
             statement.setString(1, phone);
 
@@ -314,7 +316,26 @@ public class StudentsDAO extends ConnectSQL {
         } catch (SQLException ex) {
             Logger.getLogger(StudentsDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
-         close();
+        close();
+        return false;
+    }
+
+    public boolean isIDExits(int id) {
+        open();
+        try {
+            String sql = "select * from student where student_id = ?";
+            statement = conn.prepareStatement(sql);
+            statement.setInt(1, id);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentsDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        close();
         return false;
     }
 }
