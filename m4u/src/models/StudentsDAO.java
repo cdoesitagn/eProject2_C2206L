@@ -25,11 +25,11 @@ public class StudentsDAO extends ConnectSQL {
                 Students std = new Students(
                         resultSet.getInt("student_id"),
                         resultSet.getString("fullname"),
-                        resultSet.getString("email"),
+                        resultSet.getString("birthday"),
                         resultSet.getString("gender"),
+                        resultSet.getString("email"),
                         resultSet.getString("phoneNumber"),
                         resultSet.getString("address"),
-                        resultSet.getString("birthday"),
                         resultSet.getString("image_path")
                 );
                 dataList.add(std);
