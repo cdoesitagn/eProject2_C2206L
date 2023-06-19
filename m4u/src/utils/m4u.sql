@@ -11,7 +11,13 @@ CREATE TABLE `Student` (
 
 CREATE TABLE `Course` (
   `course_id` int PRIMARY KEY auto_increment,
-  `course_name` varchar(30),
+  student_id int,
+  semester_id int,
+  `course1` varchar(30),
+  `course2` varchar(30),
+  `course3` varchar(30),
+  `course4` varchar(30),
+  `course5` varchar(30),
   `teacher_id` int
 );
 

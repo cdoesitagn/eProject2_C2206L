@@ -4,12 +4,11 @@
  */
 package views;
 
+import controllers.CourseController;
 import controllers.TeacherController;
 import static java.awt.Color.black;
 import static java.awt.Color.white;
 import java.awt.Image;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 import java.awt.print.PrinterException;
 import java.io.File;
 import java.text.MessageFormat;
@@ -20,7 +19,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.mail.Message;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
 import javax.swing.JFrame;
@@ -44,12 +42,14 @@ public class TeacherView extends javax.swing.JFrame {
     List<Students> dataList = new ArrayList<>();
     public int currentIndex;
     private final TeacherController tController;
+    private final CourseController couController;
     StudentsDAO std = new StudentsDAO();
 
     public TeacherView() {
         this.setUndecorated(true);
         initComponents();
         tController = new TeacherController(this);
+        couController = new CourseController(this);
         init();
     }
 
@@ -765,8 +765,12 @@ public class TeacherView extends javax.swing.JFrame {
         jLabel18.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel18.setText("Course 4");
 
+        jTextField4.setEditable(false);
+        jTextField4.setBackground(new java.awt.Color(153, 153, 153));
         jTextField4.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
 
+        jTextField8.setEditable(false);
+        jTextField8.setBackground(new java.awt.Color(153, 153, 153));
         jTextField8.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -793,6 +797,7 @@ public class TeacherView extends javax.swing.JFrame {
             }
         });
 
+        jButton10.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jButton10.setText("Search");
         jButton10.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton10.addActionListener(new java.awt.event.ActionListener() {
@@ -1023,6 +1028,11 @@ public class TeacherView extends javax.swing.JFrame {
         jButton15.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jButton15.setText("Clear");
         jButton15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton15.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton15ActionPerformed(evt);
+            }
+        });
 
         jButton18.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jButton18.setText("Log Out");
@@ -1856,6 +1866,7 @@ public class TeacherView extends javax.swing.JFrame {
     private void init() {
         tableViewStudent();
         jTextField1.setText(String.valueOf(tController.getMax()));
+        jTextField4.setText(String.valueOf(couController.getMax()));
         showNewData();
     }
 
@@ -1880,6 +1891,19 @@ public class TeacherView extends javax.swing.JFrame {
         imagePath = null;
     }
 
+    public void clearCourse(){
+        jTextField4.setText(String.valueOf(couController.getMax()));
+        jTextField8.setText(null);
+        jComboBox1.removeAllItems();
+        jComboBox6.setSelectedIndex(0);
+        jComboBox7.setSelectedIndex(0);
+        jComboBox8.setSelectedIndex(0);
+        jComboBox9.setSelectedIndex(0);
+        jComboBox10.setSelectedIndex(0);
+        jTable2.clearSelection();
+        
+    }
+ 
     public boolean isEmptyStudent() {
         if (jTextField2.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Student name is missing");
@@ -2037,7 +2061,20 @@ public class TeacherView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton35ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
+        if(jTextField9.getText().isEmpty()){
+            showMessage("Please enter a student id");
+        }else{
+            int id = Integer.parseInt(jTextField9.getText());
+            if(couController.getID(id)){
+                jComboBox1.removeAllItems();
+                int semester = couController.countSemester(id);
+                if(semester >= 0){
+                    for (int i = 1; i < semester+1; i++) {
+                        jComboBox1.addItem(i+"");
+                    }
+                }
+            }
+        }
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
@@ -2223,6 +2260,10 @@ public class TeacherView extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
+        clearCourse();
+    }//GEN-LAST:event_jButton15ActionPerformed
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -2393,7 +2434,7 @@ public class TeacherView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
+    public static javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     private javax.swing.JTextField searchField;
     // End of variables declaration//GEN-END:variables

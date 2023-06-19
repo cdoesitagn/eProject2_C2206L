@@ -40,7 +40,7 @@ public class LoginController {
                 // Perform student-specific actions
                 case 1:
                     view.showMessage("Login Successfull By Teacher Account!");
-                    TeacherView teacherView = new TeacherView();
+                    TeacherView teacherView = new TeacherView(null);
                     teacherView.setVisible(true);
                     view.dispose();
                     break;
