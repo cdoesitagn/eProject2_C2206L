@@ -57,6 +57,10 @@ public class TeacherView extends javax.swing.JFrame {
         return (DefaultTableModel) jTable1.getModel();
     }
 
+    public DefaultTableModel getTableCourse() {
+        return (DefaultTableModel) jTable2.getModel();
+    }
+
     public JTable getJTable1() {
         return jTable1;
     }
@@ -80,12 +84,12 @@ public class TeacherView extends javax.swing.JFrame {
     public int showConfirmDialog(String message) {
         return JOptionPane.showConfirmDialog(rootPane, message);
     }
-    
+
     public int showConfirmDeleteDialog(String message1, String message2) {
-        return JOptionPane.showConfirmDialog(null, message1, message2, JOptionPane.CANCEL_OPTION,0);
+        return JOptionPane.showConfirmDialog(null, message1, message2, JOptionPane.CANCEL_OPTION, 0);
     }
-    
-    public int OK_Option(){
+
+    public int OK_Option() {
         return JOptionPane.OK_OPTION;
     }
 
@@ -163,6 +167,8 @@ public class TeacherView extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jTextField9 = new javax.swing.JTextField();
         jButton10 = new javax.swing.JButton();
+        jLabel49 = new javax.swing.JLabel();
+        jTextField3 = new javax.swing.JTextField();
         jPanel18 = new javax.swing.JPanel();
         jPanel19 = new javax.swing.JPanel();
         jLabel19 = new javax.swing.JLabel();
@@ -773,20 +779,18 @@ public class TeacherView extends javax.swing.JFrame {
         jTextField8.setBackground(new java.awt.Color(153, 153, 153));
         jTextField8.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "C Program", "Java 1", ".Net", "WS" }));
 
-        jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SQL", "Java 2", "AP", "IDP" }));
 
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "HTML & CSS", "ASP. NET ", "WCD", "EAD" }));
 
-        jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
-        jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PHP", "NOSQL", "DMA", "IASF" }));
 
         jLabel38.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel38.setText("Course 5");
 
-        jComboBox10.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox10.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "eProject1", "JSON", "NodeJS", "ADUF" }));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel11.setText("Student's ID");
@@ -794,6 +798,11 @@ public class TeacherView extends javax.swing.JFrame {
         jTextField9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField9ActionPerformed(evt);
+            }
+        });
+        jTextField9.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField9KeyTyped(evt);
             }
         });
 
@@ -834,6 +843,15 @@ public class TeacherView extends javax.swing.JFrame {
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
+        jLabel49.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel49.setText("Teacher's ID");
+
+        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
         jPanel15.setLayout(jPanel15Layout);
         jPanel15Layout.setHorizontalGroup(
@@ -841,25 +859,6 @@ public class TeacherView extends javax.swing.JFrame {
             .addGroup(jPanel15Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel15Layout.createSequentialGroup()
-                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel15Layout.createSequentialGroup()
-                                .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox10, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel15Layout.createSequentialGroup()
-                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel15Layout.createSequentialGroup()
-                                .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel15Layout.createSequentialGroup()
-                                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel15Layout.createSequentialGroup()
                         .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel16, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -880,7 +879,33 @@ public class TeacherView extends javax.swing.JFrame {
                                             .addComponent(jTextField8, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(jComboBox9, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(0, 0, Short.MAX_VALUE)))))
-                        .addContainerGap())))
+                        .addContainerGap())
+                    .addGroup(jPanel15Layout.createSequentialGroup()
+                        .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel15Layout.createSequentialGroup()
+                                .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTextField3))
+                            .addGroup(jPanel15Layout.createSequentialGroup()
+                                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel15Layout.createSequentialGroup()
+                                        .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jComboBox10, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel15Layout.createSequentialGroup()
+                                        .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel15Layout.createSequentialGroup()
+                                        .addComponent(jLabel16, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jComboBox7, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel15Layout.createSequentialGroup()
+                                        .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jComboBox6, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(6, 6, 6))))
         );
         jPanel15Layout.setVerticalGroup(
             jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -919,7 +944,11 @@ public class TeacherView extends javax.swing.JFrame {
                 .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel38, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jComboBox10, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(89, 89, 89))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel49, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(43, 43, 43))
         );
 
         jPanel18.setBackground(new java.awt.Color(204, 204, 204));
@@ -936,6 +965,11 @@ public class TeacherView extends javax.swing.JFrame {
         jButton11.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton11.setText("Search");
         jButton11.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
 
         jButton12.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton12.setText("Refresh");
@@ -978,19 +1012,19 @@ public class TeacherView extends javax.swing.JFrame {
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Student's ID", "Semester", "Course 1", "Course 2", "Course 3", "Course 4", "Course 5"
+                "ID", "Student's ID", "Semester", "Course 1", "Course 2", "Course 3", "Course 4", "Course 5", "Teacher's ID"
             }
         ));
         jScrollPane2.setViewportView(jTable2);
@@ -1024,6 +1058,11 @@ public class TeacherView extends javax.swing.JFrame {
         jButton14.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jButton14.setText("Print");
         jButton14.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
 
         jButton15.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jButton15.setText("Clear");
@@ -1891,8 +1930,9 @@ public class TeacherView extends javax.swing.JFrame {
         imagePath = null;
     }
 
-    public void clearCourse(){
+    public void clearCourse() {
         jTextField4.setText(String.valueOf(couController.getMax()));
+        jTextField9.setText(null);
         jTextField8.setText(null);
         jComboBox1.removeAllItems();
         jComboBox6.setSelectedIndex(0);
@@ -1901,9 +1941,9 @@ public class TeacherView extends javax.swing.JFrame {
         jComboBox9.setSelectedIndex(0);
         jComboBox10.setSelectedIndex(0);
         jTable2.clearSelection();
-        
+
     }
- 
+
     public boolean isEmptyStudent() {
         if (jTextField2.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Student name is missing");
@@ -1989,6 +2029,38 @@ public class TeacherView extends javax.swing.JFrame {
         return jComboBox2.getSelectedItem().toString();
     }
 
+    public String getStudentID() {
+        return jTextField8.getText();
+    }
+
+    public String getSemesterID() {
+        return jComboBox1.getSelectedItem().toString();
+    }
+
+    public String getCourse1() {
+        return jComboBox6.getSelectedItem().toString();
+    }
+
+    public String getCourse2() {
+        return jComboBox7.getSelectedItem().toString();
+    }
+
+    public String getCourse3() {
+        return jComboBox8.getSelectedItem().toString();
+    }
+
+    public String getCourse4() {
+        return jComboBox9.getSelectedItem().toString();
+    }
+
+    public String getCourse5() {
+        return jComboBox10.getSelectedItem().toString();
+    }
+
+    public String getTeacherID() {
+        return jTextField3.getText();
+    }
+
     public String getEmail() {
         return jTextField5.getText();
     }
@@ -2008,14 +2080,18 @@ public class TeacherView extends javax.swing.JFrame {
     public String getSearchField() {
         return searchField.getText();
     }
+    
+    public String getSearchCourse() {
+        return jTextField12.getText();
+    }
 
     private void searchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFieldActionPerformed
 
     }//GEN-LAST:event_searchFieldActionPerformed
 
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
-       searchField.setText(null);
-       showNewData();
+        searchField.setText(null);
+        showNewData();
     }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
@@ -2041,11 +2117,52 @@ public class TeacherView extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField12ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        // TODO add your handling code here:
+        jTextField12.setText(null);
+        couController.showNewData();
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        // TODO add your handling code here:
+        if (jTextField8.getText().isEmpty() || jComboBox1.getItemCount() == 0) {
+            showMessage("Student id or semester number is missing");
+        } else {
+            int id = couController.getMax();
+            int sid = Integer.parseInt(jTextField9.getText());
+            int semesterNo = Integer.parseInt(jComboBox1.getSelectedItem().toString());
+            String course1 = jComboBox6.getSelectedItem().toString();
+            String course2 = jComboBox7.getSelectedItem().toString();
+            String course3 = jComboBox8.getSelectedItem().toString();
+            String course4 = jComboBox9.getSelectedItem().toString();
+            String course5 = jComboBox10.getSelectedItem().toString();
+            if (couController.isSemesterExists(sid, semesterNo)) {
+                showMessage("This student has already taken semester" + semesterNo);
+            } else {
+                if (couController.isCourseExists(sid, "course1", course1)) {
+                    showMessage("This student has already taken course " + course1 + " course");
+                } else {
+                    if (couController.isCourseExists(sid, "course2", course2)) {
+                        showMessage("This student has already taken course " + course2 + " course");
+                    } else {
+                        if (couController.isCourseExists(sid, "course3", course3)) {
+                            showMessage("This student has already taken course " + course3 + " course");
+                        } else {
+                            if (couController.isCourseExists(sid, "course4", course4)) {
+                                showMessage("This student has already taken course " + course4 + " course");
+                            } else {
+                                if (couController.isCourseExists(sid, "course5", course5)) {
+                                    showMessage("This student has already taken course " + course5 + " course");
+                                } else {
+                                    if (jTextField3.getText().isEmpty()) {
+                                        showMessage("Yon don't enter teacher id");
+                                    } else {
+                                        couController.saveCourse();
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jTextField24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField24ActionPerformed
@@ -2061,20 +2178,28 @@ public class TeacherView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton35ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        if(jTextField9.getText().isEmpty()){
+        if (jTextField9.getText().isEmpty()) {
             showMessage("Please enter a student id");
-        }else{
+        } else {
             int id = Integer.parseInt(jTextField9.getText());
-            if(couController.getID(id)){
+            if (couController.getID(id)) {
                 jComboBox1.removeAllItems();
                 int semester = couController.countSemester(id);
-                if(semester >= 0){
-                    for (int i = 1; i < semester+1; i++) {
-                        jComboBox1.addItem(i+"");
+                if (semester >= 0) {
+                    if (semester >= 4) {
+                        showErrorMessage("This student has reached the maximum number of semesters.");
+                        for (int i = 1; i <= 4; i++) {
+                            jComboBox1.addItem(String.valueOf(i));
+                        }
+                    } else {
+                        for (int i = 1; i <= semester + 1; i++) {
+                            jComboBox1.addItem(String.valueOf(i));
+                        }
                     }
                 }
             }
         }
+        couController.showNewData();
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
@@ -2230,9 +2355,9 @@ public class TeacherView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-       if(searchField.getText().isEmpty()){
+        if (searchField.getText().isEmpty()) {
             showMessage("Please enter student id or name or email!");
-        }else{
+        } else {
             tController.searchStudent();
         }
     }//GEN-LAST:event_btnSearchActionPerformed
@@ -2247,7 +2372,7 @@ public class TeacherView extends javax.swing.JFrame {
         try {
             MessageFormat header = new MessageFormat("Student Information");
             MessageFormat footer = new MessageFormat("Page{0,number,integer}");
-            jTable1.print(JTable.PrintMode.FIT_WIDTH, header,footer);
+            jTable1.print(JTable.PrintMode.FIT_WIDTH, header, footer);
         } catch (PrinterException ex) {
             Logger.getLogger(TeacherView.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -2264,6 +2389,34 @@ public class TeacherView extends javax.swing.JFrame {
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
         clearCourse();
     }//GEN-LAST:event_jButton15ActionPerformed
+
+    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField3ActionPerformed
+
+    private void jTextField9KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField9KeyTyped
+        if (!Character.isDigit(evt.getKeyChar())) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTextField9KeyTyped
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        if (jTextField12.getText().isEmpty()) {
+            showMessage("Please enter student id or course name!");
+        } else {
+            couController.searchCourse();
+        }
+    }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+       try {
+            MessageFormat header = new MessageFormat("Student Information");
+            MessageFormat footer = new MessageFormat("Page{0,number,integer}");
+            jTable2.print(JTable.PrintMode.FIT_WIDTH, header, footer);
+        } catch (PrinterException ex) {
+            Logger.getLogger(TeacherView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_jButton14ActionPerformed
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -2358,6 +2511,7 @@ public class TeacherView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel46;
     private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel48;
+    private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -2426,6 +2580,7 @@ public class TeacherView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField27;
     private javax.swing.JTextField jTextField28;
     private javax.swing.JTextField jTextField29;
+    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField30;
     private javax.swing.JTextField jTextField31;
     private javax.swing.JTextField jTextField32;

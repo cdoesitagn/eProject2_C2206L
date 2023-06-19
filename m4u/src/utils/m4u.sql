@@ -2,7 +2,7 @@ CREATE TABLE `Student` (
   `student_id` int PRIMARY KEY auto_increment,
   `fullname` varchar(30),
   `birthday` date,
-  `gender` varhcar(10),
+  `gender` varchar(10),
   `address` varchar(30),
   `phoneNumber` varchar(20),
   `email` varchar(30),
@@ -45,11 +45,6 @@ CREATE TABLE `UserAccount` (
   `username` varchar(30),
   `password` varchar(30),
   `role` int
-);
-
-CREATE TABLE `Semester` (
-  `semester_id` int PRIMARY KEY auto_increment,
-  `semester_name` varchar(20)
 );
 
 CREATE TABLE `TotalResult` (
@@ -107,5 +102,3 @@ ALTER TABLE Schedule ADD FOREIGN KEY (teacher_id) REFERENCES Teacher(teacher_id)
 ALTER TABLE Schedule ADD FOREIGN KEY (class_id) REFERENCES Class(class_id);
 ALTER TABLE Schedule ADD FOREIGN KEY (course_id) REFERENCES Course(course_id);
 ALTER TABLE Course ADD FOREIGN KEY (teacher_id) REFERENCES Teacher(teacher_id);
-ALTER TABLE Attendance ADD FOREIGN KEY (schedule_id) REFERENCES Schedule(schedule_id);
-ALTER TABLE TotalResult ADD FOREIGN KEY (semester_id) REFERENCES Semester(semester_id);
