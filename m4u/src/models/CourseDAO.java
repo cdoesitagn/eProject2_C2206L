@@ -133,7 +133,7 @@ public class CourseDAO extends ConnectSQL {
             statement.setInt(8, cou.getTeacher_id());
             statement.execute();
         } catch (SQLException ex) {
-            Logger.getLogger(StudentsDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CourseDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         close();
     }

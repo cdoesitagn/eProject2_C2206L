@@ -9,14 +9,54 @@ package models;
  * @author GreenRain
  */
 public class ExamResult {
+
     private int examResultId;
     private int studentId;
     private int courseId;
+    private int semesterId;
     private float ltPoint1;
     private float thPoint1;
     private float ltPoint2;
     private float thPoint2;
-    private float totalPoint;
+    private float totalPoint1;
+    private float totalPoint2;
+    private String courseName;
+
+    public ExamResult() {
+    }
+
+    public ExamResult(int examResultId, int studentId, int courseId, int semesterId, float ltPoint1, float thPoint1, float ltPoint2, float thPoint2, float totalPoint1, float totalPoint2) {
+        this.examResultId = examResultId;
+        this.studentId = studentId;
+        this.courseId = courseId;
+        this.semesterId = semesterId;
+        this.ltPoint1 = ltPoint1;
+        this.thPoint1 = thPoint1;
+        this.ltPoint2 = ltPoint2;
+        this.thPoint2 = thPoint2;
+        this.totalPoint1 = totalPoint1;
+        this.totalPoint2 = totalPoint2;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public ExamResult(int studentId, int courseId, int semesterId, float ltPoint1, float thPoint1, float ltPoint2, float thPoint2, float totalPoint1, float totalPoint2) {
+        this.studentId = studentId;
+        this.courseId = courseId;
+        this.semesterId = semesterId;
+        this.ltPoint1 = ltPoint1;
+        this.thPoint1 = thPoint1;
+        this.ltPoint2 = ltPoint2;
+        this.thPoint2 = thPoint2;
+        this.totalPoint1 = totalPoint1;
+        this.totalPoint2 = totalPoint2;
+    }
 
     public int getExamResultId() {
         return examResultId;
@@ -40,6 +80,14 @@ public class ExamResult {
 
     public void setCourseId(int courseId) {
         this.courseId = courseId;
+    }
+
+    public int getSemesterId() {
+        return semesterId;
+    }
+
+    public void setSemesterId(int semesterId) {
+        this.semesterId = semesterId;
     }
 
     public float getLtPoint1() {
@@ -74,20 +122,24 @@ public class ExamResult {
         this.thPoint2 = thPoint2;
     }
 
-    public float getTotalPoint() {
-        if(ltPoint1 < 0 || thPoint1 <0){
-            totalPoint = (ltPoint2 + thPoint2)/2;
-            return totalPoint;
-        }else{
-            totalPoint = (ltPoint1 + thPoint1)/2;
-            return totalPoint;
-        }
+    public float getTotalPoint1() {
+        return totalPoint1;
     }
 
-    @Override
-    public String toString() {
-        return "examResultId=" + examResultId + ", studentId=" + studentId + ", courseId=" + courseId + ", ltPoint1=" + ltPoint1 + ", thPoint1=" + thPoint1 + ", ltPoint2=" + ltPoint2 + ", thPoint2=" + thPoint2 + ", totalPoint=" + totalPoint;
+    public void setTotalPoint1(float totalPoint1) {
+        this.totalPoint1 = totalPoint1;
     }
-    
-    
+
+    public float getTotalPoint2() {
+        return totalPoint2;
+    }
+
+    public void setTotalPoint2(float totalPoint2) {
+        this.totalPoint2 = totalPoint2;
+    }
+
+    public float getTotalPoint(float ltPoint, float thPoint) {
+        return (ltPoint1 + thPoint1) / 2;
+    }
+
 }

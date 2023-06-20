@@ -38,7 +38,8 @@ CREATE TABLE `result` (
   `th_point1` float,
   `lt_point2` float,
   `th_point2` float,
-  `total_point` int
+  `total_point1` float
+   `total_point2` float
 );
 
 CREATE TABLE `UserAccount` (

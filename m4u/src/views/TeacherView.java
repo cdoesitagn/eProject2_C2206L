@@ -13,9 +13,9 @@ import java.awt.Image;
 import java.awt.print.PrinterException;
 import java.io.File;
 import java.text.MessageFormat;
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -27,7 +27,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
-import models.Students;
 import models.StudentsDAO;
 
 /**
@@ -43,6 +42,7 @@ public class TeacherView extends javax.swing.JFrame {
     private final TeacherController tController;
     private final CourseController couController;
     private final ExamResultController exaController;
+    NumberFormat nf = NumberFormat.getInstance();
     StudentsDAO std = new StudentsDAO();
 
     public TeacherView() {
@@ -1282,7 +1282,6 @@ public class TeacherView extends javax.swing.JFrame {
 
         tScore1.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         tScore1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tScore1.setText("0.0");
         tScore1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tScore1ActionPerformed(evt);
@@ -1291,15 +1290,12 @@ public class TeacherView extends javax.swing.JFrame {
 
         pScore1.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         pScore1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        pScore1.setText("0.0");
 
         tScore2.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         tScore2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        tScore2.setText("0.0");
 
         pScore2.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         pScore2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        pScore2.setText("0.0");
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
@@ -1439,19 +1435,19 @@ public class TeacherView extends javax.swing.JFrame {
 
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Student's ID", "Semester", "Course ", "Theory Score 1", "Practice Score 1", "Theory Score 2", "Practice Score 2", "Totale Score"
+                "ID", "Student's ID", "Semester", "Course ", "Theory Score 1", "Practice Score 1", "Theory Score 2", "Practice Score 2", "Total Score 1", "Total Score 2"
             }
         ));
         jScrollPane5.setViewportView(jTable5);
@@ -2117,7 +2113,11 @@ public class TeacherView extends javax.swing.JFrame {
     public String getSearchCourse() {
         return jTextField12.getText();
     }
-
+    
+    public String getSearchScore() {
+        return jTextField26.getText();
+    }
+    
     public String getTScore1() {
         return tScore1.getText();
     }
@@ -2133,6 +2133,22 @@ public class TeacherView extends javax.swing.JFrame {
     public String getPScore2() {
         return pScore2.getText();
     }
+
+    private boolean isNumeric(String s) {
+        try {
+            float d = Float.parseFloat(s);
+            if (d >= 0.0 && d <= 10.0) {
+                return true;
+            } else {
+                showMessage("Please enter a valid value, it must be between 0.0 to 4.0");
+                return false;
+            }
+        } catch (NumberFormatException e) {
+            System.out.println(e);
+        }
+        return false;
+    }
+
     private void searchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFieldActionPerformed
 
     }//GEN-LAST:event_searchFieldActionPerformed
@@ -2269,7 +2285,7 @@ public class TeacherView extends javax.swing.JFrame {
             for (String courseName : courseNames) {
                 courseComboBox.addItem(courseName);
             }
-
+            exaController.getDetails(sid, semesterNo);
         }
     }//GEN-LAST:event_jButton16ActionPerformed
 
@@ -2282,7 +2298,46 @@ public class TeacherView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton37ActionPerformed
 
     private void jButton38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton38ActionPerformed
-        // TODO add your handling code here:
+        int sid = Integer.parseInt(jTextField11.getText());
+        float totalPoint1;
+        float totalPoint2;
+        int semesterNo = Integer.parseInt(jTextField13.getText());
+        if (!jTextField25.getText().isEmpty()) {
+            if (!exaController.isIdExist(Integer.parseInt(jTextField10.getText()))) {
+                if (!exaController.isSidSemesterNoExists(sid, semesterNo)) {
+                    if (isNumeric(getTScore1()) && isNumeric(getPScore1())) {
+                        int id = exaController.getMax();
+                        float tScore1 = Float.parseFloat(getTScore1());
+                        float pScore1 = Float.parseFloat(getPScore1());
+                        totalPoint1 = exaController.getTotalPoint(tScore1, pScore1);
+                        totalPoint2 = 0;
+                        nf.setMaximumFractionDigits(3);
+                        if (tScore1 < 4 || pScore1 < 4) {
+                            tScore2.setEditable(true);
+                            pScore2.setEditable(true);
+                            if (isNumeric(getTScore2()) && isNumeric(getPScore2())) {
+                                float tScore2 = Float.parseFloat(getTScore2());
+                                float pScore2 = Float.parseFloat(getPScore2());
+                                totalPoint2 = exaController.getTotalPoint(tScore2, pScore2);
+                            } else {
+                                showMessage("Please enter a valid value for tScore2 and pScore2");
+                            }
+                        } else {
+                            tScore2.setEditable(false);
+                            pScore2.setEditable(false);
+                        }
+                    } else {
+                        showMessage("Please enter a valid value for tScore1 and pScore1");
+                    }
+                } else {
+                    showMessage("Semester " + semesterNo + " score already added");
+                }
+            } else {
+                showMessage("Score ID already exists");
+            }
+        } else {
+            showMessage("No student selected");
+        }
     }//GEN-LAST:event_jButton38ActionPerformed
 
     private void jTextField27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField27ActionPerformed
