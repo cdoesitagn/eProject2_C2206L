@@ -5,6 +5,7 @@
 package views;
 
 import controllers.CourseController;
+import controllers.ExamResultController;
 import controllers.TeacherController;
 import static java.awt.Color.black;
 import static java.awt.Color.white;
@@ -38,11 +39,10 @@ public class TeacherView extends javax.swing.JFrame {
     int xx, xy;
     private String imagePath;
     private DefaultTableModel model;
-    DefaultTableModel tableModel;
-    List<Students> dataList = new ArrayList<>();
     public int currentIndex;
     private final TeacherController tController;
     private final CourseController couController;
+    private final ExamResultController exaController;
     StudentsDAO std = new StudentsDAO();
 
     public TeacherView() {
@@ -50,6 +50,7 @@ public class TeacherView extends javax.swing.JFrame {
         initComponents();
         tController = new TeacherController(this);
         couController = new CourseController(this);
+        exaController = new ExamResultController(this);
         init();
     }
 
@@ -67,10 +68,6 @@ public class TeacherView extends javax.swing.JFrame {
 
     private void showNewData() {
         tController.showNewData();
-    }
-
-    private void showTable() {
-        tController.showTable();
     }
 
     public void showMessage(String message) {
@@ -203,16 +200,11 @@ public class TeacherView extends javax.swing.JFrame {
         jLabel20 = new javax.swing.JLabel();
         jTextField27 = new javax.swing.JTextField();
         jTextField13 = new javax.swing.JTextField();
-        jTextField14 = new javax.swing.JTextField();
-        jTextField15 = new javax.swing.JTextField();
-        jTextField16 = new javax.swing.JTextField();
-        jTextField17 = new javax.swing.JTextField();
-        jTextField18 = new javax.swing.JTextField();
-        jTextField28 = new javax.swing.JTextField();
-        jTextField29 = new javax.swing.JTextField();
-        jTextField30 = new javax.swing.JTextField();
-        jTextField31 = new javax.swing.JTextField();
-        jTextField32 = new javax.swing.JTextField();
+        tScore1 = new javax.swing.JTextField();
+        pScore1 = new javax.swing.JTextField();
+        tScore2 = new javax.swing.JTextField();
+        pScore2 = new javax.swing.JTextField();
+        courseComboBox = new javax.swing.JComboBox<>();
         jPanel39 = new javax.swing.JPanel();
         jPanel40 = new javax.swing.JPanel();
         jLabel48 = new javax.swing.JLabel();
@@ -1189,23 +1181,27 @@ public class TeacherView extends javax.swing.JFrame {
         jLabel41.setText("Semester");
 
         jLabel42.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel42.setText("Course 1");
+        jLabel42.setText("Course");
 
         jLabel43.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel43.setText("Course 2");
+        jLabel43.setText("Theory Score 1");
 
         jLabel44.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel44.setText("Course 3");
+        jLabel44.setText("Practice Score 1");
 
         jLabel45.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel45.setText("Course 4");
+        jLabel45.setText("Theory Score 2");
 
+        jTextField10.setEditable(false);
+        jTextField10.setBackground(new java.awt.Color(153, 153, 153));
         jTextField10.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
 
+        jTextField11.setEditable(false);
+        jTextField11.setBackground(new java.awt.Color(153, 153, 153));
         jTextField11.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
 
         jLabel46.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel46.setText("Course 5");
+        jLabel46.setText("Practice Score 2");
 
         jLabel47.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel47.setText("Student's ID");
@@ -1213,6 +1209,11 @@ public class TeacherView extends javax.swing.JFrame {
         jTextField25.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField25ActionPerformed(evt);
+            }
+        });
+        jTextField25.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField25KeyTyped(evt);
             }
         });
 
@@ -1231,6 +1232,11 @@ public class TeacherView extends javax.swing.JFrame {
         jTextField27.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField27ActionPerformed(evt);
+            }
+        });
+        jTextField27.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField27KeyTyped(evt);
             }
         });
 
@@ -1266,11 +1272,34 @@ public class TeacherView extends javax.swing.JFrame {
                 .addGap(10, 10, 10))
         );
 
+        jTextField13.setEditable(false);
+        jTextField13.setBackground(new java.awt.Color(153, 153, 153));
         jTextField13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField13ActionPerformed(evt);
             }
         });
+
+        tScore1.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        tScore1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tScore1.setText("0.0");
+        tScore1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                tScore1ActionPerformed(evt);
+            }
+        });
+
+        pScore1.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        pScore1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        pScore1.setText("0.0");
+
+        tScore2.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        tScore2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        tScore2.setText("0.0");
+
+        pScore2.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        pScore2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        pScore2.setText("0.0");
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
@@ -1290,38 +1319,26 @@ public class TeacherView extends javax.swing.JFrame {
                                     .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPanel17Layout.createSequentialGroup()
-                                        .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTextField30, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jTextField11, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGroup(jPanel17Layout.createSequentialGroup()
-                                        .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(jTextField31, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(pScore1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(tScore2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel17Layout.createSequentialGroup()
                                 .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField28)))
+                                .addComponent(courseComboBox, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(jPanel17Layout.createSequentialGroup()
                         .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel17Layout.createSequentialGroup()
                                 .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField29, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(tScore1, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel17Layout.createSequentialGroup()
                                 .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, 260, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(jTextField32, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(pScore2, javax.swing.GroupLayout.PREFERRED_SIZE, 88, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel17Layout.createSequentialGroup()
                                 .addComponent(jLabel39, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1346,30 +1363,25 @@ public class TeacherView extends javax.swing.JFrame {
                     .addComponent(jLabel41, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField13, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel42, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField28, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel42, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(courseComboBox))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel43, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField29, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tScore1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel44, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField30, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pScore1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel45, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField31, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tScore2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel17Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel46, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField32, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pScore2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(91, 91, 91))
         );
 
@@ -1427,19 +1439,19 @@ public class TeacherView extends javax.swing.JFrame {
 
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "ID", "Student's ID", "Semester", "Course 1", "Course 2", "Course 3", "Course 4", "Course 5"
+                "ID", "Student's ID", "Semester", "Course ", "Theory Score 1", "Practice Score 1", "Theory Score 2", "Practice Score 2", "Totale Score"
             }
         ));
         jScrollPane5.setViewportView(jTable5);
@@ -1477,6 +1489,11 @@ public class TeacherView extends javax.swing.JFrame {
         jButton40.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jButton40.setText("Clear");
         jButton40.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton40.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton40ActionPerformed(evt);
+            }
+        });
 
         jButton41.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jButton41.setText("Log Out");
@@ -1906,7 +1923,9 @@ public class TeacherView extends javax.swing.JFrame {
         tableViewStudent();
         jTextField1.setText(String.valueOf(tController.getMax()));
         jTextField4.setText(String.valueOf(couController.getMax()));
+        jTextField10.setText(String.valueOf(exaController.getMax()));
         showNewData();
+        couController.showNewData();
     }
 
     private void tableViewStudent() {
@@ -1942,6 +1961,20 @@ public class TeacherView extends javax.swing.JFrame {
         jComboBox10.setSelectedIndex(0);
         jTable2.clearSelection();
 
+    }
+
+    public void clearScore() {
+        jTextField10.setText(String.valueOf(exaController.getMax()));
+        jTextField25.setText(null);
+        jTextField27.setText(null);
+        jTextField11.setText(null);
+        jTextField13.setText(null);
+        courseComboBox.removeAllItems();
+        tScore1.setText("0.0");
+        pScore1.setText("0.0");
+        tScore2.setText("0.0");
+        pScore2.setText("0.0");
+        jTable5.clearSelection();
     }
 
     public boolean isEmptyStudent() {
@@ -2080,11 +2113,26 @@ public class TeacherView extends javax.swing.JFrame {
     public String getSearchField() {
         return searchField.getText();
     }
-    
+
     public String getSearchCourse() {
         return jTextField12.getText();
     }
 
+    public String getTScore1() {
+        return tScore1.getText();
+    }
+
+    public String getTScore2() {
+        return tScore2.getText();
+    }
+
+    public String getPScore1() {
+        return pScore1.getText();
+    }
+
+    public String getPScore2() {
+        return pScore2.getText();
+    }
     private void searchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFieldActionPerformed
 
     }//GEN-LAST:event_searchFieldActionPerformed
@@ -2211,7 +2259,18 @@ public class TeacherView extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField25ActionPerformed
 
     private void jButton16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton16ActionPerformed
-        // TODO add your handling code here:
+        if (jTextField25.getText().isEmpty() || jTextField27.getText().isEmpty()) {
+            showMessage("Please enter student id or semester");
+        } else {
+            int sid = Integer.parseInt(jTextField25.getText());
+            int semesterNo = Integer.parseInt(jTextField27.getText());
+            List<String> courseNames = exaController.getCoursesByStudentAndSemester(sid, semesterNo);
+            courseComboBox.removeAllItems();
+            for (String courseName : courseNames) {
+                courseComboBox.addItem(courseName);
+            }
+
+        }
     }//GEN-LAST:event_jButton16ActionPerformed
 
     private void jTextField26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField26ActionPerformed
@@ -2409,7 +2468,7 @@ public class TeacherView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-       try {
+        try {
             MessageFormat header = new MessageFormat("Student Information");
             MessageFormat footer = new MessageFormat("Page{0,number,integer}");
             jTable2.print(JTable.PrintMode.FIT_WIDTH, header, footer);
@@ -2417,6 +2476,22 @@ public class TeacherView extends javax.swing.JFrame {
             Logger.getLogger(TeacherView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jTextField25KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField25KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField25KeyTyped
+
+    private void jTextField27KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField27KeyTyped
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField27KeyTyped
+
+    private void tScore1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tScore1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tScore1ActionPerformed
+
+    private void jButton40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton40ActionPerformed
+        clearScore();
+    }//GEN-LAST:event_jButton40ActionPerformed
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -2446,6 +2521,7 @@ public class TeacherView extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnSearch;
+    private javax.swing.JComboBox<String> courseComboBox;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -2564,26 +2640,16 @@ public class TeacherView extends javax.swing.JFrame {
     private javax.swing.JTable jTable5;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField10;
-    private javax.swing.JTextField jTextField11;
+    public static javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField12;
-    private javax.swing.JTextField jTextField13;
-    private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField16;
-    private javax.swing.JTextField jTextField17;
-    private javax.swing.JTextField jTextField18;
+    public static javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField24;
     private javax.swing.JTextField jTextField25;
     private javax.swing.JTextField jTextField26;
     private javax.swing.JTextField jTextField27;
-    private javax.swing.JTextField jTextField28;
-    private javax.swing.JTextField jTextField29;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField30;
-    private javax.swing.JTextField jTextField31;
-    private javax.swing.JTextField jTextField32;
     private javax.swing.JTextField jTextField33;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
@@ -2591,6 +2657,10 @@ public class TeacherView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField7;
     public static javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField pScore1;
+    private javax.swing.JTextField pScore2;
     private javax.swing.JTextField searchField;
+    private javax.swing.JTextField tScore1;
+    private javax.swing.JTextField tScore2;
     // End of variables declaration//GEN-END:variables
 }

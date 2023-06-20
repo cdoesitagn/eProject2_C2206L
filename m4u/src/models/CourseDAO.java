@@ -33,7 +33,7 @@ public class CourseDAO extends ConnectSQL {
                 id = rs.getInt(1);
             }
         } catch (SQLException ex) {
-            Logger.getLogger(CourseController.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CourseDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return id + 1;
     }

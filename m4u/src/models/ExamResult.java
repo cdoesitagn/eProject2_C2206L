@@ -16,7 +16,7 @@ public class ExamResult {
     private float thPoint1;
     private float ltPoint2;
     private float thPoint2;
-    private int totalPoint;
+    private float totalPoint;
 
     public int getExamResultId() {
         return examResultId;
@@ -74,12 +74,19 @@ public class ExamResult {
         this.thPoint2 = thPoint2;
     }
 
-    public int getTotalPoint() {
-        return totalPoint;
+    public float getTotalPoint() {
+        if(ltPoint1 < 0 || thPoint1 <0){
+            totalPoint = (ltPoint2 + thPoint2)/2;
+            return totalPoint;
+        }else{
+            totalPoint = (ltPoint1 + thPoint1)/2;
+            return totalPoint;
+        }
     }
 
-    public void setTotalPoint(int totalPoint) {
-        this.totalPoint = totalPoint;
+    @Override
+    public String toString() {
+        return "examResultId=" + examResultId + ", studentId=" + studentId + ", courseId=" + courseId + ", ltPoint1=" + ltPoint1 + ", thPoint1=" + thPoint1 + ", ltPoint2=" + ltPoint2 + ", thPoint2=" + thPoint2 + ", totalPoint=" + totalPoint;
     }
     
     

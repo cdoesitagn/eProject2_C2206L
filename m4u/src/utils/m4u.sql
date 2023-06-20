@@ -29,10 +29,11 @@ CREATE TABLE `Teacher` (
   `phoneNumber` varchar(20)
 );
 
-CREATE TABLE `ExamResults` (
-  `examResult_id` integer PRIMARY KEY auto_increment,
+CREATE TABLE `result` (
+  `result_id` integer PRIMARY KEY auto_increment,
   `student_id` int,
   `course_id` int,
+  semester_id int,
   `lt_point1` float,
   `th_point1` float,
   `lt_point2` float,
