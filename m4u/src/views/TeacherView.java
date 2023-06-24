@@ -250,6 +250,7 @@ public class TeacherView extends javax.swing.JFrame {
         jButton34 = new javax.swing.JButton();
         jButton35 = new javax.swing.JButton();
         jButton36 = new javax.swing.JButton();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocation(new java.awt.Point(280, 200));
@@ -1913,6 +1914,7 @@ public class TeacherView extends javax.swing.JFrame {
         );
 
         jTabbedPane1.addTab("Marks Sheet", jPanel6);
+        jTabbedPane1.addTab("Schedule", jTabbedPane2);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -2652,7 +2654,6 @@ public class TeacherView extends javax.swing.JFrame {
             showMessage("System enter value TScore2 and PScore2");
             exaController.updateScore();
         }
-
     }//GEN-LAST:event_jButton19ActionPerformed
 
     public static void main(String args[]) {
@@ -2799,6 +2800,7 @@ public class TeacherView extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTable jTable4;

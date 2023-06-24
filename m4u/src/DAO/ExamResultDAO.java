@@ -4,8 +4,7 @@
  */
 package DAO;
 
-import DAO.CourseDAO;
-import DAO.ConnectSQL;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -201,23 +200,22 @@ public class ExamResultDAO extends ConnectSQL {
     public static void update(ExamResult exa) {
         open();
         try {
-            String sql = "UPDATE result SET course_name = ?, lt_point1 = ?, th_point1 = ?, lt_point2 = ?, "
-                    + "th_point2 = ?, total_point1 = ?, total_point2 = ?, student_id = ?, semester_id = ? WHERE result_id = ?";
+            String sql = "UPDATE result SET student_id = ?, semester_id = ?, course_name = ?, lt_point1 = ?, th_point1 = ?, lt_point2 = ?, th_point2 = ?, total_point1 = ?, total_point2 = ? WHERE result_id = ?;";
             statement = conn.prepareStatement(sql);
-            statement.setString(1, exa.getCourseName());
-            statement.setFloat(2, exa.getLtPoint1());
-            statement.setFloat(3, exa.getThPoint1());
-            statement.setFloat(4, exa.getLtPoint2());
-            statement.setFloat(5, exa.getThPoint2());
-            statement.setFloat(6, exa.getTotalPoint1());
-            statement.setFloat(7, exa.getTotalPoint2());
-            statement.setInt(8, exa.getStudentId());
-            statement.setInt(9, exa.getSemesterId());
+            statement.setInt(1, exa.getStudentId());
+            statement.setInt(2, exa.getSemesterId());
+            statement.setString(3, exa.getCourseName());
+            statement.setFloat(4, exa.getLtPoint1());
+            statement.setFloat(5, exa.getThPoint1());
+            statement.setFloat(6, exa.getLtPoint2());
+            statement.setFloat(7, exa.getThPoint2());
+            statement.setFloat(8, exa.getTotalPoint1());
+            statement.setFloat(9, exa.getTotalPoint2());
             statement.setInt(10, exa.getExamResultId());
 
             statement.execute();
         } catch (SQLException ex) {
-            System.out.println("Error executing SQL query: " + ex.getMessage());
+            Logger.getLogger(ExamResultDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             close();
         }

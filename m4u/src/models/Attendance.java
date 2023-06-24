@@ -25,6 +25,17 @@ public class Attendance {
         this.date = date;
     }
 
+    public Attendance() {
+    }
+
+    public Attendance(int scheduleId, int studentId, String status, Date date) {
+        this.scheduleId = scheduleId;
+        this.studentId = studentId;
+        this.status = status;
+        this.date = date;
+    }
+
+    
     public int getAttendanceId() {
         return attendanceId;
     }

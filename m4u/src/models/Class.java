@@ -17,6 +17,13 @@ public class Class {
         this.class_name = class_name;
     }
 
+    public Class() {
+    }
+
+    public Class(String class_name) {
+        this.class_name = class_name;
+    }
+
     public int getClass_id() {
         return class_id;
     }

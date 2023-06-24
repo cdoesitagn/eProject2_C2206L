@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import models.Course;
-import models.CourseDAO;
+import DAO.CourseDAO;
 import views.TeacherView;
 
 /**

@@ -1,6 +1,6 @@
 package DAO;
 
-import DAO.ConnectSQL;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;

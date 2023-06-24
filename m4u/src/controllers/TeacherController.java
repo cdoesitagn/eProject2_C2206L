@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import models.Students;
-import models.StudentsDAO;
+import DAO.StudentsDAO;
 import views.TeacherView;
 
 /**

@@ -5,7 +5,7 @@
 package controllers;
 
 import views.LoginView;
-import models.ConnectSQL;
+import DAO.ConnectSQL;
 import models.User;
 import views.StudentView;
 import views.TeacherView;
