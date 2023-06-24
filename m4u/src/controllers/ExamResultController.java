@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import models.ExamResult;
-import models.ExamResultDAO;
+import DAO.ExamResultDAO;
 import views.TeacherView;
 
 /**

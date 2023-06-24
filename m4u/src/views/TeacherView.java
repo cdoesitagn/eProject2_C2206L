@@ -28,7 +28,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
-import models.StudentsDAO;
+import DAO.StudentsDAO;
 
 /**
  *
