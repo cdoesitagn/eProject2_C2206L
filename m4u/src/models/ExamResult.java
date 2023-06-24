@@ -12,24 +12,24 @@ public class ExamResult {
 
     private int examResultId;
     private int studentId;
-    private int courseId;
     private int semesterId;
+    private String courseName;
     private float ltPoint1;
     private float thPoint1;
     private float ltPoint2;
     private float thPoint2;
     private float totalPoint1;
     private float totalPoint2;
-    private String courseName;
+    
 
     public ExamResult() {
     }
 
-    public ExamResult(int examResultId, int studentId, int courseId, int semesterId, float ltPoint1, float thPoint1, float ltPoint2, float thPoint2, float totalPoint1, float totalPoint2) {
+    public ExamResult(int examResultId, int studentId, int semesterId, String courseName, float ltPoint1, float thPoint1, float ltPoint2, float thPoint2, float totalPoint1, float totalPoint2) {
         this.examResultId = examResultId;
         this.studentId = studentId;
-        this.courseId = courseId;
         this.semesterId = semesterId;
+        this.courseName = courseName;
         this.ltPoint1 = ltPoint1;
         this.thPoint1 = thPoint1;
         this.ltPoint2 = ltPoint2;
@@ -38,18 +38,10 @@ public class ExamResult {
         this.totalPoint2 = totalPoint2;
     }
 
-    public String getCourseName() {
-        return courseName;
-    }
-
-    public void setCourseName(String courseName) {
-        this.courseName = courseName;
-    }
-
-    public ExamResult(int studentId, int courseId, int semesterId, float ltPoint1, float thPoint1, float ltPoint2, float thPoint2, float totalPoint1, float totalPoint2) {
+    public ExamResult(int studentId, int semesterId, String courseName, float ltPoint1, float thPoint1, float ltPoint2, float thPoint2, float totalPoint1, float totalPoint2) {
         this.studentId = studentId;
-        this.courseId = courseId;
         this.semesterId = semesterId;
+        this.courseName = courseName;
         this.ltPoint1 = ltPoint1;
         this.thPoint1 = thPoint1;
         this.ltPoint2 = ltPoint2;
@@ -74,20 +66,20 @@ public class ExamResult {
         this.studentId = studentId;
     }
 
-    public int getCourseId() {
-        return courseId;
-    }
-
-    public void setCourseId(int courseId) {
-        this.courseId = courseId;
-    }
-
     public int getSemesterId() {
         return semesterId;
     }
 
     public void setSemesterId(int semesterId) {
         this.semesterId = semesterId;
+    }
+
+    public String getCourseName() {
+        return courseName;
+    }
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
     }
 
     public float getLtPoint1() {
@@ -137,9 +129,8 @@ public class ExamResult {
     public void setTotalPoint2(float totalPoint2) {
         this.totalPoint2 = totalPoint2;
     }
-
-    public float getTotalPoint(float ltPoint, float thPoint) {
-        return (ltPoint1 + thPoint1) / 2;
+    
+    public float getTotalPoint(float a, float b) {
+        return (a+b)/2;
     }
-
 }

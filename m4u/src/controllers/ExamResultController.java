@@ -37,53 +37,60 @@ public class ExamResultController {
     public boolean getDetails(int sid, int semesterNo) {
         return exa.getDetails(sid, semesterNo);
     }
-    
-    public boolean isIdExist(int id){
+
+    public boolean isIdExist(int id) {
         return exa.isIdExists(id);
-    }
-    
-    public boolean isSidSemesterNoExists(int sid, int semesterNo) {
-        return exa.isSidSemesterNoExists(sid, semesterNo);
     }
 
     public List<String> getCoursesByStudentAndSemester(int studentId, int semesterId) {
         ExamResultDAO examResultDAO = new ExamResultDAO();
         return examResultDAO.getCoursesByStudentAndSemester(studentId, semesterId);
     }
-    
+
     public float getTotalPoint(float ltPoint, float thPoint) {
         return ex.getTotalPoint(ltPoint, thPoint);
     }
-    
-//    public void saveScore() {
-//        
-//        int student_id = Integer.parseInt(view.getStudentID());
-//        int semester_id = Integer.parseInt(view.getSemesterID());
-//        
-//       
-//
-//        Course cou = new Course();
-//        cou.setStudent_id(student_id);
-//        cou.setSemester_id(semester_id);
-//        cou.setCourse1(course1);
-//        cou.setCourse2(course2);
-//        cou.setCourse3(course3);
-//        cou.setCourse4(course4);
-//        cou.setCourse5(course5);
-//        cou.setTeacher_id(teacher_id);
-//        
-//        CourseDAO.insert(cou);
-//        view.clearCourse();
-//        showNewData();
-//    }
-    
+
+    public void saveScore() {
+        float lt_point2;
+        float th_point2;
+        int student_id = Integer.parseInt(view.getStudentIDScore());
+        int semester_id = Integer.parseInt(view.getSemesterIDScore());
+        String course_name = view.getCourse();
+        float lt_point1 = Float.parseFloat(view.getTScore1());
+        float th_point1 = Float.parseFloat(view.getPScore1());
+        if(lt_point1 >= 4 && th_point1 >= 4){
+            lt_point2 = 0;
+            th_point2 = 0;
+        }else{
+            lt_point2 = Float.parseFloat(view.getTScore2());
+            th_point2 = Float.parseFloat(view.getPScore2());
+        }
+        float total_point1 = ex.getTotalPoint(lt_point1, th_point1);
+        float total_point2 = ex.getTotalPoint(lt_point2, th_point2);
+
+        ex.setStudentId(student_id);
+        ex.setSemesterId(semester_id);
+        ex.setCourseName(course_name);
+        ex.setLtPoint1(lt_point1);
+        ex.setThPoint1(th_point1);
+        ex.setLtPoint2(lt_point2);
+        ex.setThPoint2(th_point2);
+        ex.setTotalPoint1(total_point1);
+        ex.setTotalPoint2(total_point2);
+
+        ExamResultDAO.insert(ex);
+        view.clearScore();
+        showNewData();
+    }
+
     public void showNewData() {
         dataList = ExamResultDAO.select();
         showTable();
     }
 
     public void showTable() {
-        DefaultTableModel tableModel = view.getTableCourse();
+        DefaultTableModel tableModel = view.getTableScore();
         tableModel.setRowCount(0);
 
         for (ExamResult exams : dataList) {
@@ -101,8 +108,8 @@ public class ExamResultController {
             });
         }
     }
-    
-     public void searchCourse() {
+
+    public void searchScore() {
         String searchTxt = view.getSearchScore();
         dataList = ExamResultDAO.search(searchTxt);
         showTable();

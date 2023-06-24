@@ -32,13 +32,13 @@ CREATE TABLE `Teacher` (
 CREATE TABLE `result` (
   `result_id` integer PRIMARY KEY auto_increment,
   `student_id` int,
-  `course_id` int,
-  semester_id int,
+  `semester_id` int,
+  `course_name` varchar(100),
   `lt_point1` float,
   `th_point1` float,
   `lt_point2` float,
   `th_point2` float,
-  `total_point1` float
+  `total_point1` float,
    `total_point2` float
 );
 
@@ -93,9 +93,9 @@ CREATE TABLE `Attendance` (
   `date` date
 );
 
-ALTER TABLE ExamResults ADD FOREIGN KEY (student_id) REFERENCES Student(student_id);
+ALTER TABLE Result ADD FOREIGN KEY (student_id) REFERENCES Student(student_id);
 ALTER TABLE TotalResult ADD FOREIGN KEY (student_id) REFERENCES Student(student_id);
-ALTER TABLE TotalResult ADD FOREIGN KEY (examResult_id) REFERENCES ExamResults(examResult_id);
+ALTER TABLE TotalResult ADD FOREIGN KEY (examResult_id) REFERENCES `result`(result_id);
 ALTER TABLE Student_Class ADD FOREIGN KEY (student_id) REFERENCES Student(student_id);
 ALTER TABLE Student_Class ADD FOREIGN KEY (class_id) REFERENCES Class(class_id);
 ALTER TABLE Teacher_Course ADD FOREIGN KEY (course_id) REFERENCES Course(course_id);

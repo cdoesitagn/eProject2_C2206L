@@ -62,6 +62,10 @@ public class TeacherView extends javax.swing.JFrame {
         return (DefaultTableModel) jTable2.getModel();
     }
 
+    public DefaultTableModel getTableScore() {
+        return (DefaultTableModel) jTable5.getModel();
+    }
+
     public JTable getJTable1() {
         return jTable1;
     }
@@ -1395,6 +1399,11 @@ public class TeacherView extends javax.swing.JFrame {
         jButton17.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton17.setText("Search");
         jButton17.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton17.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton17ActionPerformed(evt);
+            }
+        });
 
         jButton37.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jButton37.setText("Refresh");
@@ -1481,6 +1490,11 @@ public class TeacherView extends javax.swing.JFrame {
         jButton39.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jButton39.setText("Print");
         jButton39.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton39.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton39ActionPerformed(evt);
+            }
+        });
 
         jButton40.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jButton40.setText("Clear");
@@ -1922,6 +1936,7 @@ public class TeacherView extends javax.swing.JFrame {
         jTextField10.setText(String.valueOf(exaController.getMax()));
         showNewData();
         couController.showNewData();
+        exaController.showNewData();
     }
 
     private void tableViewStudent() {
@@ -2062,8 +2077,16 @@ public class TeacherView extends javax.swing.JFrame {
         return jTextField8.getText();
     }
 
+    public String getStudentIDScore() {
+        return jTextField11.getText();
+    }
+
     public String getSemesterID() {
         return jComboBox1.getSelectedItem().toString();
+    }
+
+    public String getSemesterIDScore() {
+        return jTextField13.getText();
     }
 
     public String getCourse1() {
@@ -2084,6 +2107,10 @@ public class TeacherView extends javax.swing.JFrame {
 
     public String getCourse5() {
         return jComboBox10.getSelectedItem().toString();
+    }
+
+    public String getCourse() {
+        return courseComboBox.getSelectedItem().toString();
     }
 
     public String getTeacherID() {
@@ -2113,11 +2140,11 @@ public class TeacherView extends javax.swing.JFrame {
     public String getSearchCourse() {
         return jTextField12.getText();
     }
-    
+
     public String getSearchScore() {
         return jTextField26.getText();
     }
-    
+
     public String getTScore1() {
         return tScore1.getText();
     }
@@ -2140,7 +2167,7 @@ public class TeacherView extends javax.swing.JFrame {
             if (d >= 0.0 && d <= 10.0) {
                 return true;
             } else {
-                showMessage("Please enter a valid value, it must be between 0.0 to 4.0");
+                showMessage("Please enter a valid value, it must be between 0.0 to 10.0");
                 return false;
             }
         } catch (NumberFormatException e) {
@@ -2294,43 +2321,31 @@ public class TeacherView extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField26ActionPerformed
 
     private void jButton37ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton37ActionPerformed
-        // TODO add your handling code here:
+        jTextField26.setText(null);
+        exaController.showNewData();
     }//GEN-LAST:event_jButton37ActionPerformed
 
     private void jButton38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton38ActionPerformed
-        int sid = Integer.parseInt(jTextField11.getText());
-        float totalPoint1;
-        float totalPoint2;
-        int semesterNo = Integer.parseInt(jTextField13.getText());
         if (!jTextField25.getText().isEmpty()) {
             if (!exaController.isIdExist(Integer.parseInt(jTextField10.getText()))) {
-                if (!exaController.isSidSemesterNoExists(sid, semesterNo)) {
-                    if (isNumeric(getTScore1()) && isNumeric(getPScore1())) {
-                        int id = exaController.getMax();
+                if (isNumeric(getTScore1()) && isNumeric(getPScore1())) {
+                    if (isNumeric(getTScore2()) && isNumeric(getPScore2())) {
                         float tScore1 = Float.parseFloat(getTScore1());
                         float pScore1 = Float.parseFloat(getPScore1());
-                        totalPoint1 = exaController.getTotalPoint(tScore1, pScore1);
-                        totalPoint2 = 0;
-                        nf.setMaximumFractionDigits(3);
-                        if (tScore1 < 4 || pScore1 < 4) {
-                            tScore2.setEditable(true);
-                            pScore2.setEditable(true);
-                            if (isNumeric(getTScore2()) && isNumeric(getPScore2())) {
-                                float tScore2 = Float.parseFloat(getTScore2());
-                                float pScore2 = Float.parseFloat(getPScore2());
-                                totalPoint2 = exaController.getTotalPoint(tScore2, pScore2);
-                            } else {
-                                showMessage("Please enter a valid value for tScore2 and pScore2");
-                            }
+                        if (tScore1 >= 4 && pScore1 >= 4) {
+                            showMessage("System doesn't enter value TScore2 and PScore2");
+                            exaController.saveScore();
+                           
                         } else {
-                            tScore2.setEditable(false);
-                            pScore2.setEditable(false);
+                            showMessage("System enter value TScore2 and PScore2");
+                            exaController.saveScore();
+                          
                         }
                     } else {
-                        showMessage("Please enter a valid value for tScore1 and pScore1");
+                        showMessage("Please enter a valid value for tScore2 and pScore2");
                     }
                 } else {
-                    showMessage("Semester " + semesterNo + " score already added");
+                    showMessage("Please enter a valid value for tScore1 and pScore1");
                 }
             } else {
                 showMessage("Score ID already exists");
@@ -2547,6 +2562,18 @@ public class TeacherView extends javax.swing.JFrame {
     private void jButton40ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton40ActionPerformed
         clearScore();
     }//GEN-LAST:event_jButton40ActionPerformed
+
+    private void jButton39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton39ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton39ActionPerformed
+
+    private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
+        if (jTextField26.getText().isEmpty()) {
+            showMessage("Please enter student id or course name!");
+        } else {
+            exaController.searchScore();
+        }
+    }//GEN-LAST:event_jButton17ActionPerformed
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
