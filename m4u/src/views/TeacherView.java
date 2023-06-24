@@ -2490,9 +2490,9 @@ public class TeacherView extends javax.swing.JFrame {
         }
         String gender = model.getValueAt(currentIndex, 3).toString();
         if (gender.equals("Male")) {
-            jComboBox1.setSelectedIndex(0);
+            jComboBox2.setSelectedIndex(0);
         } else {
-            jComboBox1.setSelectedIndex(1);
+            jComboBox2.setSelectedIndex(1);
         }
         jTextField5.setText(model.getValueAt(currentIndex, 4).toString());
         jTextField6.setText(model.getValueAt(currentIndex, 5).toString());

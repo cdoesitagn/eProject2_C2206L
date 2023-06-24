@@ -110,14 +110,12 @@ public class LoginView extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel1.setText("Login to System");
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("C:\\Users\\hieuv\\OneDrive\\Desktop\\Aptech\\e-Project2\\eProject2_C2206L\\m4u\\src\\viewsicons\\window-minimize-icon.png")); // NOI18N
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel5MouseClicked(evt);
             }
         });
 
-        jLabel4.setIcon(new javax.swing.ImageIcon("C:\\Users\\hieuv\\OneDrive\\Desktop\\Aptech\\e-Project2\\eProject2_C2206L\\m4u\\src\\viewsicons\\Programming-Delete-Sign-icon.png")); // NOI18N
         jLabel4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel4MouseClicked(evt);
@@ -249,7 +247,7 @@ public class LoginView extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(CourseView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         
