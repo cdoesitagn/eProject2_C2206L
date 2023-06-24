@@ -52,17 +52,17 @@ public class ExamResultController {
     }
 
     public void saveScore() {
-        float lt_point2;
-        float th_point2;
         int student_id = Integer.parseInt(view.getStudentIDScore());
         int semester_id = Integer.parseInt(view.getSemesterIDScore());
         String course_name = view.getCourse();
         float lt_point1 = Float.parseFloat(view.getTScore1());
         float th_point1 = Float.parseFloat(view.getPScore1());
-        if(lt_point1 >= 4 && th_point1 >= 4){
+        float lt_point2;
+        float th_point2;
+        if (lt_point1 >= 4 && th_point1 >= 4) {
             lt_point2 = 0;
             th_point2 = 0;
-        }else{
+        } else {
             lt_point2 = Float.parseFloat(view.getTScore2());
             th_point2 = Float.parseFloat(view.getPScore2());
         }
@@ -82,6 +82,45 @@ public class ExamResultController {
         ExamResultDAO.insert(ex);
         view.clearScore();
         showNewData();
+    }
+
+    public void updateScore() {
+        int result_id = Integer.parseInt(view.getIdScore());
+        if (exa.isIdExists(result_id)) {
+            int student_id = Integer.parseInt(view.getStudentIDScore());
+            int semester_id = Integer.parseInt(view.getSemesterIDScore());
+            String course_name = view.getCourse();
+            float lt_point1 = Float.parseFloat(view.getTScore1());
+            float th_point1 = Float.parseFloat(view.getPScore1());
+            float lt_point2;
+            float th_point2;
+            if (lt_point1 >= 4 && th_point1 >= 4) {
+                lt_point2 = 0;
+                th_point2 = 0;
+            } else {
+                lt_point2 = Float.parseFloat(view.getTScore2());
+                th_point2 = Float.parseFloat(view.getPScore2());
+            }
+            float total_point1 = ex.getTotalPoint(lt_point1, th_point1);
+            float total_point2 = ex.getTotalPoint(lt_point2, th_point2);
+            
+            ex.setStudentId(student_id);
+            ex.setSemesterId(semester_id);
+            ex.setCourseName(course_name);
+            ex.setLtPoint1(lt_point1);
+            ex.setThPoint1(th_point1);
+            ex.setLtPoint2(lt_point2);
+            ex.setThPoint2(th_point2);
+            ex.setTotalPoint1(total_point1);
+            ex.setTotalPoint2(total_point2);
+
+            ExamResultDAO.update(ex);
+            view.clearScore();
+            showNewData();
+
+        } else {
+            view.showMessage("Result id doesn't exists");
+        }
     }
 
     public void showNewData() {

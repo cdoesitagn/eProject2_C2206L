@@ -16,6 +16,7 @@ import java.text.MessageFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.logging.Level;
@@ -42,6 +43,7 @@ public class TeacherView extends javax.swing.JFrame {
     private final TeacherController tController;
     private final CourseController couController;
     private final ExamResultController exaController;
+    private List<String> initialCourseItems;
     NumberFormat nf = NumberFormat.getInstance();
     StudentsDAO std = new StudentsDAO();
 
@@ -282,14 +284,12 @@ public class TeacherView extends javax.swing.JFrame {
             }
         });
 
-        jLabel23.setIcon(new javax.swing.ImageIcon("C:\\Users\\hieuv\\OneDrive\\Desktop\\Aptech\\e-Project2\\eProject2_C2206L\\m4u\\src\\viewsicons\\window-minimize-icon.png")); // NOI18N
         jLabel23.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel23MouseClicked(evt);
             }
         });
 
-        jLabel24.setIcon(new javax.swing.ImageIcon("C:\\Users\\hieuv\\OneDrive\\Desktop\\Aptech\\e-Project2\\eProject2_C2206L\\m4u\\src\\viewsicons\\Programming-Delete-Sign-icon.png")); // NOI18N
         jLabel24.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel24MouseClicked(evt);
@@ -321,9 +321,8 @@ public class TeacherView extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel23, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel22, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(23, Short.MAX_VALUE))
         );
@@ -1304,6 +1303,8 @@ public class TeacherView extends javax.swing.JFrame {
         pScore2.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
         pScore2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        courseComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "C Program", "Java 1", ".Net", "WS", "eProject1", "JSON", "NodeJS", "ADUF", "PHP", "NOSQL", "DMA", "IASF", "HTML & CSS", "ASP. NET ", "WCD", "EAD", "SQL", "Java 2", "AP", "IDP" }));
+
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
         jPanel17.setLayout(jPanel17Layout);
         jPanel17Layout.setHorizontalGroup(
@@ -1462,6 +1463,11 @@ public class TeacherView extends javax.swing.JFrame {
                 "ID", "Student's ID", "Semester", "Course ", "Theory Score 1", "Practice Score 1", "Theory Score 2", "Practice Score 2", "Total Score 1", "Total Score 2"
             }
         ));
+        jTable5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable5MouseClicked(evt);
+            }
+        });
         jScrollPane5.setViewportView(jTable5);
 
         javax.swing.GroupLayout jPanel41Layout = new javax.swing.GroupLayout(jPanel41);
@@ -1520,6 +1526,11 @@ public class TeacherView extends javax.swing.JFrame {
         jButton19.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jButton19.setText("Update");
         jButton19.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jButton19.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton19ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel42Layout = new javax.swing.GroupLayout(jPanel42);
         jPanel42.setLayout(jPanel42Layout);
@@ -1940,6 +1951,10 @@ public class TeacherView extends javax.swing.JFrame {
         showNewData();
         couController.showNewData();
         exaController.showNewData();
+        initialCourseItems = new ArrayList<>();
+        for (int i = 0; i < courseComboBox.getItemCount(); i++) {
+            initialCourseItems.add(courseComboBox.getItemAt(i));
+        }
     }
 
     private void tableViewStudent() {
@@ -1984,6 +1999,9 @@ public class TeacherView extends javax.swing.JFrame {
         jTextField11.setText(null);
         jTextField13.setText(null);
         courseComboBox.removeAllItems();
+        for (String courseItem : initialCourseItems) {
+            courseComboBox.addItem(courseItem);
+        }
         tScore1.setText("0.0");
         pScore1.setText("0.0");
         tScore2.setText("0.0");
@@ -2062,6 +2080,10 @@ public class TeacherView extends javax.swing.JFrame {
 
     public String getID() {
         return jTextField1.getText();
+    }
+
+    public String getIdScore() {
+        return jTextField10.getText();
     }
 
     public String getFullName() {
@@ -2566,7 +2588,13 @@ public class TeacherView extends javax.swing.JFrame {
 
 
     private void jButton39ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton39ActionPerformed
-        // TODO add your handling code here:
+        try {
+            MessageFormat header = new MessageFormat("Student Table Score");
+            MessageFormat footer = new MessageFormat("Page{0,number,integer}");
+            jTable5.print(JTable.PrintMode.FIT_WIDTH, header, footer);
+        } catch (PrinterException ex) {
+            Logger.getLogger(TeacherView.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }//GEN-LAST:event_jButton39ActionPerformed
 
     private void jButton17ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton17ActionPerformed
@@ -2584,6 +2612,48 @@ public class TeacherView extends javax.swing.JFrame {
     private void jLabel24MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel24MouseClicked
         System.exit(0);// TODO add your handling code here:
     }//GEN-LAST:event_jLabel24MouseClicked
+
+    private void jTable5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable5MouseClicked
+        model = (DefaultTableModel) jTable5.getModel();
+        currentIndex = jTable5.getSelectedRow();
+        jTextField10.setText(model.getValueAt(currentIndex, 0).toString());
+        jTextField11.setText(model.getValueAt(currentIndex, 1).toString());
+        jTextField13.setText(model.getValueAt(currentIndex, 2).toString());
+        String courseName = model.getValueAt(currentIndex, 3).toString();
+        int selectedIndex = -1;
+
+        for (int i = 0; i < courseComboBox.getItemCount(); i++) {
+            if (courseName.equals(courseComboBox.getItemAt(i))) {
+                selectedIndex = i;
+                break;
+            }
+        }
+
+        if (selectedIndex != -1) {
+            courseComboBox.setSelectedIndex(selectedIndex);
+        } else {
+            courseComboBox.setSelectedIndex(0);
+            showErrorMessage("Không tìm thấy tên môn học trong danh sách.");
+        }
+
+        tScore1.setText(model.getValueAt(currentIndex, 4).toString());
+        pScore1.setText(model.getValueAt(currentIndex, 5).toString());
+        tScore2.setText(model.getValueAt(currentIndex, 6).toString());
+        pScore2.setText(model.getValueAt(currentIndex, 7).toString());
+    }//GEN-LAST:event_jTable5MouseClicked
+
+    private void jButton19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton19ActionPerformed
+        float tScore1 = Float.parseFloat(getTScore1());
+        float pScore1 = Float.parseFloat(getPScore1());
+        if (tScore1 >= 4 && pScore1 >= 4) {
+            showMessage("System doesn't enter value TScore2 and PScore2");
+            exaController.updateScore();
+        } else {
+            showMessage("System enter value TScore2 and PScore2");
+            exaController.updateScore();
+        }
+
+    }//GEN-LAST:event_jButton19ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
