@@ -243,7 +243,7 @@ public class ExamResultDAO extends ConnectSQL {
         List<ExamResult> dataList = new ArrayList<>();
         open();
         try {
-            String sql = "select (student_id, semester_id, course_name, total_point1, total_point2) from result where student_id = ?";
+            String sql = "select student_id, semester_id, course_name, total_point1, total_point2 from result where student_id = ?";
             statement = conn.prepareStatement(sql);
             statement.setInt(1, sid);
             ResultSet resultSet = statement.executeQuery();

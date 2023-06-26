@@ -31,6 +31,12 @@ public class StudentView extends javax.swing.JFrame {
         exaController = new ExamResultController(this);
     }
 
+    public DefaultTableModel getTableScoreGPA() {
+        return (DefaultTableModel) jTable4.getModel();
+    }
+    public String getSearchGPA() {
+        return searchGPA.getText();
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -52,7 +58,7 @@ public class StudentView extends javax.swing.JFrame {
         jPanel31 = new javax.swing.JPanel();
         jPanel23 = new javax.swing.JPanel();
         jLabel30 = new javax.swing.JLabel();
-        jTextField19 = new javax.swing.JTextField();
+        searchGPA = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jPanel24 = new javax.swing.JPanel();
         cgpaLabel = new javax.swing.JLabel();
@@ -179,10 +185,10 @@ public class StudentView extends javax.swing.JFrame {
         jLabel30.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel30.setText("Student's ID");
 
-        jTextField19.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jTextField19.addActionListener(new java.awt.event.ActionListener() {
+        searchGPA.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        searchGPA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField19ActionPerformed(evt);
+                searchGPAActionPerformed(evt);
             }
         });
 
@@ -202,7 +208,7 @@ public class StudentView extends javax.swing.JFrame {
                 .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel23Layout.createSequentialGroup()
-                        .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(searchGPA, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jButton1)))
                 .addContainerGap(31, Short.MAX_VALUE))
@@ -214,7 +220,7 @@ public class StudentView extends javax.swing.JFrame {
                 .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(searchGPA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton1))
                 .addContainerGap(8, Short.MAX_VALUE))
         );
@@ -317,23 +323,23 @@ public class StudentView extends javax.swing.JFrame {
 
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Student's ID", "Semester", "Course 1", "Score 1", "Course 2", "Score 2", "Cours 3", "Score 3", "Cours 4", "Score 4", "Cours 5", "Score 5", "Average"
+                "Student's ID", "Semester", "Course Name", "Total Point 1", "Total Point 2"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, true, true
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -874,14 +880,14 @@ public class StudentView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton36ActionPerformed
 
     private void jButton35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton35ActionPerformed
-        jTextField19.setText(null);
-        jTextField19.setText("CGPA : 0.0");
+        searchGPA.setText(null);
+        searchGPA.setText("CGPA : 0.0");
         jTable4.setModel(new DefaultTableModel(null, new Object[]{"Student ID", "Semester", "Course 1", "Score 1", "Course 2", "Score 2", "Course 3", "Score 3", "Course 4", "Score 4", "Course 5", "Score 5", "Average"}));
     }//GEN-LAST:event_jButton35ActionPerformed
 
     private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
         try {
-            MessageFormat header = new MessageFormat("Marks Sheet   Student ID" + jTextField19.getText() + "   " + cgpaLabel.getText());
+            MessageFormat header = new MessageFormat("Marks Sheet   Student ID" + searchGPA.getText() + "   " + cgpaLabel.getText());
             MessageFormat footer = new MessageFormat("Page{0,number,integer}");
             jTable4.print(JTable.PrintMode.FIT_WIDTH, header, footer);
         } catch (PrinterException ex) {
@@ -897,18 +903,18 @@ public class StudentView extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField24ActionPerformed
 
-    private void jTextField19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField19ActionPerformed
+    private void searchGPAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchGPAActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField19ActionPerformed
+    }//GEN-LAST:event_searchGPAActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        if (jTextField19.getText().isEmpty()) {
+        if (searchGPA.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter a student ID");
         } else {
-            int sid = Integer.parseInt(jTextField19.getText());
+            int sid = Integer.parseInt(searchGPA.getText());
             if (exaController.isIdStudentExist(sid)) {
-                exaController.showNewDataGPA();
-                cgpaLabel.setText("CGPA: " + exaController.showCGPA());
+                exaController.showNewDataGPAstd();
+                cgpaLabel.setText("CGPA: " + exaController.showCGPAstd());
             } else {
                 JOptionPane.showMessageDialog(this, "No scores found");
             }
@@ -999,8 +1005,8 @@ public class StudentView extends javax.swing.JFrame {
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField24;
+    private javax.swing.JTextField searchGPA;
     private javax.swing.JTextField searchSchedule;
     private javax.swing.JTextField txtClassId;
     private javax.swing.JTextField txtCourseName;
