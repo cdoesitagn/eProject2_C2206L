@@ -175,7 +175,7 @@ public class ExamResultController {
     public void showNewDataGPA() {
         int studentId = Integer.parseInt(view.getSearchGPA());
         dataList = ExamResultDAO.getScoreValue(studentId);
-        showTable();
+        showTableGPA();
     }
 
     public void showTableGPA() {

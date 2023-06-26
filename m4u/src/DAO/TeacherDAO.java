@@ -8,6 +8,6 @@ package DAO;
  *
  * @author GreenRain
  */
-public class TeacherDAO {
+public class TeacherDAO extends ConnectSQL{
     
 }

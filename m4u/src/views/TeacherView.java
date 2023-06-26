@@ -2365,6 +2365,7 @@ public class TeacherView extends javax.swing.JFrame {
         tableViewStudent();
         tableViewScoreView();
         tableViewScheduleView();
+        tableViewGPAView();
         jTextField1.setText(String.valueOf(tController.getMax()));
         jTextField4.setText(String.valueOf(couController.getMax()));
         jTextField10.setText(String.valueOf(exaController.getMax()));
@@ -2389,6 +2390,14 @@ public class TeacherView extends javax.swing.JFrame {
 
     private void tableViewScoreView() {
         model = (DefaultTableModel) jTable5.getModel();
+        jTable5.setRowHeight(30);
+        jTable5.setShowGrid(true);
+        jTable5.setGridColor(black);
+        jTable5.setBackground(white);
+    }
+    
+    private void tableViewGPAView() {
+        model = (DefaultTableModel) jTable4.getModel();
         jTable5.setRowHeight(30);
         jTable5.setShowGrid(true);
         jTable5.setGridColor(black);
@@ -3295,7 +3304,7 @@ public class TeacherView extends javax.swing.JFrame {
             int sid = Integer.parseInt(searchGPA.getText());
             if (exaController.isIdStudentExist(sid)) {
                 exaController.showNewDataGPA();
-                cgpaLabel.setText("CGPA: " + exaController.showCGPA());
+                cgpaLabel.setText("CGPA: " + String.format("%.2f", exaController.showCGPA()));
             } else {
                 JOptionPane.showMessageDialog(this, "No scores found");
             }
