@@ -4,9 +4,15 @@
  */
 package controllers;
 
+import static DAO.ConnectSQL.open;
+import DAO.StudentsDAO;
 import DAO.TeacherDAO;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 import models.Teacher;
 import views.Dashboard;
