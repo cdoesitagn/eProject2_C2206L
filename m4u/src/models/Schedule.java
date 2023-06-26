@@ -15,88 +15,88 @@ public class Schedule {
     private int scheduleId;
     private int teacherId;
     private int classId;
-    private int courseId;
+    private String courseName;
     private Time startTime;
     private Time endTime;
-    private Date dateOfWeek;
+    private String dateOfWeek;
 
     public Schedule() {
     }
-    
-    public Schedule(int scheduleId, int teacherId, int classId, int courseId, Time startTime, Time endTime, Date dateOfWeek) {
+
+    public Schedule(int teacherId, int classId, String courseName, Time startTime, Time endTime, String dateOfWeek) {
+        this.teacherId = teacherId;
+        this.classId = classId;
+        this.courseName = courseName;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.dateOfWeek = dateOfWeek;
+    }
+
+    public Schedule(int scheduleId, int teacherId, int classId, String courseName, Time startTime, Time endTime, String dateOfWeek) {
         this.scheduleId = scheduleId;
         this.teacherId = teacherId;
         this.classId = classId;
-        this.courseId = courseId;
+        this.courseName = courseName;
         this.startTime = startTime;
         this.endTime = endTime;
         this.dateOfWeek = dateOfWeek;
     }
 
-    public Schedule(int teacherId, int classId, int courseId, Time startTime, Time endTime, Date dateOfWeek) {
-        this.teacherId = teacherId;
-        this.classId = classId;
-        this.courseId = courseId;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.dateOfWeek = dateOfWeek;
-    }
-
-    
     public int getScheduleId() {
         return scheduleId;
     }
-    
-    public int getTeacherId() {
-        return teacherId;
-    }
-    
-    public int getClassId() {
-        return classId;
-    }
-    
-    public int getCourseId() {
-        return courseId;
-    }
-    
-    public Time getStartTime() {
-        return startTime;
-    }
-    
-    public Time getEndTime() {
-        return endTime;
-    }
-    
-    public Date getDateOfWeek() {
-        return dateOfWeek;
-    }
-    
+
     public void setScheduleId(int scheduleId) {
         this.scheduleId = scheduleId;
     }
-    
+
+    public int getTeacherId() {
+        return teacherId;
+    }
+
     public void setTeacherId(int teacherId) {
         this.teacherId = teacherId;
     }
-    
+
+    public int getClassId() {
+        return classId;
+    }
+
     public void setClassId(int classId) {
         this.classId = classId;
     }
-    
-    public void setCourseId(int courseId) {
-        this.courseId = courseId;
+
+    public String getCourseName() {
+        return courseName;
     }
-    
+
+    public void setCourseName(String courseName) {
+        this.courseName = courseName;
+    }
+
+    public Time getStartTime() {
+        return startTime;
+    }
+
     public void setStartTime(Time startTime) {
         this.startTime = startTime;
     }
-    
+
+    public Time getEndTime() {
+        return endTime;
+    }
+
     public void setEndTime(Time endTime) {
         this.endTime = endTime;
     }
-    
-    public void setDateOfWeek(Date dateOfWeek) {
+
+    public String getDateOfWeek() {
+        return dateOfWeek;
+    }
+
+    public void setDateOfWeek(String dateOfWeek) {
         this.dateOfWeek = dateOfWeek;
     }
+   
 }
 

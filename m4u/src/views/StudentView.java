@@ -4,32 +4,15 @@
  */
 package views;
 
-import controllers.CourseController;
-import controllers.ExamResultController;
-import controllers.TeacherController;
-import static java.awt.Color.black;
-import static java.awt.Color.white;
-import java.awt.Image;
+import DAO.MarksSheetDAO;
 import java.awt.print.PrinterException;
-import java.io.File;
 import java.text.MessageFormat;
-import java.text.NumberFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.ImageIcon;
-import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
-import DAO.StudentsDAO;
-import models.MarksSheet;
 
 /**
  *
@@ -39,7 +22,7 @@ public class StudentView extends javax.swing.JFrame {
 
     int xx;
     int xy;
-
+    MarksSheetDAO mrk = new MarksSheetDAO();
     /**
      * Creates new form StudentView
      */
@@ -984,10 +967,10 @@ public class StudentView extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this,"Please enter a student ID");
         }else{
             int sid = Integer.parseInt(jTextField19.getText());
-            if(marksSheet.isIdExist(sid)){
+            if(mrk.isIdExist(sid)){
                 jTable4.setModel(new DefaultTableModel(null, new Object[]{"Student ID", "Semester", "Course 1", "Score 1","Course 2", "Score 2","Course 3", "Score 3","Course 4", "Score 4","Course 5", "Score 5", "Average"}));
-                marksSheet.getScoreValue(jTable4, sid);
-                String cgpa = String.valueOf(String.format("%.2f", marksSheet.getCGPA(sid)));
+                mrk.getScoreValue(jTable4, sid);
+                String cgpa = String.valueOf(String.format("%.2f", mrk.getCGPA(sid)));
                 jLabel21.setText("CGPA: "+cgpa);
             }else{
                 JOptionPane.showMessageDialog(this,"No scores found");

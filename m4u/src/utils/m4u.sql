@@ -79,7 +79,7 @@ CREATE TABLE `Schedule` (
   `schedule_id` int PRIMARY KEY auto_increment,
   `teacher_id` int,
   `class_id` int,
-  `course_id` int,
+  `course_name` int,
   `start_time` date,
   `end_time` date,
   `date_of_week` date

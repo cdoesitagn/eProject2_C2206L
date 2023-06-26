@@ -29,7 +29,9 @@ import javax.swing.JTable;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import DAO.StudentsDAO;
-import models.MarksSheet;
+import DAO.MarksSheetDAO;
+import controllers.ScheduleController;
+import java.sql.Time;
 
 /**
  *
@@ -44,10 +46,11 @@ public class TeacherView extends javax.swing.JFrame {
     private final TeacherController tController;
     private final CourseController couController;
     private final ExamResultController exaController;
+    private final ScheduleController schController;
     private List<String> initialCourseItems;
     NumberFormat nf = NumberFormat.getInstance();
     StudentsDAO std = new StudentsDAO();
-    MarksSheet marksSheet = new MarksSheet();
+    MarksSheetDAO marksSheet = new MarksSheetDAO();
 
     public TeacherView() {
         this.setUndecorated(true);
@@ -55,6 +58,7 @@ public class TeacherView extends javax.swing.JFrame {
         tController = new TeacherController(this);
         couController = new CourseController(this);
         exaController = new ExamResultController(this);
+        schController = new ScheduleController(this);
         init();
     }
 
@@ -68,6 +72,10 @@ public class TeacherView extends javax.swing.JFrame {
 
     public DefaultTableModel getTableScore() {
         return (DefaultTableModel) jTable5.getModel();
+    }
+
+    public DefaultTableModel getTableSchedule() {
+        return (DefaultTableModel) jTable3.getModel();
     }
 
     public JTable getJTable1() {
@@ -254,11 +262,6 @@ public class TeacherView extends javax.swing.JFrame {
         jButton36 = new javax.swing.JButton();
         jPanel25 = new javax.swing.JPanel();
         jPanel26 = new javax.swing.JPanel();
-        jPanel27 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jLabel25 = new javax.swing.JLabel();
-        jPanel28 = new javax.swing.JPanel();
-        jLabelImage1 = new javax.swing.JLabel();
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
@@ -267,16 +270,16 @@ public class TeacherView extends javax.swing.JFrame {
         jLabel32 = new javax.swing.JLabel();
         jLabel33 = new javax.swing.JLabel();
         jTextField14 = new javax.swing.JTextField();
-        jTextField15 = new javax.swing.JTextField();
-        jTextField16 = new javax.swing.JTextField();
-        jTextField17 = new javax.swing.JTextField();
-        jTextField18 = new javax.swing.JTextField();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        txtTeacherId = new javax.swing.JTextField();
+        datePicker = new com.toedter.calendar.JDateChooser();
+        txtClassId = new javax.swing.JTextField();
+        txtCourseName = new javax.swing.JTextField();
+        txtStartTime = new javax.swing.JTextField();
+        txtEndTime = new javax.swing.JTextField();
         jPanel29 = new javax.swing.JPanel();
         jPanel32 = new javax.swing.JPanel();
         jLabel34 = new javax.swing.JLabel();
-        searchField1 = new javax.swing.JTextField();
+        searchSchedule = new javax.swing.JTextField();
         btnSearch1 = new javax.swing.JButton();
         btnRefresh1 = new javax.swing.JButton();
         jPanel33 = new javax.swing.JPanel();
@@ -991,7 +994,7 @@ public class TeacherView extends javax.swing.JFrame {
         jPanel18.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel19.setText("Search Student");
+        jLabel19.setText("Search Course");
 
         jTextField12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1431,7 +1434,7 @@ public class TeacherView extends javax.swing.JFrame {
         jPanel39.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel48.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel48.setText("Search Student");
+        jLabel48.setText("Search Score");
 
         jTextField26.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1978,81 +1981,26 @@ public class TeacherView extends javax.swing.JFrame {
 
         jPanel26.setBackground(new java.awt.Color(204, 204, 204));
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton2.setText("Browse");
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        jLabel25.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel25.setText("Image");
-
-        jPanel28.setBackground(new java.awt.Color(153, 153, 153));
-
-        jLabelImage1.setBackground(new java.awt.Color(153, 153, 153));
-
-        javax.swing.GroupLayout jPanel28Layout = new javax.swing.GroupLayout(jPanel28);
-        jPanel28.setLayout(jPanel28Layout);
-        jPanel28Layout.setHorizontalGroup(
-            jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabelImage1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
-        );
-        jPanel28Layout.setVerticalGroup(
-            jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabelImage1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        javax.swing.GroupLayout jPanel27Layout = new javax.swing.GroupLayout(jPanel27);
-        jPanel27.setLayout(jPanel27Layout);
-        jPanel27Layout.setHorizontalGroup(
-            jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel27Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel25, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jPanel28, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-        );
-        jPanel27Layout.setVerticalGroup(
-            jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel27Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel27Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel27Layout.createSequentialGroup()
-                        .addComponent(jPanel28, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(jPanel27Layout.createSequentialGroup()
-                        .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(99, 99, 99))))
-        );
-
         jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel26.setText("Student's ID");
+        jLabel26.setText("Schedule's ID");
 
         jLabel27.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel27.setText("Student's Name");
+        jLabel27.setText("Teacher's ID");
 
         jLabel28.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel28.setText("Date Of Bitrh");
+        jLabel28.setText("Class's ID");
 
         jLabel29.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel29.setText("Gender");
+        jLabel29.setText("Course Name");
 
         jLabel31.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel31.setText("Email");
+        jLabel31.setText("Start Time");
 
         jLabel32.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel32.setText("Phone number");
+        jLabel32.setText("End Time");
 
         jLabel33.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jLabel33.setText("Address");
+        jLabel33.setText("Date of Week");
 
         jTextField14.setEditable(false);
         jTextField14.setBackground(new java.awt.Color(153, 153, 153));
@@ -2063,25 +2011,8 @@ public class TeacherView extends javax.swing.JFrame {
             }
         });
 
-        jTextField15.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jTextField15.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-
-        jTextField16.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jTextField16.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-
-        jTextField17.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jTextField17.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-        jTextField17.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jTextField17KeyTyped(evt);
-            }
-        });
-
-        jTextField18.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jTextField18.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
-
-        jComboBox3.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
+        txtTeacherId.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txtTeacherId.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
         jPanel26.setLayout(jPanel26Layout);
@@ -2090,27 +2021,23 @@ public class TeacherView extends javax.swing.JFrame {
             .addGroup(jPanel26Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(jPanel26Layout.createSequentialGroup()
-                        .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField15)
-                                .addComponent(jTextField14, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jTextField18)
-                                .addComponent(jTextField17)
-                                .addComponent(jTextField16)
-                                .addComponent(jDateChooser2, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(txtTeacherId)
+                        .addComponent(jTextField14, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                        .addComponent(datePicker, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtClassId)
+                        .addComponent(txtCourseName))
+                    .addComponent(txtStartTime, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEndTime, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jPanel26Layout.setVerticalGroup(
@@ -2123,40 +2050,40 @@ public class TeacherView extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField15, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtTeacherId, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jLabel28, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                    .addComponent(jDateChooser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel26Layout.createSequentialGroup()
+                        .addComponent(txtClassId)
+                        .addGap(2, 2, 2)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jComboBox3))
+                    .addComponent(txtCourseName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField16, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addComponent(txtStartTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(17, 17, 17)
                 .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField17, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField18, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtEndTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPanel27, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(datePicker, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(256, 256, 256))
         );
 
         jPanel29.setBackground(new java.awt.Color(204, 204, 204));
 
         jLabel34.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jLabel34.setText("Search Student");
+        jLabel34.setText("Search Schedule");
 
-        searchField1.addActionListener(new java.awt.event.ActionListener() {
+        searchSchedule.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                searchField1ActionPerformed(evt);
+                searchScheduleActionPerformed(evt);
             }
         });
 
@@ -2186,7 +2113,7 @@ public class TeacherView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel34, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(searchField1, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(searchSchedule, javax.swing.GroupLayout.PREFERRED_SIZE, 328, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnSearch1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -2203,36 +2130,28 @@ public class TeacherView extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel32Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                     .addComponent(jLabel34, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(searchField1)
+                    .addComponent(searchSchedule)
                     .addComponent(btnSearch1, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Student's ID", "Student's Name", "Date Of Birth", "Gender", "Email", "Phone Number", "Address", "Image"
+                "Schedule's ID", "Teacher's ID", "Class's ID", "Course Name", "Start Time", "End Time", "Date of Week"
             }
-        ) {
-            boolean[] canEdit = new boolean [] {
-                true, true, true, true, true, true, true, false
-            };
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jTable3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jTable3.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -2427,9 +2346,11 @@ public class TeacherView extends javax.swing.JFrame {
         jTextField1.setText(String.valueOf(tController.getMax()));
         jTextField4.setText(String.valueOf(couController.getMax()));
         jTextField10.setText(String.valueOf(exaController.getMax()));
+        jTextField14.setText(String.valueOf(schController.getMax()));
         showNewData();
         couController.showNewData();
         exaController.showNewData();
+        schController.showNewData();
         initialCourseItems = new ArrayList<>();
         for (int i = 0; i < courseComboBox.getItemCount(); i++) {
             initialCourseItems.add(courseComboBox.getItemAt(i));
@@ -2443,9 +2364,17 @@ public class TeacherView extends javax.swing.JFrame {
         jTable1.setGridColor(black);
         jTable1.setBackground(white);
     }
-    
+
     private void tableViewScoreView() {
         model = (DefaultTableModel) jTable5.getModel();
+        jTable5.setRowHeight(30);
+        jTable5.setShowGrid(true);
+        jTable5.setGridColor(black);
+        jTable5.setBackground(white);
+    }
+
+    private void tableViewScheduleView() {
+        model = (DefaultTableModel) jTable3.getModel();
         jTable5.setRowHeight(30);
         jTable5.setShowGrid(true);
         jTable5.setGridColor(black);
@@ -2494,6 +2423,15 @@ public class TeacherView extends javax.swing.JFrame {
         tScore2.setText("0.0");
         pScore2.setText("0.0");
         jTable5.clearSelection();
+    }
+
+    public void clearSchedule() {
+        txtTeacherId.setText("");
+        txtClassId.setText("");
+        txtCourseName.setText("");
+        txtStartTime.setText("");
+        txtEndTime.setText("");
+        datePicker.setDate(null);
     }
 
     public boolean isEmptyStudent() {
@@ -2563,6 +2501,34 @@ public class TeacherView extends javax.swing.JFrame {
         Image newImage = img.getScaledInstance(jLabelImage.getWidth(), jLabelImage.getHeight(), Image.SCALE_SMOOTH);
         ImageIcon icon = new ImageIcon(newImage);
         return icon;
+    }
+
+    public String getScheduleId() {
+        return jTextField14.getText();
+    }
+
+    public String getTeacherId() {
+        return txtTeacherId.getText();
+    }
+
+    public String getClassId() {
+        return txtClassId.getText();
+    }
+
+    public String getCourseName() {
+        return txtCourseName.getText();
+    }
+
+    public Time getStartTime() {
+        return Time.valueOf(txtStartTime.getText());
+    }
+
+    public Time getEndTime() {
+        return Time.valueOf(txtEndTime.getText());
+    }
+
+    public Date getDateOfWeek() {
+        return datePicker.getDate();
     }
 
     public String getID() {
@@ -2655,6 +2621,10 @@ public class TeacherView extends javax.swing.JFrame {
 
     public String getSearchScore() {
         return jTextField26.getText();
+    }
+
+    public String getSearchShedule() {
+        return searchSchedule.getText();
     }
 
     public String getTScore1() {
@@ -2779,7 +2749,7 @@ public class TeacherView extends javax.swing.JFrame {
     private void jButton35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton35ActionPerformed
         jTextField19.setText(null);
         jTextField19.setText("CGPA : 0.0");
-        jTable4.setModel(new DefaultTableModel(null, new Object[]{"Student ID", "Semester", "Course 1", "Score 1","Course 2", "Score 2","Course 3", "Score 3","Course 4", "Score 4","Course 5", "Score 5", "Average"}));
+        jTable4.setModel(new DefaultTableModel(null, new Object[]{"Student ID", "Semester", "Course 1", "Score 1", "Course 2", "Score 2", "Course 3", "Score 3", "Course 4", "Score 4", "Course 5", "Score 5", "Average"}));
     }//GEN-LAST:event_jButton35ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
@@ -3143,21 +3113,13 @@ public class TeacherView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton19ActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
-
     private void jTextField14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField14ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField14ActionPerformed
 
-    private void jTextField17KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField17KeyTyped
+    private void searchScheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchScheduleActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField17KeyTyped
-
-    private void searchField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchField1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_searchField1ActionPerformed
+    }//GEN-LAST:event_searchScheduleActionPerformed
 
     private void btnSearch1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearch1ActionPerformed
         // TODO add your handling code here:
@@ -3168,19 +3130,34 @@ public class TeacherView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRefresh1ActionPerformed
 
     private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
-        // TODO add your handling code here:
+        model = (DefaultTableModel) jTable3.getModel();
+        currentIndex = jTable3.getSelectedRow();
+        jTextField14.setText(model.getValueAt(currentIndex, 0).toString());
+        txtTeacherId.setText(model.getValueAt(currentIndex, 1).toString());
+        txtClassId.setText(model.getValueAt(currentIndex, 2).toString());
+        txtCourseName.setText(model.getValueAt(currentIndex, 3).toString());
+        txtStartTime.setText(model.getValueAt(currentIndex, 4).toString());
+        txtEndTime.setText(model.getValueAt(currentIndex, 5).toString());
+        try {
+            Date dateOfWeek = new SimpleDateFormat("yyyy-MM-dd").parse(model.getValueAt(currentIndex, 6).toString());
+            datePicker.setDate(dateOfWeek);
+        } catch (ParseException ex) {
+            Logger.getLogger(TeacherView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+
     }//GEN-LAST:event_jTable3MouseClicked
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
-        // TODO add your handling code here:
+        schController.saveSchedule();
     }//GEN-LAST:event_jButton20ActionPerformed
 
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
-        // TODO add your handling code here:
+        schController.updateSchedule();
     }//GEN-LAST:event_jButton21ActionPerformed
 
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
-        // TODO add your handling code here:
+        schController.deleteSchedule();
     }//GEN-LAST:event_jButton22ActionPerformed
 
     private void jButton23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton23ActionPerformed
@@ -3188,11 +3165,14 @@ public class TeacherView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton23ActionPerformed
 
     private void jButton24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton24ActionPerformed
-        // TODO add your handling code here:
+        clearSchedule();
     }//GEN-LAST:event_jButton24ActionPerformed
 
     private void jButton25ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton25ActionPerformed
-        // TODO add your handling code here:
+        int a = JOptionPane.showConfirmDialog(this, "Do you want to log out now?", "Select", JOptionPane.YES_NO_OPTION);
+        if (a == 0) {
+            this.dispose();
+        }
     }//GEN-LAST:event_jButton25ActionPerformed
 
     private void jTextField19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField19ActionPerformed
@@ -3200,25 +3180,25 @@ public class TeacherView extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField19ActionPerformed
 
     private void jTextField33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField33ActionPerformed
-        
-        if(jTextField19.getText().isEmpty()){
-            JOptionPane.showMessageDialog(this,"Please enter a student ID");
-        }else{
-           int sid = Integer.parseInt(jTextField19.getText());
-           if(marksSheet.isIdExist(sid)){
-               jTable4.setModel(new DefaultTableModel(null, new Object[]{"Student ID", "Semester", "Course 1", "Score 1","Course 2", "Score 2","Course 3", "Score 3","Course 4", "Score 4","Course 5", "Score 5", "Average"}));
-               marksSheet.getScoreValue(jTable4, sid);
-               String cgpa = String.valueOf(String.format("%.2f", marksSheet.getCGPA(sid)));
-               jLabel21.setText("CGPA: "+cgpa);
-           }else{
-               JOptionPane.showMessageDialog(this,"No scores found");
-           }
+
+        if (jTextField19.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter a student ID");
+        } else {
+            int sid = Integer.parseInt(jTextField19.getText());
+            if (marksSheet.isIdExist(sid)) {
+                jTable4.setModel(new DefaultTableModel(null, new Object[]{"Student ID", "Semester", "Course 1", "Score 1", "Course 2", "Score 2", "Course 3", "Score 3", "Course 4", "Score 4", "Course 5", "Score 5", "Average"}));
+                marksSheet.getScoreValue(jTable4, sid);
+                String cgpa = String.valueOf(String.format("%.2f", marksSheet.getCGPA(sid)));
+                jLabel21.setText("CGPA: " + cgpa);
+            } else {
+                JOptionPane.showMessageDialog(this, "No scores found");
+            }
         }
     }//GEN-LAST:event_jTextField33ActionPerformed
 
     private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
         try {
-            MessageFormat header = new MessageFormat("Marks Sheet   Student ID" +jTextField19.getText()+"   "+jLabel21.getText());
+            MessageFormat header = new MessageFormat("Marks Sheet   Student ID" + jTextField19.getText() + "   " + jLabel21.getText());
             MessageFormat footer = new MessageFormat("Page{0,number,integer}");
             jTable4.print(JTable.PrintMode.FIT_WIDTH, header, footer);
         } catch (PrinterException ex) {
@@ -3258,6 +3238,7 @@ public class TeacherView extends javax.swing.JFrame {
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnSearch1;
     private javax.swing.JComboBox<String> courseComboBox;
+    private com.toedter.calendar.JDateChooser datePicker;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
@@ -3269,7 +3250,6 @@ public class TeacherView extends javax.swing.JFrame {
     private javax.swing.JButton jButton17;
     private javax.swing.JButton jButton18;
     private javax.swing.JButton jButton19;
-    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton20;
     private javax.swing.JButton jButton21;
     private javax.swing.JButton jButton22;
@@ -3295,13 +3275,11 @@ public class TeacherView extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox10;
     private javax.swing.JComboBox<String> jComboBox2;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox6;
     private javax.swing.JComboBox<String> jComboBox7;
     private javax.swing.JComboBox<String> jComboBox8;
     private javax.swing.JComboBox<String> jComboBox9;
     private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -3319,7 +3297,6 @@ public class TeacherView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
@@ -3350,7 +3327,6 @@ public class TeacherView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLabel jLabelImage;
-    private javax.swing.JLabel jLabelImage1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -3370,8 +3346,6 @@ public class TeacherView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel24;
     private javax.swing.JPanel jPanel25;
     private javax.swing.JPanel jPanel26;
-    private javax.swing.JPanel jPanel27;
-    private javax.swing.JPanel jPanel28;
     private javax.swing.JPanel jPanel29;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel30;
@@ -3411,10 +3385,6 @@ public class TeacherView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField12;
     public static javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField15;
-    private javax.swing.JTextField jTextField16;
-    private javax.swing.JTextField jTextField17;
-    private javax.swing.JTextField jTextField18;
     private javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField24;
@@ -3432,8 +3402,13 @@ public class TeacherView extends javax.swing.JFrame {
     private javax.swing.JTextField pScore1;
     private javax.swing.JTextField pScore2;
     private javax.swing.JTextField searchField;
-    private javax.swing.JTextField searchField1;
+    private javax.swing.JTextField searchSchedule;
     private javax.swing.JTextField tScore1;
     private javax.swing.JTextField tScore2;
+    private javax.swing.JTextField txtClassId;
+    private javax.swing.JTextField txtCourseName;
+    private javax.swing.JTextField txtEndTime;
+    private javax.swing.JTextField txtStartTime;
+    private javax.swing.JTextField txtTeacherId;
     // End of variables declaration//GEN-END:variables
 }
