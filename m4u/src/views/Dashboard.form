@@ -149,8 +149,8 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="jPanel9" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jPanel7" alignment="0" max="-2" attributes="0"/>
+                              <Component id="jPanel9" max="32767" attributes="0"/>
+                              <Component id="jPanel7" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace pref="13" max="32767" attributes="0"/>
                       </Group>
@@ -219,7 +219,7 @@
                                   <Component id="jTextField6" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                                   <Component id="jLabel7" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="38" max="32767" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -1284,7 +1284,7 @@
                                   <Component id="jLabel55" min="-2" max="-2" attributes="0"/>
                                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jButton26" alignment="0" min="-2" pref="32" max="-2" attributes="0"/>
+                                      <Component id="jButton26" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
                                       <Component id="jTextField17" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
                                   </Group>
                                   <EmptySpace pref="12" max="32767" attributes="0"/>
@@ -1298,7 +1298,7 @@
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Segoe UI" size="16" style="1"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Student&apos;s ID"/>
+                            <Property name="text" type="java.lang.String" value="User&apos;s ID"/>
                           </Properties>
                         </Component>
                         <Component class="javax.swing.JTextField" name="jTextField17">
