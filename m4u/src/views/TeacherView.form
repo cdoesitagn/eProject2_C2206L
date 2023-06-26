@@ -6,6 +6,7 @@
     <Property name="location" type="java.awt.Point" editor="org.netbeans.beaninfo.editors.PointEditor">
       <Point value="[280, 200]"/>
     </Property>
+    <Property name="undecorated" type="boolean" value="true"/>
   </Properties>
   <SyntheticProperties>
     <SyntheticProperty name="formSizePolicy" type="int" value="1"/>
@@ -55,15 +56,15 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
-              <Component id="jTabbedPane1" alignment="1" max="32767" attributes="0"/>
+              <Component id="jTabbedPane1" alignment="1" pref="1305" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace max="32767" attributes="0"/>
-                  <Component id="jTabbedPane1" min="-2" pref="595" max="-2" attributes="0"/>
+                  <EmptySpace max="-2" attributes="0"/>
+                  <Component id="jTabbedPane1" pref="601" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -87,33 +88,15 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="jLabel1" min="-2" pref="612" max="-2" attributes="0"/>
                       <EmptySpace max="32767" attributes="0"/>
-                      <Component id="jLabel22" min="-2" pref="42" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jLabel23" min="-2" pref="20" max="-2" attributes="0"/>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                      <Component id="jLabel24" min="-2" pref="20" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
-                              <Component id="jLabel1" min="-2" pref="75" max="-2" attributes="0"/>
-                          </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jLabel23" alignment="1" min="-2" pref="20" max="-2" attributes="0"/>
-                                  <Component id="jLabel24" alignment="1" min="-2" pref="20" max="-2" attributes="0"/>
-                                  <Component id="jLabel22" min="-2" pref="36" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
-                      </Group>
-                      <EmptySpace pref="23" max="32767" attributes="0"/>
+                  <Group type="102" alignment="0" attributes="0">
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jLabel1" min="-2" pref="75" max="-2" attributes="0"/>
+                      <EmptySpace pref="10" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -126,26 +109,6 @@
                 </Property>
                 <Property name="text" type="java.lang.String" value="STUDENT MANAGEMENT SYSTEM"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel22">
-              <Properties>
-                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                  <Color id="Hand Cursor"/>
-                </Property>
-              </Properties>
-              <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel22MouseClicked"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel23">
-              <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel23MouseClicked"/>
-              </Events>
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabel24">
-              <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel24MouseClicked"/>
-              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -192,7 +155,7 @@
                               <Component id="jPanel9" max="32767" attributes="0"/>
                               <Component id="jPanel7" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="13" max="32767" attributes="0"/>
+                          <EmptySpace pref="19" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2914,7 +2877,7 @@
                               <Component id="jPanel29" alignment="0" max="32767" attributes="0"/>
                               <Component id="jPanel26" alignment="0" max="32767" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="13" max="32767" attributes="0"/>
+                          <EmptySpace pref="19" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                 </DimensionLayout>
@@ -2933,39 +2896,42 @@
                           <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabel33" min="-2" pref="122" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="datePicker" min="-2" pref="354" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
                                   <Group type="102" attributes="0">
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jLabel26" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
-                                          <Component id="jLabel27" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
-                                          <Component id="jLabel29" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
-                                          <Component id="jLabel28" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
-                                          <Component id="jLabel31" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
-                                          <Component id="jLabel32" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
-                                          <Component id="jLabel33" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="32767" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" attributes="0">
-                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                              <Component id="txtTeacherId" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="jTextField14" alignment="0" pref="354" max="32767" attributes="0"/>
-                                              <Component id="txtClassId" alignment="0" max="32767" attributes="0"/>
+                                          <Group type="102" alignment="0" attributes="0">
+                                              <Component id="jLabel35" min="-2" pref="122" max="-2" attributes="0"/>
+                                              <EmptySpace max="-2" attributes="0"/>
+                                              <Component id="comboTimeOfDay" min="-2" pref="354" max="-2" attributes="0"/>
                                           </Group>
-                                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                              <Component id="txtStartTime" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="datePicker" alignment="0" max="32767" attributes="0"/>
-                                              <Component id="txtEndTime" alignment="0" max="32767" attributes="0"/>
+                                          <Group type="102" attributes="0">
+                                              <Group type="103" groupAlignment="0" attributes="0">
+                                                  <Component id="jLabel26" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
+                                                  <Component id="jLabel27" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
+                                                  <Component id="jLabel29" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
+                                                  <Component id="jLabel28" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
+                                                  <Component id="jLabel31" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
+                                                  <Component id="jLabel32" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
+                                              </Group>
+                                              <EmptySpace max="32767" attributes="0"/>
+                                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                                  <Component id="txtTeacherId" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="jTextField14" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="txtClassId" alignment="0" max="32767" attributes="0"/>
+                                                  <Component id="txtStartTime" alignment="0" min="-2" pref="354" max="-2" attributes="0"/>
+                                                  <Component id="txtEndTime" alignment="0" min="-2" pref="354" max="-2" attributes="0"/>
+                                                  <Component id="txtCourseName" alignment="0" min="-2" pref="354" max="-2" attributes="0"/>
+                                              </Group>
                                           </Group>
-                                          <Component id="txtCourseName" min="-2" max="-2" attributes="0"/>
                                       </Group>
-                                  </Group>
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jLabel35" min="-2" pref="122" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="comboTimeOfDay" pref="183" max="32767" attributes="0"/>
-                                      <EmptySpace min="-2" pref="171" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -2973,50 +2939,49 @@
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Group type="102" attributes="0">
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jLabel26" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                          <Component id="jTextField14" alignment="3" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jLabel27" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                          <Component id="txtTeacherId" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                          <Component id="jLabel28" min="-2" pref="30" max="-2" attributes="0"/>
-                                          <Group type="102" attributes="0">
-                                              <Component id="txtClassId" max="32767" attributes="0"/>
-                                              <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
-                                          </Group>
-                                      </Group>
-                                      <Group type="103" groupAlignment="3" attributes="0">
-                                          <Component id="jLabel29" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                          <Component id="txtCourseName" alignment="3" min="-2" max="-2" attributes="0"/>
-                                      </Group>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jLabel31" min="-2" pref="30" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="txtStartTime" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel26" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="jTextField14" alignment="3" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel27" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="txtTeacherId" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="txtClassId" max="32767" attributes="0"/>
+                                      <EmptySpace min="-2" pref="2" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="jLabel28" alignment="0" min="-2" pref="30" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabel29" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="txtCourseName" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="jLabel31" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="txtStartTime" min="-2" pref="30" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
                                   <Component id="jLabel32" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="txtEndTime" min="-2" max="-2" attributes="0"/>
+                                  <Component id="txtEndTime" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel33" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="datePicker" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="datePicker" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel35" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="comboTimeOfDay" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Component id="comboTimeOfDay" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="jLabel35" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="208" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="191" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
