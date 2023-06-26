@@ -13,6 +13,7 @@ public class Schedule {
     private int scheduleId;
     private int teacherId;
     private int classId;
+    private int studentId;
     private String courseName;
     private String startTime;
     private String endTime;
@@ -22,6 +23,20 @@ public class Schedule {
     public Schedule() {
     }
 
+    public int getStudentId() {
+        return studentId;
+    }
+
+    public void setStudentId(int studentId) {
+        this.studentId = studentId;
+    }
+
+    public Schedule(int scheduleId, int studentId) {
+        this.scheduleId = scheduleId;
+        this.studentId = studentId;
+    }
+    
+    
     public Schedule(int scheduleId, int teacherId, int classId, String courseName, String startTime, String endTime, String dateOfWeek, String timeOfDay) {
         this.scheduleId = scheduleId;
         this.teacherId = teacherId;

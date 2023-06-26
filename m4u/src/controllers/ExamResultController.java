@@ -51,6 +51,10 @@ public class ExamResultController {
      public boolean isIdStudentExist(int id) {
         return exa.isIdStudentExists(id);
     }
+     
+      public boolean isCourseNameExist(String courseName) {
+        return exa.isCourseNameExist(courseName);
+    }
 
     public List<String> getCoursesByStudentAndSemester(int studentId, int semesterId) {
         ExamResultDAO examResultDAO = new ExamResultDAO();
@@ -166,7 +170,7 @@ public class ExamResultController {
     }
 
     public float showCGPA() {
-        int studentId = Integer.parseInt(view.getSearchGPA());
+        int studentId = Integer.parseInt(stdview.getSearchGPA());
         dataList = ExamResultDAO.getScoreValue(studentId);
         float cgpa = calculateCGPA(dataList);
         return cgpa;

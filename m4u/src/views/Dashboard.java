@@ -4,11 +4,16 @@
  */
 package views;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author hieuv
  */
 public class Dashboard extends javax.swing.JFrame {
+
+    private int xx;
+    private int xy;
 
     /**
      * Creates new form Dashboard
@@ -1349,81 +1354,28 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField17ActionPerformed
 
     private void jButton18ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton18ActionPerformed
-        int a = JOptionPane.showConfirmDialog(this, "Do you want to log out now?", "Select", JOptionPane.YES_NO_OPTION);
-        if (a == 0) {
-            this.dispose();
-        }
+
     }//GEN-LAST:event_jButton18ActionPerformed
 
     private void jButton15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton15ActionPerformed
-        clearCourse();
+
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
-        try {
-            MessageFormat header = new MessageFormat("Student Information");
-            MessageFormat footer = new MessageFormat("Page{0,number,integer}");
-            jTable2.print(JTable.PrintMode.FIT_WIDTH, header, footer);
-        } catch (PrinterException ex) {
-            Logger.getLogger(TeacherView.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
+
     }//GEN-LAST:event_jButton14ActionPerformed
 
     private void jButton13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton13ActionPerformed
-        if (jTextField8.getText().isEmpty() || jComboBox1.getItemCount() == 0) {
-            showMessage("Student id or semester number is missing");
-        } else {
-            int id = couController.getMax();
-            int sid = Integer.parseInt(jTextField9.getText());
-            int semesterNo = Integer.parseInt(jComboBox1.getSelectedItem().toString());
-            String course1 = jComboBox6.getSelectedItem().toString();
-            String course2 = jComboBox7.getSelectedItem().toString();
-            String course3 = jComboBox8.getSelectedItem().toString();
-            String course4 = jComboBox9.getSelectedItem().toString();
-            String course5 = jComboBox10.getSelectedItem().toString();
-            if (couController.isSemesterExists(sid, semesterNo)) {
-                showMessage("This student has already taken semester" + semesterNo);
-            } else {
-                if (couController.isCourseExists(sid, "course1", course1)) {
-                    showMessage("This student has already taken course " + course1 + " course");
-                } else {
-                    if (couController.isCourseExists(sid, "course2", course2)) {
-                        showMessage("This student has already taken course " + course2 + " course");
-                    } else {
-                        if (couController.isCourseExists(sid, "course3", course3)) {
-                            showMessage("This student has already taken course " + course3 + " course");
-                        } else {
-                            if (couController.isCourseExists(sid, "course4", course4)) {
-                                showMessage("This student has already taken course " + course4 + " course");
-                            } else {
-                                if (couController.isCourseExists(sid, "course5", course5)) {
-                                    showMessage("This student has already taken course " + course5 + " course");
-                                } else {
-                                    if (jTextField3.getText().isEmpty()) {
-                                        showMessage("Yon don't enter teacher id");
-                                    } else {
-                                        couController.saveCourse();
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
+
     }//GEN-LAST:event_jButton13ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-        jTextField12.setText(null);
-        couController.showNewData();
+
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        if (jTextField12.getText().isEmpty()) {
-            showMessage("Please enter student id or course name!");
-        } else {
-            couController.searchCourse();
-        }
+
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jTextField12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField12ActionPerformed
@@ -1435,28 +1387,7 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField3ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        if (jTextField9.getText().isEmpty()) {
-            showMessage("Please enter a student id");
-        } else {
-            int id = Integer.parseInt(jTextField9.getText());
-            if (couController.getID(id)) {
-                jComboBox1.removeAllItems();
-                int semester = couController.countSemester(id);
-                if (semester >= 0) {
-                    if (semester >= 4) {
-                        showErrorMessage("This student has reached the maximum number of semesters.");
-                        for (int i = 1; i <= 4; i++) {
-                            jComboBox1.addItem(String.valueOf(i));
-                        }
-                    } else {
-                        for (int i = 1; i <= semester + 1; i++) {
-                            jComboBox1.addItem(String.valueOf(i));
-                        }
-                    }
-                }
-            }
-        }
-        couController.showNewData();
+
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jTextField9KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField9KeyTyped
@@ -1470,87 +1401,39 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextField9ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        // TODO add your handling code here:
-        int a = JOptionPane.showConfirmDialog(this, "Do you want to log out now?", "Select", JOptionPane.YES_NO_OPTION);
-        if (a == 0) {
-            this.dispose();
-        }
+
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        clearStudent();
+
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        try {
-            MessageFormat header = new MessageFormat("Student Information");
-            MessageFormat footer = new MessageFormat("Page{0,number,integer}");
-            jTable1.print(JTable.PrintMode.FIT_WIDTH, header, footer);
-        } catch (PrinterException ex) {
-            Logger.getLogger(TeacherView.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        tController.deleteStudent();
+
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        if (isEmptyStudent()) {
-            tController.updateStudent();
-        }
+
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        if (isEmptyStudent()) {
-            if (!std.isEmailExits(getEmail())) {
-                if (!std.isPhoneExits(getPhoneNumber())) {
-                    tController.saveStudent();
-                } else {
-                    showMessage("This is phone already exists");
-                }
-            } else {
-                showMessage("This is email already exists");
-            }
-        }
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-        model = (DefaultTableModel) jTable1.getModel();
-        currentIndex = jTable1.getSelectedRow();
-        jTextField1.setText(model.getValueAt(currentIndex, 0).toString());
-        jTextField2.setText(model.getValueAt(currentIndex, 1).toString());
-        try {
-            Date date = new SimpleDateFormat("yyyy-MM-dd").parse(model.getValueAt(currentIndex, 2).toString());
-            jDateChooser1.setDate(date);
-        } catch (ParseException ex) {
-            Logger.getLogger(TeacherView.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        String gender = model.getValueAt(currentIndex, 3).toString();
-        if (gender.equals("Male")) {
-            jComboBox2.setSelectedIndex(0);
-        } else {
-            jComboBox2.setSelectedIndex(1);
-        }
-        jTextField5.setText(model.getValueAt(currentIndex, 4).toString());
-        jTextField6.setText(model.getValueAt(currentIndex, 5).toString());
-        jTextField7.setText(model.getValueAt(currentIndex, 6).toString());
-        String path = model.getValueAt(currentIndex, 7).toString();
-        imagePath = path;
-        jLabelImage.setIcon(imageAdjust(path, null));
+
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
-        searchField.setText(null);
-        showNewData();
+
     }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
-        if (searchField.getText().isEmpty()) {
-            showMessage("Please enter student id or name or email!");
-        } else {
-            tController.searchStudent();
-        }
+
     }//GEN-LAST:event_btnSearchActionPerformed
 
     private void searchFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchFieldActionPerformed
@@ -1558,9 +1441,7 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_searchFieldActionPerformed
 
     private void jTextField6KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyTyped
-        if (!Character.isDigit(evt.getKeyChar())) {
-            evt.consume();
-        }
+
     }//GEN-LAST:event_jTextField6KeyTyped
 
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed

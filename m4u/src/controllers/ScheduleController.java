@@ -10,6 +10,7 @@ import javax.swing.table.DefaultTableModel;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import views.StudentView;
 import views.TeacherView;
 
 /**
@@ -19,6 +20,7 @@ import views.TeacherView;
 public class ScheduleController {
 
     private TeacherView view;
+    private StudentView stdview;
     private List<Schedule> dataList = new ArrayList<>();
     ScheduleDAO schDAO = new ScheduleDAO();
 
@@ -28,10 +30,22 @@ public class ScheduleController {
     public ScheduleController(TeacherView view) {
         this.view = view;
     }
+    
+    public ScheduleController(StudentView stdview) {
+        this.stdview = stdview;
+    }
 
     public int getMax() {
         int max = schDAO.getMax();
         return max;
+    }
+    
+    public boolean isIdExist(int id) {
+        return schDAO.isIDExits(id);
+    }
+    
+    public boolean isScheduleIdRegistered(int studentId, int scheduleId) {
+        return schDAO.isScheduleIdRegistered(studentId, scheduleId);
     }
 
     public void showNewData() {
@@ -41,6 +55,29 @@ public class ScheduleController {
 
     public void showTable() {
         DefaultTableModel tableModel = view.getTableSchedule();
+        tableModel.setRowCount(0);
+
+        for (Schedule schedule : dataList) {
+            tableModel.addRow(new Object[]{
+                schedule.getScheduleId(),
+                schedule.getTeacherId(),
+                schedule.getClassId(),
+                schedule.getCourseName(),
+                schedule.getStartTime(),
+                schedule.getEndTime(),
+                schedule.getDateOfWeek(),
+                schedule.getTimeOfDay()
+            });
+        }
+    }
+    
+    public void showNewDataSTD() {
+        dataList = schDAO.getAllSchedules();
+        showTableSTD();
+    }
+
+    public void showTableSTD() {
+        DefaultTableModel tableModel = stdview.getTableSchedule();
         tableModel.setRowCount(0);
 
         for (Schedule schedule : dataList) {
@@ -77,9 +114,22 @@ public class ScheduleController {
         schedule.setTimeOfDay(timeOfDay);
         
         schDAO.addSchedule(schedule);
-
+        view.showMessage("Add Schedule Successfully!");
         view.clearSchedule();
         showNewData();
+    }
+    
+    public void registerSchedule() {
+        int schedule_id = Integer.parseInt(stdview.getScheduleId());
+        int student_id = stdview.getUser_id();
+
+        Schedule schedule = new Schedule();
+        schedule.setScheduleId(schedule_id);
+        schedule.setStudentId(student_id);
+        
+        schDAO.addScheduleStudent(schedule);
+        stdview.showMessage("Register Successfully!");
+        stdview.clearScheduleStudent();
     }
 
     public void updateSchedule() {
@@ -105,7 +155,7 @@ public class ScheduleController {
             schedule.setTimeOfDay(timeOfDay);
 
             schDAO.updateSchedule(schedule);
-
+            view.showMessage("Update Schedule Successfully!");
             view.clearSchedule();
             showNewData();
         } else {
@@ -122,6 +172,7 @@ public class ScheduleController {
                 schDAO.removeSchedule(scheduleId);
             }
             showNewData();
+            view.showMessage("Delete Schedule Successfully!");
             view.clearStudent();
         } else {
             view.showMessage("Schedule id doesn't exists");
