@@ -190,7 +190,7 @@
                                               <Component id="jTextField6" alignment="0" max="32767" attributes="0"/>
                                               <Component id="jTextField5" alignment="0" max="32767" attributes="0"/>
                                               <Component id="jDateChooser1" alignment="0" min="-2" pref="354" max="-2" attributes="0"/>
-                                              <Component id="jComboBox2" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                                              <Component id="jComboBox2" alignment="0" min="-2" pref="354" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                   </Group>
@@ -220,7 +220,7 @@
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabel5" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="jComboBox2" alignment="3" max="32767" attributes="0"/>
+                                  <Component id="jComboBox2" alignment="3" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
