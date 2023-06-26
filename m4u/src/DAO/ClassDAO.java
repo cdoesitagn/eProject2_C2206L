@@ -8,74 +8,113 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import models.Classes;
 
 /**
  *
  * @author GreenRain
  */
 public class ClassDAO extends ConnectSQL {
-
-    public void addClass(String className) {
+    public int getMax() {
+        int id = 0;
         open();
+        String sql = "select max(class_id) from class";
         try {
-            String query = "INSERT INTO Class (class_name) VALUES (?)";
-            statement = conn.prepareStatement(query);
-            statement.setString(1, className);
-            statement.executeUpdate();
-            System.out.println("Thêm lớp học thành công");
-        } catch (SQLException e) {
-        }
-        close();
-    }
+            statement = conn.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
 
-    public void enrollStudent(int studentId, int classId) {
-        open();
-        try {
-            String query = "INSERT INTO Student_Class (student_id, class_id) VALUES (?, ?)";
-            statement = conn.prepareStatement(query);
-            statement.setInt(1, studentId);
-            statement.setInt(2, classId);
-            statement.executeUpdate();
-            System.out.println("Ghi danh sinh viên thành công");
-        } catch (SQLException e) {
-        }
-        close();
-    }
-
-    public List<String> getClassList() {
-        List<String> classList = new ArrayList<>();
-        open();
-        try {
-            String query = "SELECT class_name FROM Class";
-            statement = conn.prepareStatement(query);
-            ResultSet resultSet = statement.executeQuery(query);
-            while (resultSet.next()) {
-                String className = resultSet.getString("class_name");
-                classList.add(className);
+            while (rs.next()) {
+                id = rs.getInt(1);
             }
-        } catch (SQLException e) {
+        } catch (SQLException ex) {
+            Logger.getLogger(ClassDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return id + 1;
+    }
+    
+    public static void insert(Classes classes) {
+        open();
+        try {
+
+            String sql = "insert into class (class_id, class_name) values (?, ?)";
+            statement = conn.prepareStatement(sql);
+            statement.setInt(1, classes.getClass_id());
+            statement.setString(2, classes.getClass_name());
+            statement.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(ClassDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         close();
-        return classList;
     }
 
-    public List<String> getEnrolledStudents(int classId) {
+    public static List<Classes> select() {
+        List<Classes> dataList = new ArrayList<>();
+
         open();
-        List<String> enrolledStudents = new ArrayList<>();
         try {
-            String query = "SELECT fullname FROM Student "
-                    + "INNER JOIN Student_Class ON Student.student_id = Student_Class.student_id "
-                    + "WHERE class_id = ?";
-            statement = conn.prepareStatement(query);
-            statement.setInt(1, classId);
+
+            String sql = "select * from class";
+            statement = conn.prepareStatement(sql);
+
             ResultSet resultSet = statement.executeQuery();
+
             while (resultSet.next()) {
-                String fullName = resultSet.getString("fullname");
-                enrolledStudents.add(fullName);
+                Classes cou = new Classes(
+                        resultSet.getInt("class_id"),
+                        resultSet.getString("class_name")
+                );
+                dataList.add(cou);
             }
-        } catch (SQLException e) {
+        } catch (SQLException ex) {
+            Logger.getLogger(ClassDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        close();
+
+        return dataList;
+    }
+    
+    public static List<Classes> search(String searchValue) {
+        List<Classes> dataList = new ArrayList<>();
+
+        open();
+
+        try {
+            String sql = "SELECT * FROM class WHERE class_name LIKE ?";
+            statement = conn.prepareStatement(sql);
+            statement.setString(1, "%" + searchValue + "%");
+
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                Classes cou = new Classes(
+                        resultSet.getInt("class_id"),
+                        resultSet.getString("class_name")
+                );
+                dataList.add(cou);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ClassDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        close();
+        return dataList;
+    }
+    
+    public static void update(Classes cl) {
+        open();
+        try {
+            String sql = "update class set class_name = ?  where class_id = ?";
+            statement = conn.prepareStatement(sql);
+            statement.setString(1, cl.getClass_name());
+            statement.setInt(2, cl.getClass_id());
+
+            statement.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentsDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         close();
-        return enrolledStudents;
     }
 }

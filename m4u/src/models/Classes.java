@@ -8,19 +8,19 @@ package models;
  *
  * @author GreenRain
  */
-public class Class {
+public class Classes {
     private int class_id;
     private String class_name;
 
-    public Class(int class_id, String class_name) {
+    public Classes(int class_id, String class_name) {
         this.class_id = class_id;
         this.class_name = class_name;
     }
 
-    public Class() {
+    public Classes() {
     }
 
-    public Class(String class_name) {
+    public Classes(String class_name) {
         this.class_name = class_name;
     }
 

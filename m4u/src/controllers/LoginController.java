@@ -5,6 +5,9 @@
 package controllers;
 
 import DAO.LoginDAO;
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
 import views.LoginView;
 import models.User;
 import views.Dashboard;
@@ -18,7 +21,9 @@ import views.TeacherView;
 public class LoginController {
 
     private LoginView view;
-    private static LoginDAO logDAO;
+    private Dashboard dbView;
+    private List<User> dataList = new ArrayList<>();
+    private LoginDAO logDAO;
 
     public LoginController() {
 
@@ -26,7 +31,93 @@ public class LoginController {
 
     public LoginController(LoginView view) {
         this.view = view;
-        logDAO = new LoginDAO();
+    }
+
+    public LoginController(Dashboard dbView) {
+        this.dbView = dbView;
+    }
+
+    public int getMax() {
+        int max = logDAO.getMax();
+        return max;
+    }
+
+    public void showNewData() {
+        dataList = LoginDAO.select();
+        showTable();
+    }
+
+    public void showTable() {
+        DefaultTableModel tableModel = dbView.getTableAccount();
+        tableModel.setRowCount(0);
+
+        for (User user : dataList) {
+            tableModel.addRow(new Object[]{
+                user.getId(),
+                user.getUser_id(),
+                user.getUsername(),
+                user.getPassword(),
+                user.getRole()
+            });
+        }
+    }
+
+    public void saveUser() {
+        int user_id = Integer.parseInt(dbView.getUserId());
+        String username = dbView.getUserName();
+        String password = dbView.getPassword();
+        int role = Integer.parseInt(dbView.getRole());
+
+        User user = new User();
+        user.setUser_id(user_id);
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setRole(role);
+
+        LoginDAO.insert(user);
+        dbView.clearUser();
+        showNewData();
+    }
+
+    public void updateUser() {
+        int acc_id = Integer.parseInt(dbView.getAccId());
+
+        int user_id = Integer.parseInt(dbView.getUserId());
+        String username = dbView.getUserName();
+        String password = dbView.getPassword();
+        int role = Integer.parseInt(dbView.getRole());
+
+        User user = new User();
+        user.setId(acc_id);
+        user.setUser_id(user_id);
+        user.setUsername(username);
+        user.setPassword(password);
+        user.setRole(role);
+
+        LoginDAO.update(user);
+        dbView.clearUser();
+        showNewData();
+
+    }
+
+    public void deleteUser() {
+        int acc_id = Integer.parseInt(dbView.getAccId());
+        if (logDAO.isIDExits(acc_id)) {
+            int yesOrNo = dbView.showConfirmDeleteDialog("Course and score records will also be deleted", "Teacher Delete");
+            if (yesOrNo == dbView.OK_Option()) {
+                LoginDAO.delete(acc_id);
+            }
+            showNewData();
+            dbView.clearUser();
+        } else {
+            dbView.showMessage("Teacher id doesn't exists");
+        }
+    }
+
+    public void searchUser() {
+        String searchTxt = dbView.getSearchUser();
+        dataList = LoginDAO.search(searchTxt);
+        showTable();
     }
 
     public void login() {

@@ -7,6 +7,8 @@ package controllers;
 import DAO.ClassDAO;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import models.Classes;
 import views.Dashboard;
 
 /**
@@ -14,8 +16,9 @@ import views.Dashboard;
  * @author hieuv
  */
 public class ClassController {
+
     private Dashboard view;
-    private List<Class> dataList = new ArrayList<>();
+    private List<Classes> dataList = new ArrayList<>();
     ClassDAO cl = new ClassDAO();
 
     public ClassController() {
@@ -24,9 +27,9 @@ public class ClassController {
     public ClassController(Dashboard view) {
         this.view = view;
     }
-    
+
     public int getMax() {
-        int max = Class.getMax();
+        int max = cl.getMax();
         return max;
     }
 
@@ -39,63 +42,35 @@ public class ClassController {
         DefaultTableModel tableModel = view.getTableClass();
         tableModel.setRowCount(0);
 
-        for (Class class : dataList) {
+        for (Classes classes : dataList) {
             tableModel.addRow(new Object[]{
-                Class.getClass_id(),
-                Class.getClassname()
+                classes.getClass_id(),
+                classes.getClass_name()
             });
         }
     }
-    
+
     public void saveClass() {
         String Classname = view.getClassName();
 
-        Class class = new Class();
-        class.setFullname(fullname);
-        
-        ClassDAO.insert(class);
+        Classes classes = new Classes();
+        classes.setClass_name(Classname);
+
+        ClassDAO.insert(classes);
         view.clearClass();
         showNewData();
     }
 
     public void updateClass() {
-        int Class_id = Integer.parseInt(view.getID());
-        if (cl.isIDExits(Class_id)) {
-            if (!view.checkPhoneEmailUpdate()) {
-                String fullname = view.getFullName();
-                String gender = view.getGender();
-                String email = view.getEmail();
-                String phoneNumber = view.getPhoneNumber();
-
-                Class class = new Class();
-                class.setClass_id(class_id);
-                class.setClassname(classname);
-
-                ClassDAO.update(class);
-                view.clearClass();
-                showNewData();
-            }
-        } else {
-            view.showMessage("Class id doesn't exists");
-        }
+        
     }
 
     public void deleteClass() {
-        int class_id = Integer.parseInt(view.getID());
-        if (cl.isIDExits(class_id)) {
-            int yesOrNo = view.showConfirmDeleteDialog("Course and score records will also be deleted", "Class Delete");
-            if (yesOrNo == view.OK_Option()) {
-                ClassDAO.delete(class_id);
-            }
-            showNewData();
-            view.clearClass();
-        } else {
-            view.showMessage("Class id doesn't exists");
-        }
+       
     }
 
     public void searchClass() {
-        String searchTxt = view.getSearchField();
+        String searchTxt = view.getSearchClass();
         dataList = ClassDAO.search(searchTxt);
         showTable();
     }

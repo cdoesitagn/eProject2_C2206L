@@ -70,7 +70,7 @@ public class TcController {
     }
 
     public void updateTeacher() {
-        int teacher_id = Integer.parseInt(view.getID());
+        int teacher_id = Integer.parseInt(view.getTeachID());
         if (tc.isIDExits(teacher_id)) {
             if (!view.checkPhoneEmailUpdate()) {
                 String fullname = view.getFullName();
@@ -95,7 +95,7 @@ public class TcController {
     }
 
     public void deleteTeacher() {
-        int teacher_id = Integer.parseInt(view.getID());
+        int teacher_id = Integer.parseInt(view.getTeachID());
         if (tc.isIDExits(teacher_id)) {
             int yesOrNo = view.showConfirmDeleteDialog("Course and score records will also be deleted", "Teacher Delete");
             if (yesOrNo == view.OK_Option()) {
@@ -109,7 +109,7 @@ public class TcController {
     }
 
     public void searchTeacher() {
-        String searchTxt = view.getSearchField();
+        String searchTxt = view.getSearchTeacher();
         dataList = TeacherDAO.search(searchTxt);
         showTable();
     }

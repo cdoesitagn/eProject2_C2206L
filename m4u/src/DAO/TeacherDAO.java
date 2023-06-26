@@ -20,7 +20,8 @@ import models.Teacher;
  *
  * @author GreenRain
  */
-public class TeacherDAO extends ConnectSQL{
+public class TeacherDAO extends ConnectSQL {
+
     public static List<Teacher> search(String searchValue) {
         List<Teacher> dataList = new ArrayList<>();
 
@@ -50,7 +51,7 @@ public class TeacherDAO extends ConnectSQL{
         close();
         return dataList;
     }
-    
+
     public static List<Teacher> select() {
         List<Teacher> dataList = new ArrayList<>();
 
@@ -130,7 +131,7 @@ public class TeacherDAO extends ConnectSQL{
         }
         close();
     }
-    
+
     public int getMax() {
         int id = 0;
         open();
@@ -147,7 +148,7 @@ public class TeacherDAO extends ConnectSQL{
         }
         return id + 1;
     }
-    
+
     public boolean isIDExits(int id) {
         open();
         try {
@@ -162,6 +163,44 @@ public class TeacherDAO extends ConnectSQL{
             }
         } catch (SQLException ex) {
             Logger.getLogger(TeacherDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        close();
+        return false;
+    }
+
+    public boolean isEmailExits(String email) {
+        open();
+        try {
+            String sql = "select * from teacher where email = ?";
+            statement = conn.prepareStatement(sql);
+            statement.setString(1, email);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentsDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        close();
+        return false;
+    }
+
+    public boolean isPhoneExits(String phone) {
+        open();
+        try {
+            String sql = "select * from teacher where phoneNumber = ?";
+            statement = conn.prepareStatement(sql);
+            statement.setString(1, phone);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(StudentsDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         close();
         return false;
