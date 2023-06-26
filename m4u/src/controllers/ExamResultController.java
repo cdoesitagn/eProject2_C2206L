@@ -41,6 +41,10 @@ public class ExamResultController {
     public boolean isIdExist(int id) {
         return exa.isIdExists(id);
     }
+    
+     public boolean isIdStudentExist(int id) {
+        return exa.isIdStudentExists(id);
+    }
 
     public List<String> getCoursesByStudentAndSemester(int studentId, int semesterId) {
         ExamResultDAO examResultDAO = new ExamResultDAO();
@@ -103,7 +107,7 @@ public class ExamResultController {
             }
             float total_point1 = ex.getTotalPoint(lt_point1, th_point1);
             float total_point2 = ex.getTotalPoint(lt_point2, th_point2);
-            
+
             ex.setExamResultId(result_id);
             ex.setStudentId(student_id);
             ex.setSemesterId(semester_id);
@@ -153,5 +157,59 @@ public class ExamResultController {
         String searchTxt = view.getSearchScore();
         dataList = ExamResultDAO.search(searchTxt);
         showTable();
+    }
+
+    public float showCGPA() {
+        int studentId = Integer.parseInt(view.getSearchGPA());
+        dataList = ExamResultDAO.getScoreValue(studentId);
+        float cgpa = calculateCGPA(dataList);
+        return cgpa;
+    }
+
+    public void showNewDataGPA() {
+        int studentId = Integer.parseInt(view.getSearchGPA());
+        dataList = ExamResultDAO.getScoreValue(studentId);
+        showTable();
+    }
+
+    public void showTableGPA() {
+        DefaultTableModel tableModel = view.getTableScoreGPA();
+        tableModel.setRowCount(0);
+
+        for (ExamResult exams : dataList) {
+            tableModel.addRow(new Object[]{
+                exams.getStudentId(),
+                exams.getSemesterId(),
+                exams.getCourseName(),  
+                exams.getTotalPoint1(),
+                exams.getTotalPoint2()
+            });
+        }
+    }
+    
+    private float calculateCGPA(List<ExamResult> examResults) {
+        float totalGradePoints = 0;
+        float totalCredits = 0;
+
+        for (ExamResult examResult : examResults) {
+            float totalPoint = examResult.getTotalPoint1();
+
+            // Sử dụng total point 2 nếu total point 1 < 4
+            if (totalPoint < 4) {
+                totalPoint = examResult.getTotalPoint2();
+            }
+
+            totalGradePoints += totalPoint;
+
+            totalCredits++;
+        }
+
+        // Tính CGPA
+        if (totalCredits > 0) {
+            float cgpa = totalGradePoints / totalCredits;
+            return cgpa;
+        } else {
+            return 0;
+        }
     }
 }

@@ -50,6 +50,15 @@ public class ExamResult {
         this.totalPoint2 = totalPoint2;
     }
 
+    public ExamResult(int studentId, int semesterId, String courseName, float totalPoint1, float totalPoint2) {
+        this.studentId = studentId;
+        this.semesterId = semesterId;
+        this.courseName = courseName;
+        this.totalPoint1 = totalPoint1;
+        this.totalPoint2 = totalPoint2;
+    }
+
+    
     public int getExamResultId() {
         return examResultId;
     }

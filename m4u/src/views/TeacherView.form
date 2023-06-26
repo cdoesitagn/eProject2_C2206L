@@ -2522,12 +2522,12 @@
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="jLabel30" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
                                           <Group type="102" alignment="0" attributes="0">
-                                              <Component id="jTextField19" min="-2" pref="360" max="-2" attributes="0"/>
+                                              <Component id="searchGPA" min="-2" pref="360" max="-2" attributes="0"/>
                                               <EmptySpace type="separate" max="-2" attributes="0"/>
-                                              <Component id="jTextField33" min="-2" pref="100" max="-2" attributes="0"/>
+                                              <Component id="Search" min="-2" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
-                                      <EmptySpace max="32767" attributes="0"/>
+                                      <EmptySpace pref="31" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
@@ -2538,8 +2538,8 @@
                                       <Component id="jLabel30" min="-2" pref="30" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
-                                          <Component id="jTextField19" max="-2" attributes="0"/>
-                                          <Component id="jTextField33" min="-2" pref="28" max="-2" attributes="0"/>
+                                          <Component id="searchGPA" max="-2" attributes="0"/>
+                                          <Component id="Search" min="-2" max="-2" attributes="0"/>
                                       </Group>
                                       <EmptySpace pref="8" max="32767" attributes="0"/>
                                   </Group>
@@ -2555,29 +2555,22 @@
                                 <Property name="text" type="java.lang.String" value="Student&apos;s ID"/>
                               </Properties>
                             </Component>
-                            <Component class="javax.swing.JTextField" name="jTextField19">
+                            <Component class="javax.swing.JTextField" name="searchGPA">
                               <Properties>
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                   <Font name="Segoe UI" size="16" style="0"/>
                                 </Property>
                               </Properties>
                               <Events>
-                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField19ActionPerformed"/>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchGPAActionPerformed"/>
                               </Events>
                             </Component>
-                            <Component class="javax.swing.JTextField" name="jTextField33">
+                            <Component class="javax.swing.JButton" name="Search">
                               <Properties>
-                                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                                  <Font name="Segoe UI" size="16" style="1"/>
-                                </Property>
-                                <Property name="horizontalAlignment" type="int" value="0"/>
-                                <Property name="text" type="java.lang.String" value="Search"/>
-                                <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                                  <Color id="Hand Cursor"/>
-                                </Property>
+                                <Property name="text" type="java.lang.String" value="Search&#xa;"/>
                               </Properties>
                               <Events>
-                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextField33ActionPerformed"/>
+                                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="SearchActionPerformed"/>
                               </Events>
                             </Component>
                           </SubComponents>
@@ -2589,7 +2582,7 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="1" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jLabel21" max="32767" attributes="0"/>
+                                      <Component id="cgpaLabel" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
@@ -2598,20 +2591,20 @@
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jLabel21" pref="88" max="32767" attributes="0"/>
+                                      <Component id="cgpaLabel" pref="88" max="32767" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                             </DimensionLayout>
                           </Layout>
                           <SubComponents>
-                            <Component class="javax.swing.JLabel" name="jLabel21">
+                            <Component class="javax.swing.JLabel" name="cgpaLabel">
                               <Properties>
                                 <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                   <Font name="Segoe UI" size="36" style="1"/>
                                 </Property>
                                 <Property name="horizontalAlignment" type="int" value="0"/>
-                                <Property name="text" type="java.lang.String" value="CGPA : 0.0"/>
+                                <Property name="text" type="java.lang.String" value="CGPA: 0.0"/>
                               </Properties>
                             </Component>
                           </SubComponents>
@@ -2765,64 +2758,16 @@
                                 <Component class="javax.swing.JTable" name="jTable4">
                                   <Properties>
                                     <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                      <Table columnCount="13" rowCount="10">
+                                      <Table columnCount="5" rowCount="10">
                                         <Column editable="false" title="Student&apos;s ID" type="java.lang.Object"/>
                                         <Column editable="false" title="Semester" type="java.lang.Object"/>
-                                        <Column editable="false" title="Course 1" type="java.lang.Object"/>
-                                        <Column editable="false" title="Score 1" type="java.lang.Object"/>
-                                        <Column editable="false" title="Course 2" type="java.lang.Object"/>
-                                        <Column editable="false" title="Score 2" type="java.lang.Object"/>
-                                        <Column editable="false" title="Cours 3" type="java.lang.Object"/>
-                                        <Column editable="false" title="Score 3" type="java.lang.Object"/>
-                                        <Column editable="false" title="Cours 4" type="java.lang.Object"/>
-                                        <Column editable="false" title="Score 4" type="java.lang.Object"/>
-                                        <Column editable="false" title="Cours 5" type="java.lang.Object"/>
-                                        <Column editable="false" title="Score 5" type="java.lang.Object"/>
-                                        <Column editable="false" title="Average" type="java.lang.Object"/>
+                                        <Column editable="false" title="Course Name" type="java.lang.Object"/>
+                                        <Column editable="false" title="Total Point 1" type="java.lang.Object"/>
+                                        <Column editable="false" title="Total Point 2" type="java.lang.Object"/>
                                       </Table>
                                     </Property>
                                     <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
                                       <TableColumnModel selectionModel="0">
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                          <Title/>
-                                          <Editor/>
-                                          <Renderer/>
-                                        </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                          <Title/>
-                                          <Editor/>
-                                          <Renderer/>
-                                        </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                          <Title/>
-                                          <Editor/>
-                                          <Renderer/>
-                                        </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                          <Title/>
-                                          <Editor/>
-                                          <Renderer/>
-                                        </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                          <Title/>
-                                          <Editor/>
-                                          <Renderer/>
-                                        </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                          <Title/>
-                                          <Editor/>
-                                          <Renderer/>
-                                        </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                          <Title/>
-                                          <Editor/>
-                                          <Renderer/>
-                                        </Column>
-                                        <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
-                                          <Title/>
-                                          <Editor/>
-                                          <Renderer/>
-                                        </Column>
                                         <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
                                           <Title/>
                                           <Editor/>

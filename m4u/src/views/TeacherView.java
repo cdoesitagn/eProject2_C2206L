@@ -29,7 +29,6 @@ import javax.swing.JTable;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableModel;
 import DAO.StudentsDAO;
-import DAO.MarksSheetDAO;
 import controllers.ScheduleController;
 
 /**
@@ -49,7 +48,6 @@ public class TeacherView extends javax.swing.JFrame {
     private List<String> initialCourseItems;
     NumberFormat nf = NumberFormat.getInstance();
     StudentsDAO std = new StudentsDAO();
-    MarksSheetDAO marksSheet = new MarksSheetDAO();
 
     public TeacherView() {
         this.setUndecorated(true);
@@ -75,6 +73,10 @@ public class TeacherView extends javax.swing.JFrame {
 
     public DefaultTableModel getTableSchedule() {
         return (DefaultTableModel) jTable3.getModel();
+    }
+
+    public DefaultTableModel getTableScoreGPA() {
+        return (DefaultTableModel) jTable4.getModel();
     }
 
     public JTable getJTable1() {
@@ -242,10 +244,10 @@ public class TeacherView extends javax.swing.JFrame {
         jPanel31 = new javax.swing.JPanel();
         jPanel23 = new javax.swing.JPanel();
         jLabel30 = new javax.swing.JLabel();
-        jTextField19 = new javax.swing.JTextField();
-        jTextField33 = new javax.swing.JTextField();
+        searchGPA = new javax.swing.JTextField();
+        Search = new javax.swing.JButton();
         jPanel24 = new javax.swing.JPanel();
-        jLabel21 = new javax.swing.JLabel();
+        cgpaLabel = new javax.swing.JLabel();
         jPanel34 = new javax.swing.JPanel();
         jPanel35 = new javax.swing.JPanel();
         jLabel37 = new javax.swing.JLabel();
@@ -1678,20 +1680,17 @@ public class TeacherView extends javax.swing.JFrame {
         jLabel30.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel30.setText("Student's ID");
 
-        jTextField19.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
-        jTextField19.addActionListener(new java.awt.event.ActionListener() {
+        searchGPA.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        searchGPA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField19ActionPerformed(evt);
+                searchGPAActionPerformed(evt);
             }
         });
 
-        jTextField33.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
-        jTextField33.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField33.setText("Search");
-        jTextField33.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jTextField33.addActionListener(new java.awt.event.ActionListener() {
+        Search.setText("Search\n");
+        Search.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField33ActionPerformed(evt);
+                SearchActionPerformed(evt);
             }
         });
 
@@ -1704,10 +1703,10 @@ public class TeacherView extends javax.swing.JFrame {
                 .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel23Layout.createSequentialGroup()
-                        .addComponent(jTextField19, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(searchGPA, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField33, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(Search)))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         jPanel23Layout.setVerticalGroup(
             jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1716,14 +1715,14 @@ public class TeacherView extends javax.swing.JFrame {
                 .addComponent(jLabel30, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel23Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField33, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(searchGPA, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(Search))
                 .addContainerGap(8, Short.MAX_VALUE))
         );
 
-        jLabel21.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel21.setText("CGPA : 0.0");
+        cgpaLabel.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        cgpaLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        cgpaLabel.setText("CGPA: 0.0");
 
         javax.swing.GroupLayout jPanel24Layout = new javax.swing.GroupLayout(jPanel24);
         jPanel24.setLayout(jPanel24Layout);
@@ -1731,14 +1730,14 @@ public class TeacherView extends javax.swing.JFrame {
             jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel24Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(cgpaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel24Layout.setVerticalGroup(
             jPanel24Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel24Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel21, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
+                .addComponent(cgpaLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 88, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -1819,23 +1818,23 @@ public class TeacherView extends javax.swing.JFrame {
 
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null, null}
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
-                "Student's ID", "Semester", "Course 1", "Score 1", "Course 2", "Score 2", "Cours 3", "Score 3", "Cours 4", "Score 4", "Cours 5", "Score 5", "Average"
+                "Student's ID", "Semester", "Course Name", "Total Point 1", "Total Point 2"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false, false, false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -2496,6 +2495,31 @@ public class TeacherView extends javax.swing.JFrame {
         return true;
     }
 
+    public boolean isEmptySchedule() {
+        if (txtTeacherId.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Teacher ID is missing");
+            return false;
+        }
+        if (txtClassId.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Class ID is missing");
+            return false;
+        }
+        if (txtStartTime.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "Start time schedule is missing");
+            return false;
+        }
+        if (txtEndTime.getDate() == null) {
+            JOptionPane.showMessageDialog(this, "End time schedule is missing");
+            return false;
+        }
+        if (txtEndTime.getDate().compareTo(txtStartTime.getDate()) < 0) {
+            JOptionPane.showMessageDialog(this, "End time must greater than Start time");
+            return false;
+        }
+
+        return true;
+    }
+
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         JFileChooser file = new JFileChooser();
         file.setCurrentDirectory(new File(System.getProperty("user.home")));
@@ -2552,7 +2576,7 @@ public class TeacherView extends javax.swing.JFrame {
     public String getDateOfWeek() {
         return datePicker.getSelectedItem().toString();
     }
-    
+
     public String getTimeOfDay() {
         return comboTimeOfDay.getSelectedItem().toString();
     }
@@ -2651,6 +2675,10 @@ public class TeacherView extends javax.swing.JFrame {
 
     public String getSearchShedule() {
         return searchSchedule.getText();
+    }
+
+    public String getSearchGPA() {
+        return searchGPA.getText();
     }
 
     public String getTScore1() {
@@ -2773,8 +2801,8 @@ public class TeacherView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton30ActionPerformed
 
     private void jButton35ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton35ActionPerformed
-        jTextField19.setText(null);
-        jTextField19.setText("CGPA : 0.0");
+        searchGPA.setText(null);
+        searchGPA.setText("CGPA : 0.0");
         jTable4.setModel(new DefaultTableModel(null, new Object[]{"Student ID", "Semester", "Course 1", "Score 1", "Course 2", "Score 2", "Course 3", "Score 3", "Course 4", "Score 4", "Course 5", "Score 5", "Average"}));
     }//GEN-LAST:event_jButton35ActionPerformed
 
@@ -3210,11 +3238,15 @@ public class TeacherView extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable3MouseClicked
 
     private void jButton20ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton20ActionPerformed
-        schController.saveSchedule();
+        if (isEmptySchedule()) {
+            schController.saveSchedule();
+        }
     }//GEN-LAST:event_jButton20ActionPerformed
 
     private void jButton21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton21ActionPerformed
-        schController.updateSchedule();
+        if (isEmptySchedule()) {
+            schController.updateSchedule();
+        }
     }//GEN-LAST:event_jButton21ActionPerformed
 
     private void jButton22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton22ActionPerformed
@@ -3242,36 +3274,33 @@ public class TeacherView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton25ActionPerformed
 
-    private void jTextField19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField19ActionPerformed
+    private void searchGPAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchGPAActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField19ActionPerformed
-
-    private void jTextField33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField33ActionPerformed
-
-        if (jTextField19.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Please enter a student ID");
-        } else {
-            int sid = Integer.parseInt(jTextField19.getText());
-            if (marksSheet.isIdExist(sid)) {
-                jTable4.setModel(new DefaultTableModel(null, new Object[]{"Student ID", "Semester", "Course 1", "Score 1", "Course 2", "Score 2", "Course 3", "Score 3", "Course 4", "Score 4", "Course 5", "Score 5", "Average"}));
-                marksSheet.getScoreValue(jTable4, sid);
-                String cgpa = String.valueOf(String.format("%.2f", marksSheet.getCGPA(sid)));
-                jLabel21.setText("CGPA: " + cgpa);
-            } else {
-                JOptionPane.showMessageDialog(this, "No scores found");
-            }
-        }
-    }//GEN-LAST:event_jTextField33ActionPerformed
+    }//GEN-LAST:event_searchGPAActionPerformed
 
     private void jButton34ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton34ActionPerformed
         try {
-            MessageFormat header = new MessageFormat("Marks Sheet   Student ID" + jTextField19.getText() + "   " + jLabel21.getText());
+            MessageFormat header = new MessageFormat("Marks Sheet   Student ID" + searchGPA.getText() + "   " + cgpaLabel.getText());
             MessageFormat footer = new MessageFormat("Page{0,number,integer}");
             jTable4.print(JTable.PrintMode.FIT_WIDTH, header, footer);
         } catch (PrinterException ex) {
             Logger.getLogger(TeacherView.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton34ActionPerformed
+
+    private void SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchActionPerformed
+       if (searchGPA.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter a student ID");
+        } else {
+            int sid = Integer.parseInt(searchGPA.getText());
+            if (exaController.isIdStudentExist(sid)) {
+                exaController.showNewDataGPA();
+                cgpaLabel.setText("CGPA: " + exaController.showCGPA());
+            } else {
+                JOptionPane.showMessageDialog(this, "No scores found");
+            }
+        }
+    }//GEN-LAST:event_SearchActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -3300,10 +3329,12 @@ public class TeacherView extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton Search;
     private javax.swing.JButton btnRefresh;
     private javax.swing.JButton btnRefresh1;
     private javax.swing.JButton btnSearch;
     private javax.swing.JButton btnSearch1;
+    private javax.swing.JLabel cgpaLabel;
     private javax.swing.JComboBox<String> comboTimeOfDay;
     private javax.swing.JComboBox<String> courseComboBox;
     private javax.swing.JComboBox<String> datePicker;
@@ -3361,7 +3392,6 @@ public class TeacherView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
-    private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
@@ -3454,14 +3484,12 @@ public class TeacherView extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField12;
     public static javax.swing.JTextField jTextField13;
     private javax.swing.JTextField jTextField14;
-    private javax.swing.JTextField jTextField19;
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField24;
     private javax.swing.JTextField jTextField25;
     private javax.swing.JTextField jTextField26;
     private javax.swing.JTextField jTextField27;
     private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField33;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
@@ -3471,6 +3499,7 @@ public class TeacherView extends javax.swing.JFrame {
     private javax.swing.JTextField pScore1;
     private javax.swing.JTextField pScore2;
     private javax.swing.JTextField searchField;
+    private javax.swing.JTextField searchGPA;
     private javax.swing.JTextField searchSchedule;
     private javax.swing.JTextField tScore1;
     private javax.swing.JTextField tScore2;

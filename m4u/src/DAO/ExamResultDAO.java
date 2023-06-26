@@ -3,8 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package DAO;
-
-
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -92,6 +90,26 @@ public class ExamResultDAO extends ConnectSQL {
         open();
         try {
             String sql = "SELECT * FROM result WHERE result_id = ?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setInt(1, id);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ExamResultDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            close();
+        }
+        return false;
+    }
+    
+    public boolean isIdStudentExists(int id) {
+        open();
+        try {
+            String sql = "SELECT * FROM student WHERE student_id = ?";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setInt(1, id);
 
@@ -220,4 +238,31 @@ public class ExamResultDAO extends ConnectSQL {
             close();
         }
     }
+
+    public static List<ExamResult> getScoreValue(int sid) {
+        List<ExamResult> dataList = new ArrayList<>();
+        open();
+        try {
+            String sql = "select (student_id, semester_id, course_name, total_point1, total_point2) from result where student_id = ?";
+            statement = conn.prepareStatement(sql);
+            statement.setInt(1, sid);
+            ResultSet resultSet = statement.executeQuery();
+
+            while (resultSet.next()) {
+                ExamResult exa = new ExamResult(
+                        resultSet.getInt("student_id"),
+                        resultSet.getInt("semester_id"),
+                        resultSet.getString("course_name"),
+                        resultSet.getFloat("total_point1"),
+                        resultSet.getFloat("total_point2"));
+                dataList.add(exa);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ExamResultDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        close();
+        return dataList;
+    }
+
 }
