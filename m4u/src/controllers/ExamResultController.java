@@ -203,7 +203,7 @@ public class ExamResultController {
     public void showNewDataGPAstd() {
         int studentId = Integer.parseInt(stdview.getSearchGPA());
         dataList = ExamResultDAO.getScoreValue(studentId);
-        showTable();
+        showTableGPAstd();
     }
 
     public void showTableGPAstd() {
