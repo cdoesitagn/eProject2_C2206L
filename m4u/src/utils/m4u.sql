@@ -83,6 +83,7 @@ CREATE TABLE `Schedule` (
   `start_time` date,
   `end_time` date,
   `date_of_week` date
+  `time_of_day` date 
 );
 
 CREATE TABLE `Attendance` (
