@@ -4,8 +4,6 @@
  */
 package models;
 
-import java.sql.Time;
-import java.util.Date;
 
 /**
  *
@@ -16,23 +14,15 @@ public class Schedule {
     private int teacherId;
     private int classId;
     private String courseName;
-    private Time startTime;
-    private Time endTime;
+    private String startTime;
+    private String endTime;
     private String dateOfWeek;
+    private String timeOfDay;
 
     public Schedule() {
     }
 
-    public Schedule(int teacherId, int classId, String courseName, Time startTime, Time endTime, String dateOfWeek) {
-        this.teacherId = teacherId;
-        this.classId = classId;
-        this.courseName = courseName;
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.dateOfWeek = dateOfWeek;
-    }
-
-    public Schedule(int scheduleId, int teacherId, int classId, String courseName, Time startTime, Time endTime, String dateOfWeek) {
+    public Schedule(int scheduleId, int teacherId, int classId, String courseName, String startTime, String endTime, String dateOfWeek, String timeOfDay) {
         this.scheduleId = scheduleId;
         this.teacherId = teacherId;
         this.classId = classId;
@@ -40,6 +30,17 @@ public class Schedule {
         this.startTime = startTime;
         this.endTime = endTime;
         this.dateOfWeek = dateOfWeek;
+        this.timeOfDay = timeOfDay;
+    }
+
+    public Schedule(int teacherId, int classId, String courseName, String startTime, String endTime, String dateOfWeek, String timeOfDay) {
+        this.teacherId = teacherId;
+        this.classId = classId;
+        this.courseName = courseName;
+        this.startTime = startTime;
+        this.endTime = endTime;
+        this.dateOfWeek = dateOfWeek;
+        this.timeOfDay = timeOfDay;
     }
 
     public int getScheduleId() {
@@ -74,19 +75,19 @@ public class Schedule {
         this.courseName = courseName;
     }
 
-    public Time getStartTime() {
+    public String getStartTime() {
         return startTime;
     }
 
-    public void setStartTime(Time startTime) {
+    public void setStartTime(String startTime) {
         this.startTime = startTime;
     }
 
-    public Time getEndTime() {
+    public String getEndTime() {
         return endTime;
     }
 
-    public void setEndTime(Time endTime) {
+    public void setEndTime(String endTime) {
         this.endTime = endTime;
     }
 
@@ -97,6 +98,16 @@ public class Schedule {
     public void setDateOfWeek(String dateOfWeek) {
         this.dateOfWeek = dateOfWeek;
     }
+
+    public String getTimeOfDay() {
+        return timeOfDay;
+    }
+
+    public void setTimeOfDay(String timeOfDay) {
+        this.timeOfDay = timeOfDay;
+    }
+    
+    
    
 }
 

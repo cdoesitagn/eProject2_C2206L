@@ -103,7 +103,8 @@ public class ExamResultController {
             }
             float total_point1 = ex.getTotalPoint(lt_point1, th_point1);
             float total_point2 = ex.getTotalPoint(lt_point2, th_point2);
-
+            
+            ex.setExamResultId(result_id);
             ex.setStudentId(student_id);
             ex.setSemesterId(semester_id);
             ex.setCourseName(course_name);
