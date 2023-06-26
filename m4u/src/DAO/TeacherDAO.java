@@ -130,4 +130,40 @@ public class TeacherDAO extends ConnectSQL{
         }
         close();
     }
+    
+    public int getMax() {
+        int id = 0;
+        open();
+        String sql = "select max(teacher_id) from teacher";
+        try {
+            statement = conn.prepareStatement(sql);
+            ResultSet rs = statement.executeQuery();
+
+            while (rs.next()) {
+                id = rs.getInt(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(TeacherDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return id + 1;
+    }
+    
+    public boolean isIDExits(int id) {
+        open();
+        try {
+            String sql = "select * from teacher where teacher_id = ?";
+            statement = conn.prepareStatement(sql);
+            statement.setInt(1, id);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(TeacherDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        close();
+        return false;
+    }
 }
