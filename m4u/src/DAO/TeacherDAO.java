@@ -86,7 +86,7 @@ public class TeacherDAO extends ConnectSQL {
         open();
         try {
 
-            String sql = "insert into teacher (fullname, gender, email, phoneNumber) values (?, ?, ?, ?, ?, ?, ?)";
+            String sql = "insert into teacher (fullname, gender, email, phoneNumber) values (?, ?, ?, ?)";
             statement = conn.prepareStatement(sql);
             statement.setString(1, tc.getFullname());
             statement.setString(2, tc.getGender());

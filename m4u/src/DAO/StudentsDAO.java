@@ -259,6 +259,7 @@ public class StudentsDAO extends ConnectSQL {
         } catch (SQLException ex) {
             Logger.getLogger(StudentsDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        close();
         return id + 1;
     }
 

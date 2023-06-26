@@ -23,7 +23,7 @@ public class LoginController {
     private LoginView view;
     private Dashboard dbView;
     private List<User> dataList = new ArrayList<>();
-    private LoginDAO logDAO;
+    LoginDAO logDAO = new LoginDAO(); // Assuming LoginDAO constructor exists
 
     public LoginController() {
 
@@ -35,6 +35,11 @@ public class LoginController {
 
     public LoginController(Dashboard dbView) {
         this.dbView = dbView;
+    }
+
+    public LoginController(LoginView view, LoginDAO logDAO) {
+        this.view = view;
+        this.logDAO = logDAO;
     }
 
     public int getMax() {

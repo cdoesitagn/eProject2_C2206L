@@ -161,7 +161,7 @@ public class LoginDAO extends ConnectSQL {
         open();
         try {
 
-            String sql = "insert into class (user_id, username, password, role) values (?, ?, ?, ?, ?)";
+            String sql = "insert into useraccount (user_id, username, password, role) values (?, ?, ?, ?)";
             statement = conn.prepareStatement(sql);
             statement.setInt(1, user.getUser_id());
             statement.setString(2, user.getUsername());
