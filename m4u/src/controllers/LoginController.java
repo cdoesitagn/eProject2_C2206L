@@ -7,9 +7,9 @@ package controllers;
 import views.LoginView;
 import DAO.ConnectSQL;
 import models.User;
+import views.Dashboard;
 import views.StudentView;
 import views.TeacherView;
-
 
 /**
  *
@@ -31,7 +31,6 @@ public class LoginController {
 
         String username = view.getUsername();
         String password = view.getPassword();
-        
 
         User user = ConnectSQL.getUserByUserName(username);
 
@@ -48,6 +47,12 @@ public class LoginController {
                     view.showMessage("Login Successfull By Student Account!");
                     StudentView studentView = new StudentView();
                     studentView.setVisible(true);
+                    view.dispose();
+                    break;
+                case 3:
+                    view.showMessage("Login Successfull By Admin Account!");
+                    Dashboard dash = new Dashboard();
+                    dash.setVisible(true);
                     view.dispose();
                     break;
                 default:

@@ -29,16 +29,11 @@ public class Teacher {
         this.phoneNumber = phoneNumber;
     }
 
-    public void input() {
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Nhap ten: ");
-        fullname = scan.nextLine();
-        System.out.println("Nhap email: ");
-        email = scan.nextLine();
-        System.out.println("Nhap so dien thoai: ");
-        phoneNumber = scan.nextLine();
-        System.out.println("Nhap gioi tinh: ");
-        gender = scan.nextLine();
+    public Teacher(String fullname, String gender, String email, String phoneNumber) {
+        this.fullname = fullname;
+        this.gender = gender;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
     }
 
     public int getTeacher_id() {
@@ -79,11 +74,6 @@ public class Teacher {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
-    }
-
-    @Override
-    public String toString() {
-        return "teacher_id=" + teacher_id + ", fullname=" + fullname + ", gender=" + gender + ", email=" + email + ", phoneNumber=" + phoneNumber;
     }
 
 }

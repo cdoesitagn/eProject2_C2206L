@@ -82,16 +82,14 @@ CREATE TABLE `Schedule` (
   `course_name` int,
   `start_time` date,
   `end_time` date,
-  `date_of_week` date
-  `time_of_day` date 
+  `date_of_week` varchar(100),
+  `time_of_day` varchar(100) 
 );
 
-CREATE TABLE `Attendance` (
-  `attend_id` int PRIMARY KEY auto_increment,
+CREATE TABLE `Student_Schedule` (
+  `std_sch_id` int PRIMARY KEY auto_increment,
   `schedule_id` int,
-  `student_id` int,
-  `status` varchar(5),
-  `date` date
+  `student_id` int
 );
 
 ALTER TABLE Result ADD FOREIGN KEY (student_id) REFERENCES Student(student_id);
@@ -100,8 +98,8 @@ ALTER TABLE TotalResult ADD FOREIGN KEY (examResult_id) REFERENCES `result`(resu
 ALTER TABLE Student_Class ADD FOREIGN KEY (student_id) REFERENCES Student(student_id);
 ALTER TABLE Student_Class ADD FOREIGN KEY (class_id) REFERENCES Class(class_id);
 ALTER TABLE Teacher_Course ADD FOREIGN KEY (course_id) REFERENCES Course(course_id);
-ALTER TABLE Attendance ADD FOREIGN KEY (student_id) REFERENCES Student(student_id);
+ALTER TABLE Student_Schedule ADD FOREIGN KEY (student_id) REFERENCES Student(student_id);
+ALTER TABLE Student_Schedule ADD FOREIGN KEY (schedule_id) REFERENCES Schedule(schedule_id);
 ALTER TABLE Schedule ADD FOREIGN KEY (teacher_id) REFERENCES Teacher(teacher_id);
 ALTER TABLE Schedule ADD FOREIGN KEY (class_id) REFERENCES Class(class_id);
-ALTER TABLE Schedule ADD FOREIGN KEY (course_id) REFERENCES Course(course_id);
 ALTER TABLE Course ADD FOREIGN KEY (teacher_id) REFERENCES Teacher(teacher_id);

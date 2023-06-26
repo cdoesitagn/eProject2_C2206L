@@ -2332,6 +2332,7 @@ public class TeacherView extends javax.swing.JFrame {
         tableViewStudent();
         tableViewScoreView();
         tableViewScheduleView();
+        tableViewGPAView();
         jTextField1.setText(String.valueOf(tController.getMax()));
         jTextField4.setText(String.valueOf(couController.getMax()));
         jTextField10.setText(String.valueOf(exaController.getMax()));
@@ -2356,6 +2357,14 @@ public class TeacherView extends javax.swing.JFrame {
 
     private void tableViewScoreView() {
         model = (DefaultTableModel) jTable5.getModel();
+        jTable5.setRowHeight(30);
+        jTable5.setShowGrid(true);
+        jTable5.setGridColor(black);
+        jTable5.setBackground(white);
+    }
+    
+    private void tableViewGPAView() {
+        model = (DefaultTableModel) jTable4.getModel();
         jTable5.setRowHeight(30);
         jTable5.setShowGrid(true);
         jTable5.setGridColor(black);
@@ -3131,11 +3140,12 @@ public class TeacherView extends javax.swing.JFrame {
     }//GEN-LAST:event_searchScheduleActionPerformed
 
     private void btnSearch1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearch1ActionPerformed
-        // TODO add your handling code here:
+        schController.searchScheduleBySearch();
     }//GEN-LAST:event_btnSearch1ActionPerformed
 
     private void btnRefresh1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefresh1ActionPerformed
-        // TODO add your handling code here:
+        searchSchedule.setText(null);
+        schController.showNewData();
     }//GEN-LAST:event_btnRefresh1ActionPerformed
 
     private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
@@ -3250,7 +3260,7 @@ public class TeacherView extends javax.swing.JFrame {
             int sid = Integer.parseInt(searchGPA.getText());
             if (exaController.isIdStudentExist(sid)) {
                 exaController.showNewDataGPA();
-                cgpaLabel.setText("CGPA: " + exaController.showCGPA());
+                cgpaLabel.setText("CGPA: " + String.format("%.2f", exaController.showCGPA()));
             } else {
                 JOptionPane.showMessageDialog(this, "No scores found");
             }
