@@ -264,5 +264,4 @@ public class ExamResultDAO extends ConnectSQL {
         close();
         return dataList;
     }
-
 }

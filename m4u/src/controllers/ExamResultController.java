@@ -9,6 +9,7 @@ import java.util.List;
 import javax.swing.table.DefaultTableModel;
 import models.ExamResult;
 import DAO.ExamResultDAO;
+import views.StudentView;
 import views.TeacherView;
 
 /**
@@ -18,6 +19,7 @@ import views.TeacherView;
 public class ExamResultController {
 
     private TeacherView view;
+    private StudentView stdview;
     ExamResultDAO exa = new ExamResultDAO();
     private List<ExamResult> dataList = new ArrayList<>();
     ExamResult ex = new ExamResult();
@@ -27,6 +29,10 @@ public class ExamResultController {
 
     public ExamResultController(TeacherView view) {
         this.view = view;
+    }
+
+    public ExamResultController(StudentView stdview) {
+        this.stdview = stdview;
     }
 
     public int getMax() {
