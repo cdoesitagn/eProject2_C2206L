@@ -130,9 +130,9 @@ public class ScheduleController {
         showNewData();
     }
 
-    public void searchScheduleByDate() {
-        String searchDate = view.getSearchShedule();
-        dataList = schDAO.getScheduleByDate(searchDate);
+    public void searchScheduleBySearch() {
+        String txtsearch = view.getSearchShedule();
+        dataList = schDAO.getScheduleBySearch(txtsearch);
         showTable();
     }
 }

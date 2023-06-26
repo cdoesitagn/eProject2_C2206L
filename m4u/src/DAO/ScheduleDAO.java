@@ -82,10 +82,10 @@ public class ScheduleDAO extends ConnectSQL {
         return scheduleList;
     }
 
-    public List<Schedule> getScheduleByDate(String search) {
+    public List<Schedule> getScheduleBySearch(String search) {
         List<Schedule> scheduleList = new ArrayList<>();
         open();
-        String sql = "SELECT * FROM Schedule WHERE concat(teacher_id, date_of_week, class_id, course_name) LIKE ?";
+        String sql = "SELECT * FROM schedule WHERE concat(teacher_id, class_id, course_name) LIKE ?";
 
         try {
             statement = conn.prepareStatement(sql);

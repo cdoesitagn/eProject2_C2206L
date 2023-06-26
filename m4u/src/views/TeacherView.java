@@ -3185,11 +3185,12 @@ public class TeacherView extends javax.swing.JFrame {
     }//GEN-LAST:event_searchScheduleActionPerformed
 
     private void btnSearch1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearch1ActionPerformed
-        // TODO add your handling code here:
+        schController.searchScheduleBySearch();
     }//GEN-LAST:event_btnSearch1ActionPerformed
 
     private void btnRefresh1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefresh1ActionPerformed
-        // TODO add your handling code here:
+        searchSchedule.setText(null);
+        schController.showNewData();
     }//GEN-LAST:event_btnRefresh1ActionPerformed
 
     private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
