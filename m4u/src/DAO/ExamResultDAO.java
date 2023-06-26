@@ -106,6 +106,26 @@ public class ExamResultDAO extends ConnectSQL {
         return false;
     }
     
+    public boolean isCourseNameExist(String courseName) {
+        open();
+        try {
+            String sql = "SELECT * FROM result WHERE course_name = ?";
+            PreparedStatement statement = conn.prepareStatement(sql);
+            statement.setString(1, courseName);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ExamResultDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            close();
+        }
+        return false;
+    }
+    
     public boolean isIdStudentExists(int id) {
         open();
         try {

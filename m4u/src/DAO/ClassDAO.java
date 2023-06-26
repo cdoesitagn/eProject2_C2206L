@@ -44,6 +44,7 @@ public class ClassDAO extends ConnectSQL {
 
     public List<String> getClassList() {
         List<String> classList = new ArrayList<>();
+        open();
         try {
             String query = "SELECT class_name FROM Class";
             statement = conn.prepareStatement(query);

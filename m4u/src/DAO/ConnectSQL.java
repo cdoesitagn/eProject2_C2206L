@@ -53,30 +53,5 @@ public class ConnectSQL {
         conn = null;
     }
 
-    public static User getUserByUserName(String username) {
-        User user = null;
-        open();
-
-        try {
-            String sql = "SELECT * FROM UserAccount WHERE username = ?";
-            statement = conn.prepareStatement(sql);
-            statement.setString(1, username);
-
-            // Thực thi truy vấn
-            ResultSet resultSet = statement.executeQuery();
-
-            // Kiểm tra kết quả truy vấn
-            if (resultSet.next()) {
-                // Lấy thông tin từ ResultSet và tạo đối tượng User tương ứng
-                int userId = resultSet.getInt("user_id");
-                String password = resultSet.getString("password");
-                int role = resultSet.getInt("role");
-
-                user = new User(userId, username, password, role);
-            }
-        } catch (SQLException e) {
-        }
-        close();
-        return user;
-    }
+   
 }

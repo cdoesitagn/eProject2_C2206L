@@ -43,7 +43,8 @@ CREATE TABLE `result` (
 );
 
 CREATE TABLE `UserAccount` (
-  `user_id` int PRIMARY KEY auto_increment,
+  `userAccount_id` int PRIMARY KEY auto_increment,
+  `user_id` int,
   `username` varchar(30),
   `password` varchar(30),
   `role` int
@@ -79,7 +80,7 @@ CREATE TABLE `Schedule` (
   `schedule_id` int PRIMARY KEY auto_increment,
   `teacher_id` int,
   `class_id` int,
-  `course_name` int,
+  `course_name` varchar(100),
   `start_time` date,
   `end_time` date,
   `date_of_week` varchar(100),

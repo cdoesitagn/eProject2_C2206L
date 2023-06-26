@@ -4,8 +4,8 @@
  */
 package controllers;
 
+import DAO.LoginDAO;
 import views.LoginView;
-import DAO.ConnectSQL;
 import models.User;
 import views.Dashboard;
 import views.StudentView;
@@ -18,6 +18,7 @@ import views.TeacherView;
 public class LoginController {
 
     private LoginView view;
+    private static LoginDAO logDAO;
 
     public LoginController() {
 
@@ -25,6 +26,7 @@ public class LoginController {
 
     public LoginController(LoginView view) {
         this.view = view;
+        logDAO = new LoginDAO();
     }
 
     public void login() {
@@ -32,7 +34,7 @@ public class LoginController {
         String username = view.getUsername();
         String password = view.getPassword();
 
-        User user = ConnectSQL.getUserByUserName(username);
+        User user = LoginDAO.getUserByUserName(username);
 
         if (user != null && user.getPassword().equals(password)) {
             switch (user.getRole()) {
@@ -44,8 +46,10 @@ public class LoginController {
                     view.dispose();
                     break;
                 case 2:
+                    int user_id = user.getUser_id();
                     view.showMessage("Login Successfull By Student Account!");
                     StudentView studentView = new StudentView();
+                    studentView.setUserId(user_id);
                     studentView.setVisible(true);
                     view.dispose();
                     break;

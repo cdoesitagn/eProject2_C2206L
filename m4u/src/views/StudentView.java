@@ -5,11 +5,16 @@
 package views;
 
 import controllers.ExamResultController;
+import controllers.ScheduleController;
+import static java.awt.Color.black;
+import static java.awt.Color.white;
 import java.awt.print.PrinterException;
 import java.text.MessageFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -23,6 +28,10 @@ public class StudentView extends javax.swing.JFrame {
     int xx;
     int xy;
     private final ExamResultController exaController;
+    private final ScheduleController schController;
+    private DefaultTableModel model;
+    public int currentIndex;
+    private int user_id;
 
     /**
      * Creates new form StudentView
@@ -30,6 +39,8 @@ public class StudentView extends javax.swing.JFrame {
     public StudentView() {
         initComponents();
         exaController = new ExamResultController(this);
+        schController = new ScheduleController(this);
+        init();
     }
 
     public DefaultTableModel getTableScoreGPA() {
@@ -38,6 +49,56 @@ public class StudentView extends javax.swing.JFrame {
 
     public String getSearchGPA() {
         return searchGPA.getText();
+    }
+
+    public void showErrorMessage(String message) {
+        JOptionPane.showMessageDialog(this, message, "Error", JOptionPane.ERROR_MESSAGE);
+    }
+
+    public int showConfirmDialog(String message) {
+        return JOptionPane.showConfirmDialog(rootPane, message);
+    }
+
+    public int showConfirmDeleteDialog(String message1, String message2) {
+        return JOptionPane.showConfirmDialog(null, message1, message2, JOptionPane.CANCEL_OPTION, 0);
+    }
+
+    public int OK_Option() {
+        return JOptionPane.OK_OPTION;
+    }
+
+    public void showMessage(String message) {
+        JOptionPane.showMessageDialog(this, message);
+    }
+
+    public DefaultTableModel getTableSchedule() {
+        return (DefaultTableModel) jTable3.getModel();
+    }
+
+    private void init() {
+        tableViewScheduleView();
+        jTextField14.setText(String.valueOf(schController.getMax()));
+        schController.showNewDataSTD();
+    }
+
+    private void tableViewScheduleView() {
+        model = (DefaultTableModel) jTable3.getModel();
+        jTable3.setRowHeight(30);
+        jTable3.setShowGrid(true);
+        jTable3.setGridColor(black);
+        jTable3.setBackground(white);
+    }
+
+    public void setUserId(int user_id) {
+        this.user_id = user_id;
+    }
+
+    public int getUser_id() {
+        return user_id;
+    }
+
+    public String getScheduleId() {
+        return jTextField14.getText();
     }
 
     /**
@@ -82,11 +143,13 @@ public class StudentView extends javax.swing.JFrame {
         jLabel33 = new javax.swing.JLabel();
         jTextField14 = new javax.swing.JTextField();
         txtTeacherId = new javax.swing.JTextField();
-        datePicker = new com.toedter.calendar.JDateChooser();
         txtClassId = new javax.swing.JTextField();
-        txtCourseName = new javax.swing.JTextField();
-        txtStartTime = new javax.swing.JTextField();
-        txtEndTime = new javax.swing.JTextField();
+        txtCourseName = new javax.swing.JComboBox<>();
+        txtStartTime = new com.toedter.calendar.JDateChooser();
+        txtEndTime = new com.toedter.calendar.JDateChooser();
+        datePicker = new javax.swing.JComboBox<>();
+        jLabel35 = new javax.swing.JLabel();
+        comboTimeOfDay = new javax.swing.JComboBox<>();
         jPanel29 = new javax.swing.JPanel();
         jPanel32 = new javax.swing.JPanel();
         jLabel34 = new javax.swing.JLabel();
@@ -443,16 +506,28 @@ public class StudentView extends javax.swing.JFrame {
         });
 
         txtTeacherId.setEditable(false);
+        txtTeacherId.setBackground(new java.awt.Color(153, 153, 153));
         txtTeacherId.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtTeacherId.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         txtClassId.setEditable(false);
+        txtClassId.setBackground(new java.awt.Color(153, 153, 153));
 
-        txtCourseName.setEditable(false);
+        txtCourseName.setBackground(new java.awt.Color(153, 153, 153));
+        txtCourseName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "C Program", "Java 1", ".Net", "WS", "eProject1", "JSON", "NodeJS", "ADUF", "PHP", "NOSQL", "DMA", "IASF", "HTML & CSS", "ASP. NET ", "WCD", "EAD", "SQL", "Java 2", "AP", "IDP" }));
 
-        txtStartTime.setEditable(false);
+        txtStartTime.setBackground(new java.awt.Color(153, 153, 153));
 
-        txtEndTime.setEditable(false);
+        txtEndTime.setBackground(new java.awt.Color(153, 153, 153));
+
+        datePicker.setBackground(new java.awt.Color(153, 153, 153));
+        datePicker.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Monday, Wednesday, Friday", "Tuesday, Thursday, Saturday" }));
+
+        jLabel35.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel35.setText("Time of Day");
+
+        comboTimeOfDay.setBackground(new java.awt.Color(153, 153, 153));
+        comboTimeOfDay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "8:00 - 11:00", "14:00 - 17:00", "18:00 - 19:00" }));
 
         javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
         jPanel26.setLayout(jPanel26Layout);
@@ -461,23 +536,31 @@ public class StudentView extends javax.swing.JFrame {
             .addGroup(jPanel26Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtTeacherId)
-                        .addComponent(jTextField14, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
-                        .addComponent(datePicker, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtClassId)
-                        .addComponent(txtCourseName))
-                    .addComponent(txtStartTime, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEndTime, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel26Layout.createSequentialGroup()
+                        .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel26, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel27, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel28, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtTeacherId)
+                                .addComponent(jTextField14, javax.swing.GroupLayout.DEFAULT_SIZE, 354, Short.MAX_VALUE)
+                                .addComponent(txtClassId)
+                                .addComponent(txtCourseName, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addComponent(txtStartTime, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(datePicker, javax.swing.GroupLayout.Alignment.LEADING, 0, 221, Short.MAX_VALUE)
+                                .addComponent(txtEndTime, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(jPanel26Layout.createSequentialGroup()
+                        .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(comboTimeOfDay, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel26Layout.setVerticalGroup(
@@ -497,22 +580,29 @@ public class StudentView extends javax.swing.JFrame {
                     .addGroup(jPanel26Layout.createSequentialGroup()
                         .addComponent(txtClassId)
                         .addGap(2, 2, 2)))
+                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel26Layout.createSequentialGroup()
+                        .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel26Layout.createSequentialGroup()
+                        .addComponent(txtCourseName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
+                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel31, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(txtStartTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel32, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                    .addComponent(txtEndTime, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtCourseName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel31, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtStartTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(17, 17, 17)
-                .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel32, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEndTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(datePicker, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel33, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(datePicker, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(256, 256, 256))
+                    .addComponent(comboTimeOfDay, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(214, 214, 214))
         );
 
         jPanel29.setBackground(new java.awt.Color(204, 204, 204));
@@ -576,19 +666,19 @@ public class StudentView extends javax.swing.JFrame {
 
         jTable3.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
             },
             new String [] {
-                "Schedule's ID", "Teacher's ID", "Class's ID", "Course Name", "Start Time", "End Time", "Date of Week"
+                "Schedule's ID", "Teacher's ID", "Class's ID", "Course Name", "Start Time", "End Time", "Date of Week", "Time of Day"
             }
         ));
         jTable3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -650,11 +740,11 @@ public class StudentView extends javax.swing.JFrame {
             .addGroup(jPanel43Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(266, 266, 266)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jButton23, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(142, 142, 142)
+                .addGap(18, 18, 18)
                 .addComponent(jButton25, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
-                .addContainerGap())
+                .addGap(384, 384, 384))
         );
         jPanel43Layout.setVerticalGroup(
             jPanel43Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -708,7 +798,7 @@ public class StudentView extends javax.swing.JFrame {
                 .addGap(15, 15, 15)
                 .addGroup(jPanel25Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel29, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel26, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
@@ -767,11 +857,76 @@ public class StudentView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton23ActionPerformed
 
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
-
+        int schedule_id = Integer.parseInt(getScheduleId());
+        int student_id = getUser_id();
+        if (!schController.isScheduleIdRegistered(student_id, schedule_id)) {
+            schController.registerSchedule();
+        } else {
+            showMessage("Schedule ID is already registered!");
+        }
     }//GEN-LAST:event_btnRegisterActionPerformed
-
+    public void clearScheduleStudent() {
+        jTextField14.setText(String.valueOf(schController.getMax()));
+        txtTeacherId.setText(null);
+        txtClassId.setText(null);
+        txtCourseName.setSelectedIndex(0);
+        txtStartTime.setDate(null);
+        txtEndTime.setDate(null);
+        datePicker.setSelectedIndex(0);
+        comboTimeOfDay.setSelectedIndex(0);
+    }
     private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
+        model = (DefaultTableModel) jTable3.getModel();
+        currentIndex = jTable3.getSelectedRow();
+        jTextField14.setText(model.getValueAt(currentIndex, 0).toString());
+        txtTeacherId.setText(model.getValueAt(currentIndex, 1).toString());
+        txtClassId.setText(model.getValueAt(currentIndex, 2).toString());
+        String courseName = model.getValueAt(currentIndex, 3).toString();
+        int selectedIndex = -1;
 
+        for (int i = 0; i < txtCourseName.getItemCount(); i++) {
+            if (courseName.equals(txtCourseName.getItemAt(i))) {
+                selectedIndex = i;
+                break;
+            }
+        }
+
+        if (selectedIndex != -1) {
+            txtCourseName.setSelectedIndex(selectedIndex);
+        } else {
+            txtCourseName.setSelectedIndex(0);
+            showErrorMessage("Không tìm thấy tên môn học trong danh sách.");
+        }
+        try {
+            Date dateOfWeek = new SimpleDateFormat("yyyy-MM-dd").parse(model.getValueAt(currentIndex, 4).toString());
+            txtStartTime.setDate(dateOfWeek);
+        } catch (ParseException ex) {
+            Logger.getLogger(TeacherView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+            Date dateOfWeek = new SimpleDateFormat("yyyy-MM-dd").parse(model.getValueAt(currentIndex, 5).toString());
+            txtEndTime.setDate(dateOfWeek);
+        } catch (ParseException ex) {
+            Logger.getLogger(TeacherView.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String dateWeek = model.getValueAt(currentIndex, 6).toString();
+        if (dateWeek.equals("Monday, Wednesday, Friday")) {
+            datePicker.setSelectedIndex(0);
+        } else {
+            datePicker.setSelectedIndex(1);
+        }
+        String timeOfDay = model.getValueAt(currentIndex, 7).toString();
+        switch (timeOfDay) {
+            case "8:00 - 11:00":
+                comboTimeOfDay.setSelectedIndex(0);
+                break;
+            case "14:00 - 17:00":
+                comboTimeOfDay.setSelectedIndex(1);
+                break;
+            default:
+                comboTimeOfDay.setSelectedIndex(2);
+                break;
+        }
     }//GEN-LAST:event_jTable3MouseClicked
 
     private void btnRefresh1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefresh1ActionPerformed
@@ -865,7 +1020,8 @@ public class StudentView extends javax.swing.JFrame {
     private javax.swing.JButton btnRegister;
     private javax.swing.JButton btnSearch1;
     private javax.swing.JLabel cgpaLabel;
-    private com.toedter.calendar.JDateChooser datePicker;
+    private javax.swing.JComboBox<String> comboTimeOfDay;
+    private javax.swing.JComboBox<String> datePicker;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton23;
     private javax.swing.JButton jButton25;
@@ -882,6 +1038,7 @@ public class StudentView extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
+    private javax.swing.JLabel jLabel35;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel23;
@@ -908,9 +1065,9 @@ public class StudentView extends javax.swing.JFrame {
     private javax.swing.JTextField searchGPA;
     private javax.swing.JTextField searchSchedule;
     private javax.swing.JTextField txtClassId;
-    private javax.swing.JTextField txtCourseName;
-    private javax.swing.JTextField txtEndTime;
-    private javax.swing.JTextField txtStartTime;
+    private javax.swing.JComboBox<String> txtCourseName;
+    private com.toedter.calendar.JDateChooser txtEndTime;
+    private com.toedter.calendar.JDateChooser txtStartTime;
     private javax.swing.JTextField txtTeacherId;
     // End of variables declaration//GEN-END:variables
 }

@@ -567,7 +567,7 @@
                           <EmptySpace min="-2" pref="15" max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
                               <Component id="jPanel29" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jPanel26" alignment="0" max="32767" attributes="0"/>
+                              <Component id="jPanel26" alignment="0" pref="0" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace pref="19" max="32767" attributes="0"/>
                       </Group>
@@ -585,28 +585,40 @@
                   <Layout>
                     <DimensionLayout dim="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" alignment="0" attributes="0">
+                          <Group type="102" attributes="0">
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
-                                  <Component id="jLabel26" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
-                                  <Component id="jLabel27" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
-                                  <Component id="jLabel29" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
-                                  <Component id="jLabel28" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
-                                  <Component id="jLabel31" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
-                                  <Component id="jLabel32" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
-                                  <Component id="jLabel33" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="103" alignment="0" groupAlignment="0" max="-2" attributes="0">
-                                      <Component id="txtTeacherId" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="jTextField14" alignment="0" pref="354" max="32767" attributes="0"/>
-                                      <Component id="datePicker" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                                      <Component id="txtClassId" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="txtCourseName" alignment="0" max="32767" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Component id="jLabel26" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
+                                          <Component id="jLabel27" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
+                                          <Component id="jLabel29" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
+                                          <Component id="jLabel28" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
+                                          <Component id="jLabel31" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
+                                          <Component id="jLabel32" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
+                                          <Component id="jLabel33" alignment="0" min="-2" pref="122" max="-2" attributes="0"/>
+                                      </Group>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Group type="103" groupAlignment="0" attributes="0">
+                                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                              <Component id="txtTeacherId" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="jTextField14" alignment="0" pref="354" max="32767" attributes="0"/>
+                                              <Component id="txtClassId" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="txtCourseName" alignment="0" max="32767" attributes="0"/>
+                                          </Group>
+                                          <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                              <Component id="txtStartTime" alignment="0" max="32767" attributes="0"/>
+                                              <Component id="datePicker" alignment="0" pref="221" max="32767" attributes="0"/>
+                                              <Component id="txtEndTime" alignment="0" max="32767" attributes="0"/>
+                                          </Group>
+                                      </Group>
                                   </Group>
-                                  <Component id="txtStartTime" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
-                                  <Component id="txtEndTime" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jLabel35" min="-2" pref="122" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                      <Component id="comboTimeOfDay" min="-2" pref="354" max="-2" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                                  </Group>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                           </Group>
@@ -633,26 +645,36 @@
                                       <EmptySpace min="2" pref="2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel29" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="txtCourseName" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="jLabel29" min="-2" pref="30" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="12" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="1" attributes="0">
+                                      <Component id="txtCourseName" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                  </Group>
                               </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel31" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="txtStartTime" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jLabel31" pref="30" max="32767" attributes="0"/>
+                                  <Component id="txtStartTime" max="32767" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="17" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Component id="jLabel32" pref="30" max="32767" attributes="0"/>
+                                  <Component id="txtEndTime" max="32767" attributes="0"/>
+                              </Group>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabel32" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="txtEndTime" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel33" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="datePicker" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jLabel33" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="datePicker" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="comboTimeOfDay" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="jLabel35" alignment="1" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace min="-2" pref="256" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="214" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -731,6 +753,9 @@
                     <Component class="javax.swing.JTextField" name="txtTeacherId">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="99" green="99" red="99" type="rgb"/>
+                        </Property>
                         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                           <Font name="Segoe UI" size="16" style="0"/>
                         </Property>
@@ -739,27 +764,102 @@
                         </Property>
                       </Properties>
                     </Component>
-                    <Component class="com.toedter.calendar.JDateChooser" name="datePicker">
-                    </Component>
                     <Component class="javax.swing.JTextField" name="txtClassId">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="99" green="99" red="99" type="rgb"/>
+                        </Property>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="txtCourseName">
+                    <Component class="javax.swing.JComboBox" name="txtCourseName">
                       <Properties>
-                        <Property name="editable" type="boolean" value="false"/>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="99" green="99" red="99" type="rgb"/>
+                        </Property>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="20">
+                            <StringItem index="0" value="C Program"/>
+                            <StringItem index="1" value="Java 1"/>
+                            <StringItem index="2" value=".Net"/>
+                            <StringItem index="3" value="WS"/>
+                            <StringItem index="4" value="eProject1"/>
+                            <StringItem index="5" value="JSON"/>
+                            <StringItem index="6" value="NodeJS"/>
+                            <StringItem index="7" value="ADUF"/>
+                            <StringItem index="8" value="PHP"/>
+                            <StringItem index="9" value="NOSQL"/>
+                            <StringItem index="10" value="DMA"/>
+                            <StringItem index="11" value="IASF"/>
+                            <StringItem index="12" value="HTML &amp; CSS"/>
+                            <StringItem index="13" value="ASP. NET "/>
+                            <StringItem index="14" value="WCD"/>
+                            <StringItem index="15" value="EAD"/>
+                            <StringItem index="16" value="SQL"/>
+                            <StringItem index="17" value="Java 2"/>
+                            <StringItem index="18" value="AP"/>
+                            <StringItem index="19" value="IDP"/>
+                          </StringArray>
+                        </Property>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="com.toedter.calendar.JDateChooser" name="txtStartTime">
+                      <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="99" green="99" red="99" type="rgb"/>
+                        </Property>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="txtStartTime">
+                    <Component class="com.toedter.calendar.JDateChooser" name="txtEndTime">
                       <Properties>
-                        <Property name="editable" type="boolean" value="false"/>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="99" green="99" red="99" type="rgb"/>
+                        </Property>
                       </Properties>
                     </Component>
-                    <Component class="javax.swing.JTextField" name="txtEndTime">
+                    <Component class="javax.swing.JComboBox" name="datePicker">
                       <Properties>
-                        <Property name="editable" type="boolean" value="false"/>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="99" green="99" red="99" type="rgb"/>
+                        </Property>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="2">
+                            <StringItem index="0" value="Monday, Wednesday, Friday"/>
+                            <StringItem index="1" value="Tuesday, Thursday, Saturday"/>
+                          </StringArray>
+                        </Property>
                       </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                      </AuxValues>
+                    </Component>
+                    <Component class="javax.swing.JLabel" name="jLabel35">
+                      <Properties>
+                        <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                          <Font name="Segoe UI" size="16" style="1"/>
+                        </Property>
+                        <Property name="text" type="java.lang.String" value="Time of Day"/>
+                      </Properties>
+                    </Component>
+                    <Component class="javax.swing.JComboBox" name="comboTimeOfDay">
+                      <Properties>
+                        <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                          <Color blue="99" green="99" red="99" type="rgb"/>
+                        </Property>
+                        <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                          <StringArray count="3">
+                            <StringItem index="0" value="8:00 - 11:00"/>
+                            <StringItem index="1" value="14:00 - 17:00"/>
+                            <StringItem index="2" value="18:00 - 19:00"/>
+                          </StringArray>
+                        </Property>
+                      </Properties>
+                      <AuxValues>
+                        <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+                      </AuxValues>
                     </Component>
                   </SubComponents>
                 </Container>
@@ -913,7 +1013,7 @@
                             <Component class="javax.swing.JTable" name="jTable3">
                               <Properties>
                                 <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-                                  <Table columnCount="7" rowCount="10">
+                                  <Table columnCount="8" rowCount="10">
                                     <Column editable="true" title="Schedule&apos;s ID" type="java.lang.Object"/>
                                     <Column editable="true" title="Teacher&apos;s ID" type="java.lang.Object"/>
                                     <Column editable="true" title="Class&apos;s ID" type="java.lang.Object"/>
@@ -921,7 +1021,52 @@
                                     <Column editable="true" title="Start Time" type="java.lang.Object"/>
                                     <Column editable="true" title="End Time" type="java.lang.Object"/>
                                     <Column editable="true" title="Date of Week" type="java.lang.Object"/>
+                                    <Column editable="true" title="Time of Day" type="java.lang.Object"/>
                                   </Table>
+                                </Property>
+                                <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">
+                                  <TableColumnModel selectionModel="0">
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                    <Column maxWidth="-1" minWidth="-1" prefWidth="-1" resizable="true">
+                                      <Title/>
+                                      <Editor/>
+                                      <Renderer/>
+                                    </Column>
+                                  </TableColumnModel>
                                 </Property>
                                 <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
                                   <Color id="Hand Cursor"/>
@@ -946,11 +1091,11 @@
                               <Group type="102" alignment="0" attributes="0">
                                   <EmptySpace max="-2" attributes="0"/>
                                   <Component id="btnRegister" min="-2" pref="106" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="266" max="-2" attributes="0"/>
+                                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                                   <Component id="jButton23" min="-2" pref="106" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="142" max="-2" attributes="0"/>
+                                  <EmptySpace type="separate" max="-2" attributes="0"/>
                                   <Component id="jButton25" pref="134" max="32767" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
+                                  <EmptySpace min="-2" pref="384" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                         </DimensionLayout>

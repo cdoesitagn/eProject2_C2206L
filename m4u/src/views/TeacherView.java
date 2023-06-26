@@ -2362,21 +2362,21 @@ public class TeacherView extends javax.swing.JFrame {
         jTable5.setGridColor(black);
         jTable5.setBackground(white);
     }
-    
+
     private void tableViewGPAView() {
         model = (DefaultTableModel) jTable4.getModel();
-        jTable5.setRowHeight(30);
-        jTable5.setShowGrid(true);
-        jTable5.setGridColor(black);
-        jTable5.setBackground(white);
+        jTable4.setRowHeight(30);
+        jTable4.setShowGrid(true);
+        jTable4.setGridColor(black);
+        jTable4.setBackground(white);
     }
 
     private void tableViewScheduleView() {
         model = (DefaultTableModel) jTable3.getModel();
-        jTable5.setRowHeight(30);
-        jTable5.setShowGrid(true);
-        jTable5.setGridColor(black);
-        jTable5.setBackground(white);
+        jTable3.setRowHeight(30);
+        jTable3.setShowGrid(true);
+        jTable3.setGridColor(black);
+        jTable3.setBackground(white);
     }
 
     public void clearStudent() {
@@ -2842,22 +2842,26 @@ public class TeacherView extends javax.swing.JFrame {
     private void jButton38ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton38ActionPerformed
         if (!jTextField25.getText().isEmpty()) {
             if (!exaController.isIdExist(Integer.parseInt(jTextField10.getText()))) {
-                if (isNumeric(getTScore1()) && isNumeric(getPScore1())) {
-                    if (isNumeric(getTScore2()) && isNumeric(getPScore2())) {
-                        float tScore1 = Float.parseFloat(getTScore1());
-                        float pScore1 = Float.parseFloat(getPScore1());
-                        if (tScore1 >= 4 && pScore1 >= 4) {
-                            showMessage("System doesn't enter value TScore2 and PScore2");
-                            exaController.saveScore();
+                if (!exaController.isCourseNameExist(courseComboBox.getSelectedItem().toString())) {
+                    if (isNumeric(getTScore1()) && isNumeric(getPScore1())) {
+                        if (isNumeric(getTScore2()) && isNumeric(getPScore2())) {
+                            float tScore1 = Float.parseFloat(getTScore1());
+                            float pScore1 = Float.parseFloat(getPScore1());
+                            if (tScore1 >= 4 && pScore1 >= 4) {
+                                showMessage("System doesn't enter value TScore2 and PScore2");
+                                exaController.saveScore();
+                            } else {
+                                showMessage("System enter value TScore2 and PScore2");
+                                exaController.saveScore();
+                            }
                         } else {
-                            showMessage("System enter value TScore2 and PScore2");
-                            exaController.saveScore();
+                            showMessage("Please enter a valid value for tScore2 and pScore2");
                         }
                     } else {
-                        showMessage("Please enter a valid value for tScore2 and pScore2");
+                        showMessage("Please enter a valid value for tScore1 and pScore1");
                     }
                 } else {
-                    showMessage("Please enter a valid value for tScore1 and pScore1");
+                    showMessage("Course name already exists");
                 }
             } else {
                 showMessage("Score ID already exists");
@@ -3254,7 +3258,7 @@ public class TeacherView extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton34ActionPerformed
 
     private void SearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SearchActionPerformed
-       if (searchGPA.getText().isEmpty()) {
+        if (searchGPA.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Please enter a student ID");
         } else {
             int sid = Integer.parseInt(searchGPA.getText());
