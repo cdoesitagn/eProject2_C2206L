@@ -193,6 +193,34 @@ public class ExamResultController {
         }
     }
     
+    public float showCGPAstd() {
+        int studentId = Integer.parseInt(stdview.getSearchGPA());
+        dataList = ExamResultDAO.getScoreValue(studentId);
+        float cgpa = calculateCGPA(dataList);
+        return cgpa;
+    }
+
+    public void showNewDataGPAstd() {
+        int studentId = Integer.parseInt(stdview.getSearchGPA());
+        dataList = ExamResultDAO.getScoreValue(studentId);
+        showTableGPAstd();
+    }
+
+    public void showTableGPAstd() {
+        DefaultTableModel tableModel = stdview.getTableScoreGPA();
+        tableModel.setRowCount(0);
+
+        for (ExamResult exams : dataList) {
+            tableModel.addRow(new Object[]{
+                exams.getStudentId(),
+                exams.getSemesterId(),
+                exams.getCourseName(),  
+                exams.getTotalPoint1(),
+                exams.getTotalPoint2()
+            });
+        }
+    }
+    
     private float calculateCGPA(List<ExamResult> examResults) {
         float totalGradePoints = 0;
         float totalCredits = 0;
