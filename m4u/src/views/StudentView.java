@@ -498,7 +498,7 @@ public class StudentView extends javax.swing.JFrame {
 
         jTextField14.setEditable(false);
         jTextField14.setBackground(new java.awt.Color(153, 153, 153));
-        jTextField14.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jTextField14.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jTextField14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField14ActionPerformed(evt);
@@ -507,26 +507,32 @@ public class StudentView extends javax.swing.JFrame {
 
         txtTeacherId.setEditable(false);
         txtTeacherId.setBackground(new java.awt.Color(153, 153, 153));
-        txtTeacherId.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txtTeacherId.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         txtTeacherId.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         txtClassId.setEditable(false);
         txtClassId.setBackground(new java.awt.Color(153, 153, 153));
+        txtClassId.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
 
         txtCourseName.setBackground(new java.awt.Color(153, 153, 153));
+        txtCourseName.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         txtCourseName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "C Program", "Java 1", ".Net", "WS", "eProject1", "JSON", "NodeJS", "ADUF", "PHP", "NOSQL", "DMA", "IASF", "HTML & CSS", "ASP. NET ", "WCD", "EAD", "SQL", "Java 2", "AP", "IDP" }));
 
         txtStartTime.setBackground(new java.awt.Color(153, 153, 153));
+        txtStartTime.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
 
         txtEndTime.setBackground(new java.awt.Color(153, 153, 153));
+        txtEndTime.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
 
         datePicker.setBackground(new java.awt.Color(153, 153, 153));
+        datePicker.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         datePicker.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Monday, Wednesday, Friday", "Tuesday, Thursday, Saturday" }));
 
         jLabel35.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel35.setText("Time of Day");
 
         comboTimeOfDay.setBackground(new java.awt.Color(153, 153, 153));
+        comboTimeOfDay.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         comboTimeOfDay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "8:00 - 11:00", "14:00 - 17:00", "18:00 - 19:00" }));
 
         javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
@@ -555,10 +561,9 @@ public class StudentView extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtCourseName, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel26Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtStartTime, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(datePicker, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtEndTime, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(txtStartTime, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(datePicker, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEndTime, javax.swing.GroupLayout.PREFERRED_SIZE, 354, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(jPanel26Layout.createSequentialGroup()
                         .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)

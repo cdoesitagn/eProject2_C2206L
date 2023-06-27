@@ -103,7 +103,7 @@ public class TcController {
     public void deleteTeacher() {
         int teacher_id = Integer.parseInt(view.getTeachID());
         if (tc.isIDExits(teacher_id)) {
-            int yesOrNo = view.showConfirmDeleteDialog("Course and score records will also be deleted", "Teacher Delete");
+            int yesOrNo = view.showConfirmDeleteDialog("Teacher records will also be deleted", "Teacher Delete");
             if (yesOrNo == view.OK_Option()) {
                 TeacherDAO.delete(teacher_id);
             }
