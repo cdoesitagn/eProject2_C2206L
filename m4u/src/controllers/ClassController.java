@@ -62,11 +62,35 @@ public class ClassController {
     }
 
     public void updateClass() {
-        
+        int class_id = Integer.parseInt(view.getClassId());
+        if (cl.isIDExits(class_id)) {
+            String Classname = view.getClassName();
+
+            Classes classes = new Classes();
+            classes.setClass_id(class_id);
+            classes.setClass_name(Classname);
+
+            ClassDAO.update(classes);
+            view.clearClass();
+            showNewData();
+        } else {
+            view.showMessage("Class id doesn't exists");
+        }
+
     }
 
     public void deleteClass() {
-       
+        int class_id = Integer.parseInt(view.getClassId());
+        if (cl.isIDExits(class_id)) {
+            int yesOrNo = view.showConfirmDeleteDialog("Class records will also be deleted", "Class Delete");
+            if (yesOrNo == view.OK_Option()) {
+                ClassDAO.delete(class_id);
+            }
+            showNewData();
+            view.clearClass();
+        } else {
+            view.showMessage("Class id doesn't exists");
+        }
     }
 
     public void searchClass() {

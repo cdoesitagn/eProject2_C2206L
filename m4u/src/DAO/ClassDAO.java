@@ -117,4 +117,37 @@ public class ClassDAO extends ConnectSQL {
         }
         close();
     }
+    public boolean isIDExits(int id) {
+        open();
+        try {
+            String sql = "select * from class where class_id = ?";
+            statement = conn.prepareStatement(sql);
+            statement.setInt(1, id);
+
+            ResultSet resultSet = statement.executeQuery();
+
+            if (resultSet.next()) {
+                return true;
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ClassDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        close();
+        return false;
+    }
+    
+    public static void delete(int id) {
+        open();
+        try {
+
+            String sql = "delete from class where class_id = ?";
+            statement = conn.prepareStatement(sql);
+            statement.setInt(1, id);
+
+            statement.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(ClassDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        close();
+    }
 }
