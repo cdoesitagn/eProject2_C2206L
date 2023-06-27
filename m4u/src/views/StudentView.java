@@ -163,6 +163,11 @@ public class StudentView extends javax.swing.JFrame {
         btnRegister = new javax.swing.JButton();
         jButton23 = new javax.swing.JButton();
         jButton25 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -498,7 +503,7 @@ public class StudentView extends javax.swing.JFrame {
 
         jTextField14.setEditable(false);
         jTextField14.setBackground(new java.awt.Color(153, 153, 153));
-        jTextField14.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        jTextField14.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jTextField14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField14ActionPerformed(evt);
@@ -507,7 +512,7 @@ public class StudentView extends javax.swing.JFrame {
 
         txtTeacherId.setEditable(false);
         txtTeacherId.setBackground(new java.awt.Color(153, 153, 153));
-        txtTeacherId.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txtTeacherId.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         txtTeacherId.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
         txtTeacherId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -517,6 +522,7 @@ public class StudentView extends javax.swing.JFrame {
 
         txtClassId.setEditable(false);
         txtClassId.setBackground(new java.awt.Color(153, 153, 153));
+        txtClassId.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         txtClassId.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtClassIdActionPerformed(evt);
@@ -524,19 +530,24 @@ public class StudentView extends javax.swing.JFrame {
         });
 
         txtCourseName.setBackground(new java.awt.Color(153, 153, 153));
+        txtCourseName.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         txtCourseName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "C Program", "Java 1", ".Net", "WS", "eProject1", "JSON", "NodeJS", "ADUF", "PHP", "NOSQL", "DMA", "IASF", "HTML & CSS", "ASP. NET ", "WCD", "EAD", "SQL", "Java 2", "AP", "IDP" }));
 
         txtStartTime.setBackground(new java.awt.Color(153, 153, 153));
+        txtStartTime.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
 
         txtEndTime.setBackground(new java.awt.Color(153, 153, 153));
+        txtEndTime.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
 
         datePicker.setBackground(new java.awt.Color(153, 153, 153));
+        datePicker.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         datePicker.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Monday, Wednesday, Friday", "Tuesday, Thursday, Saturday" }));
 
         jLabel35.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel35.setText("Time of Day");
 
         comboTimeOfDay.setBackground(new java.awt.Color(153, 153, 153));
+        comboTimeOfDay.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         comboTimeOfDay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "8:00 - 11:00", "14:00 - 17:00", "18:00 - 19:00" }));
 
         javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
@@ -814,6 +825,57 @@ public class StudentView extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Schedule", jPanel25);
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Your Schedule");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Schedule's ID", "Teacher's ID", "Class's ID", "Course Name", "Strat Time", "End Time", "Date of Week", "Time of Day"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1288, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Schedule Selected", jPanel3);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -1047,6 +1109,7 @@ public class StudentView extends javax.swing.JFrame {
     private javax.swing.JButton jButton35;
     private javax.swing.JButton jButton36;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
@@ -1064,6 +1127,7 @@ public class StudentView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel25;
     private javax.swing.JPanel jPanel26;
     private javax.swing.JPanel jPanel29;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel30;
     private javax.swing.JPanel jPanel31;
     private javax.swing.JPanel jPanel32;
@@ -1072,11 +1136,14 @@ public class StudentView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel35;
     private javax.swing.JPanel jPanel36;
     private javax.swing.JPanel jPanel37;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel43;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTextField jTextField14;
