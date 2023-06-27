@@ -115,7 +115,7 @@ public class Dashboard extends javax.swing.JFrame {
         jTable3.setGridColor(black);
         jTable3.setBackground(white);
     }
-    
+
     public void clearTeacher() {
         txtTeachID.setText(String.valueOf(tcController.getMax()));
         txtTeachName.setText(null);
@@ -136,10 +136,11 @@ public class Dashboard extends javax.swing.JFrame {
         txtUsername.setText(null);
         txtPassword.setText(null);
     }
-    
+
     public String getTeachID() {
         return txtTeachID.getText();
     }
+
     public String getFullName() {
         return txtTeachName.getText();
     }
@@ -155,7 +156,7 @@ public class Dashboard extends javax.swing.JFrame {
     public String getSearchTeacher() {
         return searchTeacher.getText();
     }
-    
+
     public String getSearchUser() {
         return searchUser.getText();
     }
@@ -168,31 +169,39 @@ public class Dashboard extends javax.swing.JFrame {
         return txtClassName.getText();
     }
 
-   public String getSearchClass() {
+    public String getClassId() {
+        return txtClassID.getText();
+    }
+
+    public String getSearchClass() {
         return searchClass.getText();
     }
-   
-   public String getAccId() {
+
+    public String getAccId() {
         return txtAccID.getText();
     }
-   public String getUserId() {
+
+    public String getUserId() {
         return txtUserID.getText();
     }
-   public String getUserName() {
+
+    public String getUserName() {
         return txtUsername.getText();
     }
-   public String getPassword() {
+
+    public String getPassword() {
         return txtPassword.getText();
     }
-   public String getRole() {
+
+    public String getRole() {
         return txtRoll.getText();
     }
-   
-   public boolean checkPhoneEmailUpdate() {
+
+    public boolean checkPhoneEmailUpdate() {
         String newEmail = txtTeachEmail.getText();
         String newPhone = txtTeachPhone.getText();
-        String oldEmail = model.getValueAt(currentIndex, 4).toString();
-        String oldPhone = model.getValueAt(currentIndex, 5).toString();
+        String oldEmail = model.getValueAt(currentIndex, 3).toString();
+        String oldPhone = model.getValueAt(currentIndex, 4).toString();
         if (newEmail.equals(oldEmail) && newPhone.equals(oldPhone)) {
             return false;
         } else {
@@ -213,6 +222,61 @@ public class Dashboard extends javax.swing.JFrame {
 
         }
         return false;
+    }
+
+    public boolean isEmptyTeacher() {
+        if (txtTeachName.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Teacher name is missing");
+            return false;
+        }
+
+        if (txtTeachEmail.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Teacher email address is missing");
+            return false;
+        }
+        if (!txtTeachEmail.getText().matches("^[A-Za-z0-9_.]+[@][A-Za-z.]+$")) {
+            JOptionPane.showMessageDialog(this, "Invalid email address");
+            return false;
+        }
+        if (txtTeachPhone.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Phone number is missing");
+            return false;
+        }
+        if (txtTeachPhone.getText().length() >= 12 || txtTeachPhone.getText().length() <= 9) {
+            JOptionPane.showMessageDialog(this, "The phone number does not have enough length.");
+            return false;
+        }
+        return true;
+    }
+
+    public boolean isEmptyClass() {
+        if (txtClassName.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Class name is missing");
+            return false;
+        }
+        return true;
+    }
+
+    public boolean isEmptyUser() {
+        if (txtUserID.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "User ID is missing");
+            return false;
+        }
+        if (txtUsername.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Username is missing");
+            return false;
+        }
+
+        if (txtPassword.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Password is missing");
+            return false;
+        }
+
+        if (txtRoll.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Roll is missing");
+            return false;
+        }
+        return true;
     }
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -378,7 +442,7 @@ public class Dashboard extends javax.swing.JFrame {
             }
         });
 
-        boxTeachGen.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        boxTeachGen.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         boxTeachGen.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -434,6 +498,7 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel10.setText("Search Teacher");
 
+        searchTeacher.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         searchTeacher.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchTeacherActionPerformed(evt);
@@ -715,6 +780,7 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel19.setText("Search Class");
 
+        searchClass.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         searchClass.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchClassActionPerformed(evt);
@@ -786,6 +852,11 @@ public class Dashboard extends javax.swing.JFrame {
                 "Class's ID", "Class Name"
             }
         ));
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable2);
 
         javax.swing.GroupLayout jPanel20Layout = new javax.swing.GroupLayout(jPanel20);
@@ -974,6 +1045,7 @@ public class Dashboard extends javax.swing.JFrame {
         jLabel55.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel55.setText("Search User");
 
+        searchUser.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         searchUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchUserActionPerformed(evt);
@@ -1022,11 +1094,16 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap(12, Short.MAX_VALUE))
         );
 
+        txtRoll.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtRoll.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtRollActionPerformed(evt);
             }
         });
+
+        txtUsername.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+
+        txtPassword.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
 
         javax.swing.GroupLayout jPanel28Layout = new javax.swing.GroupLayout(jPanel28);
         jPanel28.setLayout(jPanel28Layout);
@@ -1036,33 +1113,34 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel28Layout.createSequentialGroup()
+                        .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtAccID, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPanel28Layout.createSequentialGroup()
                         .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel44, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel28Layout.createSequentialGroup()
-                                .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtUserID)
-                                    .addComponent(txtRoll, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtUserID, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE)))
                         .addContainerGap())
                     .addGroup(jPanel28Layout.createSequentialGroup()
                         .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel28Layout.createSequentialGroup()
-                                .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtAccID, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel28Layout.createSequentialGroup()
                                 .addComponent(jLabel51, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(jPanel28Layout.createSequentialGroup()
-                                .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                                .addComponent(txtRoll, javax.swing.GroupLayout.PREFERRED_SIZE, 360, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel28Layout.setVerticalGroup(
             jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1070,26 +1148,28 @@ public class Dashboard extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jPanel44, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtAccID, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel25, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel28Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(txtAccID, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)))
+                .addGap(30, 30, 30)
                 .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel35, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtUserID, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(43, 43, 43)
                 .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel36, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtRoll, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(47, 47, 47)
                 .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel50, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtUsername, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(46, 46, 46)
                 .addGroup(jPanel28Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel51, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(239, 239, 239))
+                .addGap(127, 127, 127))
         );
 
         jPanel45.setBackground(new java.awt.Color(204, 204, 204));
@@ -1102,9 +1182,14 @@ public class Dashboard extends javax.swing.JFrame {
                 {null, null, null, null, null}
             },
             new String [] {
-                "ID", "User's ID", "Roll", "User_Name", "Pass_word"
+                "ID", "User's ID", "Username", "Password", "Role"
             }
         ));
+        jTable3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable3MouseClicked(evt);
+            }
+        });
         jScrollPane6.setViewportView(jTable3);
 
         jButton27.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
@@ -1288,7 +1373,7 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton42ActionPerformed
 
     private void jButton33ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton33ActionPerformed
-        // TODO add your handling code here:
+        clearUser();
     }//GEN-LAST:event_jButton33ActionPerformed
 
     private void jButton31ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton31ActionPerformed
@@ -1296,11 +1381,15 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton31ActionPerformed
 
     private void jButton28ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton28ActionPerformed
-        logController.updateUser();
+        if(isEmptyUser()){
+            logController.updateUser();
+        }
     }//GEN-LAST:event_jButton28ActionPerformed
 
     private void jButton27ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton27ActionPerformed
-       logController.saveUser();
+        if(isEmptyUser()){
+            logController.saveUser();
+        }
     }//GEN-LAST:event_jButton27ActionPerformed
 
     private void txtRollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRollActionPerformed
@@ -1320,20 +1409,28 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton15ActionPerformed
 
     private void btnUpdateClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateClassActionPerformed
-        clController.updateClass();
-
+        if (isEmptyClass()) {
+            clController.updateClass();
+        }
     }//GEN-LAST:event_btnUpdateClassActionPerformed
 
     private void btnSaveClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSaveClassActionPerformed
-        clController.saveClass();
+        if (isEmptyClass()) {
+            clController.saveClass();
+        }
     }//GEN-LAST:event_btnSaveClassActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
-
+        searchClass.setText(null);
+        clController.showNewData();
     }//GEN-LAST:event_jButton12ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-
+        if (searchClass.getText().isEmpty()) {
+            showMessage("Please enter student id or course name!");
+        } else {
+            clController.searchClass();
+        }
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void searchClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchClassActionPerformed
@@ -1361,23 +1458,51 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        tcController.updateTeacher();
+        if (isEmptyTeacher()) {
+            tcController.updateTeacher();
+        }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        tcController.saveTeacher();
+        if (isEmptyTeacher()) {
+            if (!tea.isEmailExits(getEmail())) {
+                if (!tea.isPhoneExits(getPhoneNumber())) {
+                    tcController.saveTeacher();
+                } else {
+                    showMessage("This is phone already exists");
+                }
+            } else {
+                showMessage("This is email already exists");
+            }
+        }
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
-
+        model = (DefaultTableModel) jTable1.getModel();
+        currentIndex = jTable1.getSelectedRow();
+        txtTeachID.setText(model.getValueAt(currentIndex, 0).toString());
+        txtTeachName.setText(model.getValueAt(currentIndex, 1).toString());
+        String gender = model.getValueAt(currentIndex, 2).toString();
+        if (gender.equals("Male")) {
+            boxTeachGen.setSelectedIndex(0);
+        } else {
+            boxTeachGen.setSelectedIndex(1);
+        }
+        txtTeachEmail.setText(model.getValueAt(currentIndex, 3).toString());
+        txtTeachPhone.setText(model.getValueAt(currentIndex, 4).toString());
     }//GEN-LAST:event_jTable1MouseClicked
 
     private void btnRefreshActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefreshActionPerformed
-
+        searchTeacher.setText(null);
+        tcController.showNewData();
     }//GEN-LAST:event_btnRefreshActionPerformed
 
     private void btnSearchTeacherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchTeacherActionPerformed
-
+        if (searchTeacher.getText().isEmpty()) {
+            showMessage("Please enter student id or course name!");
+        } else {
+            tcController.searchTeacher();
+        }
     }//GEN-LAST:event_btnSearchTeacherActionPerformed
 
     private void searchTeacherActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchTeacherActionPerformed
@@ -1385,7 +1510,9 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_searchTeacherActionPerformed
 
     private void txtTeachPhoneKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTeachPhoneKeyTyped
-
+        if (!Character.isDigit(evt.getKeyChar())) {
+            evt.consume();
+        }
     }//GEN-LAST:event_txtTeachPhoneKeyTyped
 
     private void txtTeachIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTeachIDActionPerformed
@@ -1393,11 +1520,15 @@ public class Dashboard extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTeachIDActionPerformed
 
     private void btnDeleteClassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteClassActionPerformed
-       clController.deleteClass();
+        clController.deleteClass();
     }//GEN-LAST:event_btnDeleteClassActionPerformed
 
     private void jButton26ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton26ActionPerformed
-        // TODO add your handling code here:
+        if (searchUser.getText().isEmpty()) {
+            showMessage("Please enter student id or course name!");
+        } else {
+            logController.searchUser();
+        }
     }//GEN-LAST:event_jButton26ActionPerformed
 
     private void searchUserKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_searchUserKeyTyped
@@ -1407,6 +1538,23 @@ public class Dashboard extends javax.swing.JFrame {
     private void searchUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchUserActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_searchUserActionPerformed
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        model = (DefaultTableModel) jTable2.getModel();
+        currentIndex = jTable2.getSelectedRow();
+        txtClassID.setText(model.getValueAt(currentIndex, 0).toString());
+        txtClassName.setText(model.getValueAt(currentIndex, 1).toString());
+    }//GEN-LAST:event_jTable2MouseClicked
+
+    private void jTable3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable3MouseClicked
+        model = (DefaultTableModel) jTable3.getModel();
+        currentIndex = jTable3.getSelectedRow();
+        txtAccID.setText(model.getValueAt(currentIndex, 0).toString());
+        txtUserID.setText(model.getValueAt(currentIndex, 1).toString());
+        txtUsername.setText(model.getValueAt(currentIndex, 2).toString());
+        txtPassword.setText(model.getValueAt(currentIndex, 3).toString());
+        txtRoll.setText(model.getValueAt(currentIndex, 4).toString());
+    }//GEN-LAST:event_jTable3MouseClicked
 
     /**
      * @param args the command line arguments
@@ -1436,10 +1584,8 @@ public class Dashboard extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new Dashboard().setVisible(true);
-            }
+        java.awt.EventQueue.invokeLater(() -> {
+            new Dashboard().setVisible(true);
         });
     }
 

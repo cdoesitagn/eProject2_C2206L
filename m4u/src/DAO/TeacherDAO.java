@@ -107,9 +107,9 @@ public class TeacherDAO extends ConnectSQL {
             statement = conn.prepareStatement(sql);
             statement.setString(1, tc.getFullname());
             statement.setString(2, tc.getEmail());
-            statement.setString(5, tc.getGender());
-            statement.setString(6, tc.getPhoneNumber());
-
+            statement.setString(3, tc.getGender());
+            statement.setString(4, tc.getPhoneNumber());
+             statement.setInt(5, tc.getTeacher_id());
             statement.execute();
         } catch (SQLException ex) {
             Logger.getLogger(TeacherDAO.class.getName()).log(Level.SEVERE, null, ex);

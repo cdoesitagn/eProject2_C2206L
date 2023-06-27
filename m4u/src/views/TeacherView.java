@@ -444,7 +444,9 @@ public class TeacherView extends javax.swing.JFrame {
         jTextField7.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jTextField7.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
-        jComboBox2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jDateChooser1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+
+        jComboBox2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Male", "Female" }));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
@@ -787,22 +789,30 @@ public class TeacherView extends javax.swing.JFrame {
         jTextField8.setBackground(new java.awt.Color(153, 153, 153));
         jTextField8.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
 
+        jComboBox1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+
+        jComboBox6.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jComboBox6.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "C Program", "Java 1", ".Net", "WS" }));
 
+        jComboBox7.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "SQL", "Java 2", "AP", "IDP" }));
 
+        jComboBox8.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jComboBox8.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "HTML & CSS", "ASP. NET ", "WCD", "EAD" }));
 
+        jComboBox9.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jComboBox9.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "PHP", "NOSQL", "DMA", "IASF" }));
 
         jLabel38.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel38.setText("Course 5");
 
+        jComboBox10.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jComboBox10.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "eProject1", "JSON", "NodeJS", "ADUF" }));
 
         jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel11.setText("Student's ID");
 
+        jTextField9.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jTextField9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField9ActionPerformed(evt);
@@ -854,6 +864,7 @@ public class TeacherView extends javax.swing.JFrame {
         jLabel49.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel49.setText("Teacher's ID");
 
+        jTextField3.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jTextField3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField3ActionPerformed(evt);
@@ -964,6 +975,7 @@ public class TeacherView extends javax.swing.JFrame {
         jLabel19.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel19.setText("Search Course");
 
+        jTextField12.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jTextField12.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField12ActionPerformed(evt);
@@ -1157,7 +1169,7 @@ public class TeacherView extends javax.swing.JFrame {
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                    .addComponent(jPanel15, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
@@ -1222,6 +1234,7 @@ public class TeacherView extends javax.swing.JFrame {
         jLabel47.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel47.setText("Student's ID");
 
+        jTextField25.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jTextField25.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField25ActionPerformed(evt);
@@ -1245,6 +1258,7 @@ public class TeacherView extends javax.swing.JFrame {
         jLabel20.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel20.setText("Semester");
 
+        jTextField27.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jTextField27.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField27ActionPerformed(evt);
@@ -1290,13 +1304,14 @@ public class TeacherView extends javax.swing.JFrame {
 
         jTextField13.setEditable(false);
         jTextField13.setBackground(new java.awt.Color(153, 153, 153));
+        jTextField13.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jTextField13.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField13ActionPerformed(evt);
             }
         });
 
-        tScore1.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        tScore1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tScore1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         tScore1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1304,15 +1319,16 @@ public class TeacherView extends javax.swing.JFrame {
             }
         });
 
-        pScore1.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        pScore1.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         pScore1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        tScore2.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        tScore2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         tScore2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
-        pScore2.setFont(new java.awt.Font("Times New Roman", 0, 16)); // NOI18N
+        pScore2.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         pScore2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
+        courseComboBox.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         courseComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "C Program", "Java 1", ".Net", "WS", "eProject1", "JSON", "NodeJS", "ADUF", "PHP", "NOSQL", "DMA", "IASF", "HTML & CSS", "ASP. NET ", "WCD", "EAD", "SQL", "Java 2", "AP", "IDP" }));
 
         javax.swing.GroupLayout jPanel17Layout = new javax.swing.GroupLayout(jPanel17);
@@ -1404,6 +1420,7 @@ public class TeacherView extends javax.swing.JFrame {
         jLabel48.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel48.setText("Search Score");
 
+        jTextField26.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jTextField26.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField26ActionPerformed(evt);
@@ -1733,6 +1750,7 @@ public class TeacherView extends javax.swing.JFrame {
         jLabel37.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel37.setText("Search Student");
 
+        jTextField24.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jTextField24.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField24ActionPerformed(evt);
@@ -1980,13 +1998,18 @@ public class TeacherView extends javax.swing.JFrame {
         txtTeacherId.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtTeacherId.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
+        txtClassId.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+
+        datePicker.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         datePicker.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Monday, Wednesday, Friday", "Tuesday, Thursday, Saturday" }));
 
         jLabel35.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel35.setText("Time of Day");
 
+        comboTimeOfDay.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         comboTimeOfDay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "8:00 - 11:00", "14:00 - 17:00", "18:00 - 19:00" }));
 
+        txtCourseName.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtCourseName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "C Program", "Java 1", ".Net", "WS", "eProject1", "JSON", "NodeJS", "ADUF", "PHP", "NOSQL", "DMA", "IASF", "HTML & CSS", "ASP. NET ", "WCD", "EAD", "SQL", "Java 2", "AP", "IDP" }));
 
         javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
@@ -2070,6 +2093,7 @@ public class TeacherView extends javax.swing.JFrame {
         jLabel34.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel34.setText("Search Schedule");
 
+        searchSchedule.setFont(new java.awt.Font(".TMC-Ong Do", 0, 16)); // NOI18N
         searchSchedule.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchScheduleActionPerformed(evt);
@@ -3272,31 +3296,31 @@ public class TeacherView extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_SearchActionPerformed
 
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(TeacherView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> {
-            new TeacherView().setVisible(true);
-        });
-    }
+//    public static void main(String args[]) {
+//        /* Set the Nimbus look and feel */
+//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+//         */
+//        try {
+//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+//                if ("Nimbus".equals(info.getName())) {
+//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+//                    break;
+//                }
+//            }
+//        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
+//            java.util.logging.Logger.getLogger(TeacherView.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+//        }
+//        //</editor-fold>
+//
+//        //</editor-fold>
+//
+//        /* Create and display the form */
+//        java.awt.EventQueue.invokeLater(() -> {
+//            new TeacherView().setVisible(true);
+//        });
+//    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Search;
