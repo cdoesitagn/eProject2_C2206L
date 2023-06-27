@@ -611,11 +611,9 @@
                                       <EmptySpace max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Component id="txtCourseName" alignment="0" min="-2" pref="354" max="-2" attributes="0"/>
-                                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                                              <Component id="txtStartTime" alignment="0" min="-2" pref="354" max="-2" attributes="0"/>
-                                              <Component id="datePicker" alignment="0" min="-2" pref="354" max="-2" attributes="0"/>
-                                              <Component id="txtEndTime" alignment="0" min="-2" pref="354" max="-2" attributes="0"/>
-                                          </Group>
+                                          <Component id="txtStartTime" alignment="0" min="-2" pref="354" max="-2" attributes="0"/>
+                                          <Component id="datePicker" alignment="0" min="-2" pref="354" max="-2" attributes="0"/>
+                                          <Component id="txtEndTime" alignment="0" min="-2" pref="354" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
@@ -765,6 +763,9 @@
                           <Color id="Text Cursor"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTeacherIdActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JTextField" name="txtClassId">
                       <Properties>
@@ -773,6 +774,9 @@
                           <Color blue="99" green="99" red="99" type="rgb"/>
                         </Property>
                       </Properties>
+                      <Events>
+                        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtClassIdActionPerformed"/>
+                      </Events>
                     </Component>
                     <Component class="javax.swing.JComboBox" name="txtCourseName">
                       <Properties>
