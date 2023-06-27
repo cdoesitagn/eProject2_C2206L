@@ -152,6 +152,7 @@ public class ScheduleController {
         schedule.setStudentId(student_id);
         
         schDAO.addScheduleStudent(schedule);
+        showNewDataRegister();
         stdview.showMessage("Register Successfully!");
         stdview.clearScheduleStudent();
     }
