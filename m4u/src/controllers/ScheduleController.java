@@ -93,6 +93,30 @@ public class ScheduleController {
             });
         }
     }
+    
+    public void showNewDataRegister() {
+        int student_id = stdview.getUser_id();
+        dataList = schDAO.getRegisteredByStudent(student_id);
+        showTableRegister();
+    }
+
+    public void showTableRegister() {
+        DefaultTableModel tableModel = stdview.getTableRegisterSchedule();
+        tableModel.setRowCount(0);
+
+        for (Schedule schedule : dataList) {
+            tableModel.addRow(new Object[]{
+                schedule.getScheduleId(),
+                schedule.getTeacherId(),
+                schedule.getClassId(),
+                schedule.getCourseName(),
+                schedule.getStartTime(),
+                schedule.getEndTime(),
+                schedule.getDateOfWeek(),
+                schedule.getTimeOfDay()
+            });
+        }
+    }
 
     public void saveSchedule() {
         int teacherId = Integer.parseInt(view.getTeacherId());

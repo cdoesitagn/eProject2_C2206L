@@ -47,6 +47,10 @@ public class StudentView extends javax.swing.JFrame {
         return (DefaultTableModel) jTable4.getModel();
     }
 
+    public DefaultTableModel getTableRegisterSchedule() {
+        return (DefaultTableModel) jTable1.getModel();
+    }
+
     public String getSearchGPA() {
         return searchGPA.getText();
     }
@@ -77,8 +81,10 @@ public class StudentView extends javax.swing.JFrame {
 
     private void init() {
         tableViewScheduleView();
+        tableViewScheduleRegister();
         jTextField14.setText(String.valueOf(schController.getMax()));
         schController.showNewDataSTD();
+        schController.showNewDataRegister();
     }
 
     private void tableViewScheduleView() {
@@ -87,6 +93,14 @@ public class StudentView extends javax.swing.JFrame {
         jTable3.setShowGrid(true);
         jTable3.setGridColor(black);
         jTable3.setBackground(white);
+    }
+
+    private void tableViewScheduleRegister() {
+        model = (DefaultTableModel) jTable1.getModel();
+        jTable1.setRowHeight(30);
+        jTable1.setShowGrid(true);
+        jTable1.setGridColor(black);
+        jTable1.setBackground(white);
     }
 
     public void setUserId(int user_id) {
@@ -100,7 +114,7 @@ public class StudentView extends javax.swing.JFrame {
     public String getScheduleId() {
         return jTextField14.getText();
     }
-    
+
     public String getSearchShedule() {
         return searchSchedule.getText();
     }
@@ -167,6 +181,11 @@ public class StudentView extends javax.swing.JFrame {
         btnRegister = new javax.swing.JButton();
         jButton23 = new javax.swing.JButton();
         jButton25 = new javax.swing.JButton();
+        jPanel3 = new javax.swing.JPanel();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel2 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -513,10 +532,20 @@ public class StudentView extends javax.swing.JFrame {
         txtTeacherId.setBackground(new java.awt.Color(153, 153, 153));
         txtTeacherId.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtTeacherId.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        txtTeacherId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTeacherIdActionPerformed(evt);
+            }
+        });
 
         txtClassId.setEditable(false);
         txtClassId.setBackground(new java.awt.Color(153, 153, 153));
         txtClassId.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
+        txtClassId.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtClassIdActionPerformed(evt);
+            }
+        });
 
         txtCourseName.setBackground(new java.awt.Color(153, 153, 153));
         txtCourseName.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
@@ -814,6 +843,57 @@ public class StudentView extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Schedule", jPanel25);
 
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel2.setText("Your Schedule");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Schedule's ID", "Teacher's ID", "Class's ID", "Course Name", "Strat Time", "End Time", "Date of Week", "Time of Day"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 1288, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 74, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 476, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        jTabbedPane1.addTab("Schedule Selected", jPanel3);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -872,7 +952,12 @@ public class StudentView extends javax.swing.JFrame {
         if (schController.isScheduleIdRegistered(student_id, schedule_id)) {
             showMessage("Schedule ID is already registered!");
         } else {
-            schController.registerSchedule();
+            if (jTextField14.getText() == null) {
+                showMessage("Please choose schedule!");
+            } else {
+                schController.registerSchedule();
+                schController.showNewDataRegister();
+            }
         }
     }//GEN-LAST:event_btnRegisterActionPerformed
     public void clearScheduleStudent() {
@@ -945,11 +1030,11 @@ public class StudentView extends javax.swing.JFrame {
     }//GEN-LAST:event_btnRefresh1ActionPerformed
 
     private void btnSearch1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearch1ActionPerformed
-       if(searchSchedule.getText() == null){
-           showMessage("Please enter search value");
-       }else{
-             schController.searchScheduleBySearchSTD();
-       }
+        if (searchSchedule.getText() == null) {
+            showMessage("Please enter search value");
+        } else {
+            schController.searchScheduleBySearchSTD();
+        }
     }//GEN-LAST:event_btnSearch1ActionPerformed
 
     private void searchScheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchScheduleActionPerformed
@@ -1000,6 +1085,13 @@ public class StudentView extends javax.swing.JFrame {
     private void jTextField14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField14ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField14ActionPerformed
+    private void txtTeacherIdActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
+
+    private void txtClassIdActionPerformed(java.awt.event.ActionEvent evt) {
+        // TODO add your handling code here:
+    }
 
     /**
      * @param args the command line arguments
@@ -1044,6 +1136,7 @@ public class StudentView extends javax.swing.JFrame {
     private javax.swing.JButton jButton35;
     private javax.swing.JButton jButton36;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
@@ -1061,6 +1154,7 @@ public class StudentView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel25;
     private javax.swing.JPanel jPanel26;
     private javax.swing.JPanel jPanel29;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel30;
     private javax.swing.JPanel jPanel31;
     private javax.swing.JPanel jPanel32;
@@ -1069,11 +1163,14 @@ public class StudentView extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel35;
     private javax.swing.JPanel jPanel36;
     private javax.swing.JPanel jPanel37;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel43;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTextField jTextField14;

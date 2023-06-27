@@ -182,13 +182,12 @@ public class ScheduleDAO extends ConnectSQL {
     public List<Schedule> getRegisteredByStudent(int sid) {
         List<Schedule> scheduleList = new ArrayList<>();
         open();
-        String sql = "SELECT s.schedule_id, s.teacher_id, s.class_id, s.course_name, s.start_time, s.end_time, s.date_of_week, s.time_of_day"
-                + "FROM Schedule s"
-                + "INNER JOIN Student_Schedule ss ON s.schedule_id = ss.schedule_id"
-                + "INNER JOIN Student st ON ss.student_id = st.student_id"
-                + "WHERE st.student_id = ?;";
-
         try {
+            String sql = "SELECT s.schedule_id, s.teacher_id, s.class_id, s.course_name, s.start_time, s.end_time, s.date_of_week, s.time_of_day " +
+                    "FROM Schedule s " +
+                    "INNER JOIN Student_Schedule ss ON s.schedule_id = ss.schedule_id " +
+                    "INNER JOIN Student st ON ss.student_id = st.student_id " +
+                    "WHERE st.student_id = ?;";
             statement = conn.prepareStatement(sql);
             statement.setInt(1, sid);
 
