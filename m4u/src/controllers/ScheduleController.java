@@ -186,4 +186,10 @@ public class ScheduleController {
         dataList = schDAO.getScheduleBySearch(txtsearch);
         showTable();
     }
+    
+    public void searchScheduleBySearchSTD() {
+        String txtsearch = stdview.getSearchShedule();
+        dataList = schDAO.getScheduleBySearch(txtsearch);
+        showTableSTD();
+    }
 }

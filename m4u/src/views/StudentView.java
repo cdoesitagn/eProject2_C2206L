@@ -100,6 +100,10 @@ public class StudentView extends javax.swing.JFrame {
     public String getScheduleId() {
         return jTextField14.getText();
     }
+    
+    public String getSearchShedule() {
+        return searchSchedule.getText();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -498,7 +502,7 @@ public class StudentView extends javax.swing.JFrame {
 
         jTextField14.setEditable(false);
         jTextField14.setBackground(new java.awt.Color(153, 153, 153));
-        jTextField14.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jTextField14.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         jTextField14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField14ActionPerformed(evt);
@@ -507,32 +511,32 @@ public class StudentView extends javax.swing.JFrame {
 
         txtTeacherId.setEditable(false);
         txtTeacherId.setBackground(new java.awt.Color(153, 153, 153));
-        txtTeacherId.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        txtTeacherId.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtTeacherId.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
 
         txtClassId.setEditable(false);
         txtClassId.setBackground(new java.awt.Color(153, 153, 153));
-        txtClassId.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        txtClassId.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
 
         txtCourseName.setBackground(new java.awt.Color(153, 153, 153));
-        txtCourseName.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        txtCourseName.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         txtCourseName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "C Program", "Java 1", ".Net", "WS", "eProject1", "JSON", "NodeJS", "ADUF", "PHP", "NOSQL", "DMA", "IASF", "HTML & CSS", "ASP. NET ", "WCD", "EAD", "SQL", "Java 2", "AP", "IDP" }));
 
         txtStartTime.setBackground(new java.awt.Color(153, 153, 153));
-        txtStartTime.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        txtStartTime.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
 
         txtEndTime.setBackground(new java.awt.Color(153, 153, 153));
-        txtEndTime.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        txtEndTime.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
 
         datePicker.setBackground(new java.awt.Color(153, 153, 153));
-        datePicker.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        datePicker.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         datePicker.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Monday, Wednesday, Friday", "Tuesday, Thursday, Saturday" }));
 
         jLabel35.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
         jLabel35.setText("Time of Day");
 
         comboTimeOfDay.setBackground(new java.awt.Color(153, 153, 153));
-        comboTimeOfDay.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        comboTimeOfDay.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         comboTimeOfDay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "8:00 - 11:00", "14:00 - 17:00", "18:00 - 19:00" }));
 
         javax.swing.GroupLayout jPanel26Layout = new javax.swing.GroupLayout(jPanel26);
@@ -865,10 +869,10 @@ public class StudentView extends javax.swing.JFrame {
     private void btnRegisterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegisterActionPerformed
         int schedule_id = Integer.parseInt(getScheduleId());
         int student_id = getUser_id();
-        if (!schController.isScheduleIdRegistered(student_id, schedule_id)) {
-            schController.registerSchedule();
-        } else {
+        if (schController.isScheduleIdRegistered(student_id, schedule_id)) {
             showMessage("Schedule ID is already registered!");
+        } else {
+            schController.registerSchedule();
         }
     }//GEN-LAST:event_btnRegisterActionPerformed
     public void clearScheduleStudent() {
@@ -936,11 +940,16 @@ public class StudentView extends javax.swing.JFrame {
     }//GEN-LAST:event_jTable3MouseClicked
 
     private void btnRefresh1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRefresh1ActionPerformed
-        // TODO add your handling code here:
+        schController.showNewDataSTD();
+        searchSchedule.setText(null);
     }//GEN-LAST:event_btnRefresh1ActionPerformed
 
     private void btnSearch1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearch1ActionPerformed
-        // TODO add your handling code here:
+       if(searchSchedule.getText() == null){
+           showMessage("Please enter search value");
+       }else{
+             schController.searchScheduleBySearchSTD();
+       }
     }//GEN-LAST:event_btnSearch1ActionPerformed
 
     private void searchScheduleActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchScheduleActionPerformed

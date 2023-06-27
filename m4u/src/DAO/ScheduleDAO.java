@@ -40,15 +40,14 @@ public class ScheduleDAO extends ConnectSQL {
     public boolean isScheduleIdRegistered(int studentId, int scheduleId) {
         open();
         try {
-            String sql = "SELECT COUNT(*) FROM student_schedule WHERE student_id = ? AND schedule_id = ?";
+            String sql = "SELECT * FROM student_schedule WHERE  schedule_id = ? AND student_id = ?;";
             statement = conn.prepareStatement(sql);
-            statement.setInt(1, studentId);
-            statement.setInt(2, scheduleId);
+            statement.setInt(1, scheduleId);
+            statement.setInt(2, studentId);
             ResultSet resultSet = statement.executeQuery();
 
             if (resultSet.next()) {
-                int count = resultSet.getInt(1);
-                return count > 0;
+               return true;
             }
         } catch (SQLException ex) {
         }
@@ -180,6 +179,39 @@ public class ScheduleDAO extends ConnectSQL {
         close();
     }
 
+    public List<Schedule> getRegisteredByStudent(int sid) {
+        List<Schedule> scheduleList = new ArrayList<>();
+        open();
+        String sql = "SELECT s.schedule_id, s.teacher_id, s.class_id, s.course_name, s.start_time, s.end_time, s.date_of_week, s.time_of_day"
+                + "FROM Schedule s"
+                + "INNER JOIN Student_Schedule ss ON s.schedule_id = ss.schedule_id"
+                + "INNER JOIN Student st ON ss.student_id = st.student_id"
+                + "WHERE st.student_id = ?;";
+
+        try {
+            statement = conn.prepareStatement(sql);
+            statement.setInt(1, sid);
+
+            ResultSet resultSet = statement.executeQuery();
+            while (resultSet.next()) {
+                Schedule schedule = new Schedule(
+                        resultSet.getInt("schedule_id"),
+                        resultSet.getInt("teacher_id"),
+                        resultSet.getInt("class_id"),
+                        resultSet.getString("course_name"),
+                        resultSet.getString("start_time"),
+                        resultSet.getString("end_time"),
+                        resultSet.getString("date_of_week"),
+                        resultSet.getString("time_of_day"));
+                scheduleList.add(schedule);
+            }
+        } catch (SQLException e) {
+            Logger.getLogger(ScheduleDAO.class.getName()).log(Level.SEVERE, null, e);
+        }
+        close();
+        return scheduleList;
+    }
+
     public void updateSchedule(Schedule schedule) {
         open();
         try {
@@ -201,4 +233,5 @@ public class ScheduleDAO extends ConnectSQL {
         }
         close();
     }
+
 }

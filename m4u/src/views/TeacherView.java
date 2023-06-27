@@ -2093,7 +2093,7 @@ public class TeacherView extends javax.swing.JFrame {
         jLabel34.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         jLabel34.setText("Search Schedule");
 
-        searchSchedule.setFont(new java.awt.Font(".TMC-Ong Do", 0, 16)); // NOI18N
+        searchSchedule.setFont(new java.awt.Font("Segoe UI", 0, 16)); // NOI18N
         searchSchedule.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 searchScheduleActionPerformed(evt);
