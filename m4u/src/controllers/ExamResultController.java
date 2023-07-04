@@ -170,7 +170,7 @@ public class ExamResultController {
     }
 
     public float showCGPA() {
-        int studentId = Integer.parseInt(stdview.getSearchGPA());
+        int studentId = Integer.parseInt(view.getSearchGPA());
         dataList = ExamResultDAO.getScoreValue(studentId);
         float cgpa = calculateCGPA(dataList);
         return cgpa;

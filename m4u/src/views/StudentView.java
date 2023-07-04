@@ -198,9 +198,8 @@ public class StudentView extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        setLocation(new java.awt.Point(280, 200));
+        setLocation(new java.awt.Point(110, 50));
         setUndecorated(true);
-        setPreferredSize(new java.awt.Dimension(1300, 720));
         setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(153, 255, 255));
@@ -1105,7 +1104,7 @@ public class StudentView extends javax.swing.JFrame {
             int sid = Integer.parseInt(searchGPA.getText());
             if (exaController.isIdStudentExist(sid)) {
                 exaController.showNewDataGPAstd();
-                cgpaLabel.setText("CGPA: " + String.format("%.2f", exaController.showCGPA()));
+                cgpaLabel.setText("CGPA: " + String.format("%.2f", exaController.showCGPAstd()));
             } else {
                 JOptionPane.showMessageDialog(this, "No scores found");
             }

@@ -294,7 +294,7 @@ public class TeacherView extends javax.swing.JFrame {
         jButton25 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setLocation(new java.awt.Point(280, 200));
+        setLocation(new java.awt.Point(110, 50));
         setUndecorated(true);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
